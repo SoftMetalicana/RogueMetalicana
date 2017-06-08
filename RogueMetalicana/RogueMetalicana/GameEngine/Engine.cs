@@ -67,6 +67,7 @@
                     break;
 
                 default:
+                    //all the monsters are traversed here.
                     break;
             }
         }

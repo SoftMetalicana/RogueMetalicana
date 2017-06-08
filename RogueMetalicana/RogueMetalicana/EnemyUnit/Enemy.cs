@@ -9,6 +9,9 @@
     /// </summary>
     public class Enemy : IPositionable, IFightable
     {
+        private char name;
+        private int experienceToGive;
+
         public Position Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int Armor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
