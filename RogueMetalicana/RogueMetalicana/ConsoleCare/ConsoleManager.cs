@@ -17,6 +17,22 @@
 
             Console.WindowHeight = ConsoleConstants.ConsoleHeight;
             Console.WindowWidth = ConsoleConstants.ConsoleWidth;
+
         }
+
+        // changes the text color of the select option at the menu
+        public static void SelectedOptionColor()
+        {
+            Console.ForegroundColor = ConsoleConstants.SelectedConsoleForegroundColor;
+            Console.BackgroundColor = ConsoleConstants.SelectedConsoleBackgroundColor;
+        }
+
+        //returns the default colors of the console 
+        public static void DefaultColors()
+        {
+            Console.ForegroundColor = ConsoleConstants.DefaultConsoleForegroundColor;
+            Console.BackgroundColor = ConsoleConstants.DefaultConsoleBackgroundColor;
+        }
+
     }
 }

@@ -11,6 +11,7 @@
     using RogueMetalicana.LevelEngine;
     using RogueMetalicana.GameEngine;
     using RogueMetalicana.Visualization;
+    using RogueMetalicana.Menu;
 
     public class StartUp
     {
@@ -18,6 +19,14 @@
         {
             //Sets the console size for the game and makes the cursor invisible
             ConsoleManager.SetTheConsoleForTheGame();
+
+            //Opens the start menu
+            Menu.Menu.StartMenu();
+
+            //Returns the default console settings
+            ConsoleManager.SetTheConsoleForTheGame();
+
+
 
             //Creating instances for the player, enemies and the dungeon
             Player player = new Player();

@@ -50,6 +50,8 @@
     <Compile Include="EnemyUnit\Enemy.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="LevelEngine\LevelGenerator.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\Pagination.cs" />
     <Compile Include="PlayerUnit\Player.cs" />
     <Compile Include="PlayerUnit\PlayerEventArgs.cs" />
     <Compile Include="Positioning\Position.cs" />
