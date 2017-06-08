@@ -2,6 +2,7 @@
 {
     using RogueMetalicana.EnemyUnit;
     using RogueMetalicana.PlayerUnit;
+    using RogueMetalicana.Positioning;
     using System.Collections.Generic;
     
     /// <summary>
@@ -21,6 +22,11 @@
             this.allEnemies = allEnemies;
 
             this.dungeon = dungeon;
+        }
+
+        public void OnPlayerMoved(object sender, PlayerEventArgs playerEventArgs)
+        {
+            Position newPlayerPosition = playerEventArgs.NewPlayerPosition;
         }
     }
 }

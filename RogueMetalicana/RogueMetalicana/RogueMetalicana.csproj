@@ -51,15 +51,16 @@
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="LevelEngine\LevelGenerator.cs" />
     <Compile Include="PlayerUnit\Player.cs" />
+    <Compile Include="PlayerUnit\PlayerEventArgs.cs" />
     <Compile Include="Positioning\Position.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitsInterfaces\IFightable.cs" />
     <Compile Include="UnitsInterfaces\IPositionable.cs" />
+    <Compile Include="Visualization\Visualisator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

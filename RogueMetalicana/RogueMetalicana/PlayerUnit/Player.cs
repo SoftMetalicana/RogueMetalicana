@@ -123,6 +123,8 @@
             set { this.isAlive = value; }
         }
 
+        public event EventHandler<PlayerEventArgs> PlayerMoved;
+
         public void MakeAMove()
         {
             Direction newDirection = default(Direction);
@@ -154,7 +156,17 @@
                     break;
             }
 
-            Position newPlayerPosition = Position.DirectionPositions[newDirection];
+            Position directionPosition = Position.DirectionPositions[newDirection];
+            Position newPlayerPosition = new Position(directionPosition.Row, directionPosition.Col);
+            newPlayerPosition.Row += this.position.Row;
+            newPlayerPosition.Col += this.position.Col;
+
+            OnPlayerMoved(newPlayerPosition);
+        }
+
+        protected virtual void OnPlayerMoved(Position newPlayerPosition)
+        {
+            PlayerMoved?.Invoke(this, new PlayerEventArgs() { NewPlayerPosition = newPlayerPosition });
         }
 
         public void TakeDamage(int damageToTake)
