@@ -2,23 +2,40 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
-    
+
+    /// <summary>
+    /// Takes care to print on the console.
+    /// </summary>
     public static class Visualisator
     {
-        public static void PrintDungeon(IEnumerable<string> dungeon)
+        /// <summary>
+        /// Refreshes the console (Console.Clear();) and than prints the latest condition of the dungeon.
+        /// The dungeon is printed line by line.
+        /// </summary>
+        /// <param name="dungeon">The dungeon that you want to print.</param>
+        public static void PrintDungeon(IEnumerable<char[]> dungeon)
         {
             Console.Clear();
 
             StringBuilder result = new StringBuilder();
-            foreach (string line in dungeon)
+            foreach (char[] line in dungeon)
             {
-                result.AppendLine(line);
+                result.AppendLine(string.Join(string.Empty, line));
             }
 
             Console.Write(result);
+        }
+
+        /// <summary>
+        /// Prints the wanted message and then terminates/ends the program.
+        /// </summary>
+        /// <param name="messageToEndTheGameWith">The message that you want to print.</param>
+        public static void PrintEndGameMessage(string messageToEndTheGameWith)
+        {
+            Console.WriteLine(messageToEndTheGameWith);
+
+            Environment.Exit(0);
         }
     }
 }

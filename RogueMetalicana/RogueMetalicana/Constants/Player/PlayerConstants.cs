@@ -20,5 +20,11 @@
         public const int StartingLevel = 1;
         public const int StartinExperience = 0;
         public const int StartingGold = 50;
+
+        /// <summary>
+        /// Players death messages
+        /// </summary>
+        public const string FellOfTheDungeonMessage = "You fell of the dungeon...";
+        public const string SteppedIntoLavaMessage = "You died because you stepped into hot lava...";
     }
 }

@@ -11,8 +11,10 @@
         /// <summary>
         /// Sets the console size.
         /// </summary>
-        public static void SetConsoleSize()
+        public static void SetTheConsoleForTheGame()
         {
+            Console.CursorVisible = false;
+
             Console.WindowHeight = ConsoleConstants.ConsoleHeight;
             Console.WindowWidth = ConsoleConstants.ConsoleWidth;
 

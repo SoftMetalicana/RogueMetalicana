@@ -52,7 +52,7 @@
         /// <param name="player">The player in the game that you want to initialize.</param>
         /// <param name="allEnemies">The enemies in the game which you want to initialize.</param>
         /// <param name="dungeon">The dungeon that you want to create.</param>
-        public void GenerateLevel(Player player, List<Enemy> allEnemies, List<string> dungeon)
+        public void GenerateLevel(Player player, List<Enemy> allEnemies, List<char[]> dungeon)
         {
             using (leverReader)
             {
@@ -60,7 +60,7 @@
                 string currentLine;
                 while ((currentLine = leverReader.ReadLine()) != default(string))
                 {
-                    dungeon.Add(currentLine);
+                    dungeon.Add(currentLine.ToCharArray());
 
                     //Processing every row element by element and finding the positions of all units.
                     for (int currentCol = 0; currentCol < currentLine.Length; currentCol++)

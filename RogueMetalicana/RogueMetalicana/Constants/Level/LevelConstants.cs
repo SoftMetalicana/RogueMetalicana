@@ -23,5 +23,6 @@
         /// </summary>
         public const char Wall = '#';
         public const char Ground = ' ';
+        public const char Lava = '~';
     }
 }
