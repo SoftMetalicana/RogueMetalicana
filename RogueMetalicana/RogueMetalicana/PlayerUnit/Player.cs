@@ -4,6 +4,7 @@
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Constants.Player;
+    using RogueMetalicana.Constants.Position;
 
     /// <summary>
     /// This represents the player in the game.
@@ -120,6 +121,40 @@
         {
             get { return this.isAlive; }
             set { this.isAlive = value; }
+        }
+
+        public void MakeAMove()
+        {
+            Direction newDirection = default(Direction);
+
+            ConsoleKeyInfo pressedKey = Console.ReadKey(false);
+            switch (pressedKey.Key)
+            {
+                case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
+                    newDirection = Direction.Up;
+                    break;
+                    
+                case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
+                    newDirection = Direction.Down;
+                    break;
+
+                case ConsoleKey.A:
+                case ConsoleKey.LeftArrow:
+                    newDirection = Direction.Left;
+                    break;
+
+                case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
+                    newDirection = Direction.Right;
+                    break;
+
+                default:
+                    break;
+            }
+
+            Position newPlayerPosition = Position.DirectionPositions[newDirection];
         }
 
         public void TakeDamage(int damageToTake)

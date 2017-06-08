@@ -1,10 +1,19 @@
 ﻿namespace RogueMetalicana.Positioning
 {
+    using System.Collections.Generic;
+    using RogueMetalicana.Constants.Position;
+    
     /// <summary>
     /// Class used to locate a cell on the console.
     /// </summary>
     public class Position
     {
+        /// <summary>
+        /// Provides a new position for the direction that you want to go to.
+        /// </summary>
+        public static readonly Dictionary<Direction, Position> DirectionPositions = 
+                                    PositionConstants.DirectionPositions;
+
         /// <summary>
         /// Row and column variables to locate the cell on the console.
         /// CAN'T AND MUSTN'T BE ACCESSED OUTSIDE THIS CLASS DIRECTLY!
