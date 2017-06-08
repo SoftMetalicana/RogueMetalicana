@@ -3,11 +3,12 @@
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Constants.Player;
+    using System;
 
     /// <summary>
     /// This represents the player in the game.
     /// </summary>
-    public class Player : IPositionable
+    public class Player : IPositionable, IFightable
     {
         /// <summary>
         /// Stats of the player that describes his current health condition.
@@ -16,6 +17,7 @@
         private int health;
         private int armor;
         private int damage;
+        private bool isAlive;
 
         /// <summary>
         /// Stats of the player that describe his current career condition.
@@ -29,22 +31,23 @@
         /// Current position in the dungeon.
         /// </summary>
         private Position position;
-
+        
         /// <summary>
         /// Sets all the stats of the player to the starting ones.
+        /// DOES NOT SET THE STARTING POSITION OF THE PLAYER!
+        /// To set the position use .Position;
         /// </summary>
         /// <param name="startingPosition">The starting position in the dungeon.</param>
-        public Player(Position startingPosition)
+        public Player()
         {
             this.health = PlayerConstants.StartingHealth;
             this.armor = PlayerConstants.StartingArmor;
             this.damage = PlayerConstants.StartingDamage;
+            this.isAlive = false;
 
             this.level = PlayerConstants.StartingLevel;
             this.experience = PlayerConstants.StartinExperience;
             this.gold = PlayerConstants.StartingGold;
-
-            this.position = startingPosition;
         }
 
         /// <summary>
@@ -108,6 +111,20 @@
         {
             get { return this.position; }
             set { this.position = value; }
+        }
+
+        /// <summary>
+        /// Get and set outside of the class.
+        /// </summary>
+        public bool IsAlive
+        {
+            get { return this.isAlive; }
+            set { this.isAlive = value; }
+        }
+
+        public void TakeDamage(int damageToTake)
+        {
+            throw new NotImplementedException();
         }
     }
 }

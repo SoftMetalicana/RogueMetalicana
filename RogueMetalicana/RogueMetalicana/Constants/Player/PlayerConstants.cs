@@ -6,6 +6,11 @@
     public static class PlayerConstants
     {
         /// <summary>
+        /// The player symbol in the game.
+        /// </summary>
+        public const char Symbol = '@';
+
+        /// <summary>
         /// Starting stats for the player
         /// </summary>
         public const int StartingHealth = 100;
