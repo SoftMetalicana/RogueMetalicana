@@ -1,9 +1,9 @@
 ﻿namespace RogueMetalicana.PlayerUnit
 {
+    using System;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Constants.Player;
-    using System;
 
     /// <summary>
     /// This represents the player in the game.

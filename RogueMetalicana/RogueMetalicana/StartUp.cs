@@ -9,6 +9,7 @@
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.EnemyUnit;
     using RogueMetalicana.LevelEngine;
+    using RogueMetalicana.GameEngine;
 
     public class StartUp
     {
@@ -22,6 +23,8 @@
 
             LevelGenerator levelGenerator = new LevelGenerator();
             levelGenerator.GenerateLevel(player, allEnemies, dungeon);
+
+            Engine gameEngine = new Engine(player, allEnemies, dungeon);
         }
     }
 }

@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using RogueMetalicana.EnemyUnit;
     using RogueMetalicana.Constants.Player;
+    using RogueMetalicana.Positioning;
 
     /// <summary>
     /// Generates a level.
@@ -55,24 +56,24 @@
         {
             using (leverReader)
             {
-                int row = 0;
+                int currentRow = 0;
                 string currentLine;
                 while ((currentLine = leverReader.ReadLine()) != default(string))
                 {
                     dungeon.Add(currentLine);
 
-                    for (int currentSymbol = 0; currentSymbol < currentLine.Length; currentSymbol++)
+                    //Processing every row element by element and finding the positions of all units.
+                    for (int currentCol = 0; currentCol < currentLine.Length; currentCol++)
                     {
-                        char symbol = currentLine[currentSymbol];
+                        char symbol = currentLine[currentCol];
 
                         switch (symbol)
                         {
                             case PlayerConstants.Symbol:
+                                player.Position = new Position(currentRow, currentCol);
                                 break;
 
                             case LevelConstants.Wall:
-                                break;
-
                             case LevelConstants.Ground:
                                 break;
 
@@ -81,7 +82,7 @@
                         }
                     }
 
-                    row++;
+                    currentRow++;
                 }
             }
         }
