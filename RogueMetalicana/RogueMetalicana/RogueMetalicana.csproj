@@ -45,6 +45,8 @@
     <Compile Include="ConsoleCare\ConsoleManager.cs" />
     <Compile Include="Constants\Console\ConsoleConstants.cs" />
     <Compile Include="Constants\Player\PlayerConstants.cs" />
+    <Compile Include="EnemyUnit\Enemy.cs" />
+    <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="PlayerUnit\Player.cs" />
     <Compile Include="Positioning\Position.cs" />
     <Compile Include="StartUp.cs" />
@@ -54,8 +56,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EnemyUnit\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
