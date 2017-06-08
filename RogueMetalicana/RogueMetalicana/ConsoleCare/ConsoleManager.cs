@@ -17,9 +17,6 @@
 
             Console.WindowHeight = ConsoleConstants.ConsoleHeight;
             Console.WindowWidth = ConsoleConstants.ConsoleWidth;
-
-            Console.BufferHeight = Console.WindowHeight;
-            Console.BufferWidth = Console.BufferWidth;
         }
     }
 }

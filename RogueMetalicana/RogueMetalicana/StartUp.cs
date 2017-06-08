@@ -16,7 +16,7 @@
     {
         public static void Main()
         {
-            //Setting the console size for the game
+            //Sets the console size for the game and makes the cursor invisible
             ConsoleManager.SetTheConsoleForTheGame();
 
             //Creating instances for the player, enemies and the dungeon
