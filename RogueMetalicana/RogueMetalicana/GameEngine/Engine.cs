@@ -66,6 +66,9 @@
                     Visualisator.PrintEndGameMessage(PlayerConstants.SteppedIntoLavaMessage);
                     break;
 
+                case LevelConstants.Wall:
+                    break;
+
                 default:
                     //all the monsters are traversed here.
                     break;
