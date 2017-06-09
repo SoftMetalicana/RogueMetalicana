@@ -4,11 +4,9 @@ namespace RogueMetalicana.Pagination
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using RogueMetalicana.ConsoleCare;
 
-        public class Pagination
+    public class Pagination
         {
             private List<string> options;
             private string selected;
