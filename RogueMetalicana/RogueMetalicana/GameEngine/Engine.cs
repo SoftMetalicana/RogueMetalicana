@@ -45,6 +45,11 @@ namespace RogueMetalicana.GameEngine
 
         public List<char[]> Dungeon { get { return this.dungeon; } }
 
+        /// <summary>
+        /// This method is executed when the player dies.
+        /// </summary>
+        /// <param name="sender">The publisher of the event. The player.</param>
+        /// <param name="playerEventArgs">Holds the needed things that changed.</param>
         public void OnPlayerDied(object sender, PlayerEventArgs playerEventArgs)
         {
             Visualisator.PrintEndGameMessage(PlayerConstants.PlayerDiedDueToAttack);

@@ -50,7 +50,7 @@
                 player.MakeAMove();
                 Visualisator.PrintDungeon(gameEngine.Dungeon, player);
 
-                player.TakeDamage(12);
+                //player.TakeDamage(12);
             }
         }
     }
