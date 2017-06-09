@@ -1,4 +1,6 @@
-﻿namespace RogueMetalicana.GameEngine
+﻿using System;
+
+namespace RogueMetalicana.GameEngine
 {
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.Constants.Player;
@@ -70,8 +72,16 @@
                     Visualisator.PrintEndGameMessage(PlayerConstants.LostIntoSpellboundForest);
                     break;
 
+                //all the monsters are traversed here.
                 default:
-                    //all the monsters are traversed here.
+                    foreach (var enemy in allEnemies)
+                    {
+                        //temp - to be developed once battle is possible
+                        if ((enemy.Position.Col == newPlayerPosition.Col) && (enemy.Position.Row == newPlayerPosition.Row))
+                        {
+                            Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
+                        }                       
+                    }
                     break;
             }
         }

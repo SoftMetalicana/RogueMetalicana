@@ -14,6 +14,12 @@ namespace RogueMetalicana.Constants.Console
         public const int ConsoleHeight = 35;
         public const int ConsoleWidth = 100;
 
+        /// <summary>
+        /// Variables for the initial playfield size.
+        /// </summary>
+        public const int FieldHeight = 15;
+        public const int FieldWidth = 70;
+
         // default console colors
         public const ConsoleColor DefaultConsoleBackgroundColor = ConsoleColor.Black;
         public const ConsoleColor DefaultConsoleForegroundColor = ConsoleColor.White;

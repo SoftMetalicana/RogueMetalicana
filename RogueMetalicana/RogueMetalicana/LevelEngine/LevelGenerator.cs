@@ -67,25 +67,30 @@ namespace RogueMetalicana.LevelEngine
                     //Processing every row element by element and finding the positions of all units.
                     for (int currentCol = 0; currentCol < currentLine.Length; currentCol++)
                     {
-                        char symbol = currentLine[currentCol];
 
-                        switch (symbol)
+                        if (currentCol <= Constants.Console.ConsoleConstants.FieldWidth && currentRow <= Constants.Console.ConsoleConstants.FieldHeight)
                         {
-                            case PlayerConstants.Symbol:
-                                player.Position = new Position(currentRow, currentCol);
-                                break;
+                            char symbol = currentLine[currentCol];
 
-                            case SnakeConstants.Symbol:
-                                allEnemies.Add(new Enemy(SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
-                                break;
+                            switch (symbol)
+                            {
+                                case PlayerConstants.Symbol:
+                                    player.Position = new Position(currentRow, currentCol);
+                                    break;
 
-                            case LevelConstants.Wall:
-                            case LevelConstants.Ground:
-                                break;
+                                case SnakeConstants.Symbol:
+                                    allEnemies.Add(new Enemy(SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
+                                    break;
 
-                            default:
-                                break;
+                                case LevelConstants.Wall:
+                                case LevelConstants.Ground:
+                                    break;
+
+                                default:
+                                    break;
+                            }
                         }
+
                     }
 
                     currentRow++;
