@@ -65,10 +65,10 @@ namespace RogueMetalicana.LevelEngine
                     dungeon.Add(currentLine.ToCharArray());
 
                     //Processing every row element by element and finding the positions of all units.
-                    for (int currentCol = 0; currentCol < currentLine.Length; currentCol++)
-                    {
 
-                        if (currentCol <= Constants.Console.ConsoleConstants.FieldWidth && currentRow <= Constants.Console.ConsoleConstants.FieldHeight)
+                    if (currentRow < Constants.Console.ConsoleConstants.FieldHeight)
+                    {
+                        for (int currentCol = 0; currentCol < Constants.Console.ConsoleConstants.FieldWidth; currentCol++)
                         {
                             char symbol = currentLine[currentCol];
 
@@ -90,10 +90,8 @@ namespace RogueMetalicana.LevelEngine
                                     break;
                             }
                         }
-
-                    }
-
-                    currentRow++;
+                    }                   
+                   currentRow++;
                 }
             }
         }
