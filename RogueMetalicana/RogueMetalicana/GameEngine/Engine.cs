@@ -5,6 +5,7 @@ namespace RogueMetalicana.GameEngine
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.EnemyUnit;
+    using RogueMetalicana.LevelEngine;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Visualization;
@@ -24,19 +25,25 @@ namespace RogueMetalicana.GameEngine
 
         private List<char[]> dungeon;
 
+        private LevelGenerator levelGenerator;
+
         /// <summary>
         /// Sets values to the game units.
         /// </summary>
         /// <param name="player">The player that you want to create in the engine.</param>
         /// <param name="allEnemies">The enemies that you want to create in the engine.</param>
         /// <param name="dungeon">The dungeon you want to create in the engine.</param>
-        public Engine(Player player, List<Enemy> allEnemies, List<char[]> dungeon)
+        public Engine(Player player, List<Enemy> allEnemies, List<char[]> dungeon, LevelGenerator levelGenerator)
         {
             this.player = player;
             this.allEnemies = allEnemies;
 
             this.dungeon = dungeon;
+
+            this.levelGenerator = levelGenerator;
         }
+
+        public List<char[]> Dungeon { get { return this.dungeon; } }
 
         /// <summary>
         /// This method is executed everytime the player moves.
@@ -49,7 +56,13 @@ namespace RogueMetalicana.GameEngine
 
             if (PlayerFellOfTheDungeon(newPlayerPosition))
             {
-                Visualisator.PrintEndGameMessage(PlayerConstants.FellOfTheDungeonMessage);
+                this.allEnemies = new List<Enemy>();
+                this.dungeon = new List<char[]>();
+                
+                levelGenerator.GenerateFullLevelPath();
+                levelGenerator.GenerateLevel(this.player, this.allEnemies, this.dungeon);
+
+                return;
             }
 
             char newPositionCell = this.dungeon[newPlayerPosition.Row][newPlayerPosition.Col];

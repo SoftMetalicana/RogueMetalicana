@@ -37,11 +37,16 @@ namespace RogueMetalicana.LevelEngine
         {
             this.currentLevelNumber = LevelConstants.StartLevelNumber;
 
-            this.fullLevelPath = LevelConstants.LoadingPath + 
-                                 LevelConstants.FolderName + 
-                                 LevelConstants.LevelLoadName + 
-                                 LevelConstants.StartLevelNumber + 
-                                 LevelConstants.FileExtension;
+            GenerateFullLevelPath();
+        }
+
+        public void GenerateFullLevelPath()
+        {
+            this.fullLevelPath = LevelConstants.LoadingPath +
+                                             LevelConstants.FolderName +
+                                             LevelConstants.LevelLoadName +
+                                             this.currentLevelNumber++ +
+                                             LevelConstants.FileExtension;
 
             this.leverReader = new StreamReader(fullLevelPath);
         }
@@ -90,7 +95,8 @@ namespace RogueMetalicana.LevelEngine
                                     break;
                             }
                         }
-                    }                   
+                    } 
+                    
                    currentRow++;
                 }
             }

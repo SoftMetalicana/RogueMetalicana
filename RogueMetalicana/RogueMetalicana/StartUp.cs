@@ -25,9 +25,7 @@
 
             //Returns the default console settings
             ConsoleManager.SetTheConsoleForTheGame();
-
-
-
+            
             //Creating instances for the player, enemies and the dungeon
             Player player = new Player();
             List<Enemy> allEnemies = new List<Enemy>();
@@ -39,7 +37,7 @@
             levelGenerator.GenerateLevel(player, allEnemies, dungeon);
 
             //Knows about all objects/units and takes the care about the interaction of the units.
-            Engine gameEngine = new Engine(player, allEnemies, dungeon);
+            Engine gameEngine = new Engine(player, allEnemies, dungeon, levelGenerator);
 
             //The movement of the player is an event
             //The engine is subscribed to this event so it can know about every move of the player.
@@ -49,7 +47,7 @@
             while (true)
             {
                 player.MakeAMove();
-                Visualisator.PrintDungeon(dungeon);
+                Visualisator.PrintDungeon(gameEngine.Dungeon);
             }
         }
     }
