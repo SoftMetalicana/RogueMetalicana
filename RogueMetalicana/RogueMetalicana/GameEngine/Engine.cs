@@ -1,4 +1,6 @@
-﻿namespace RogueMetalicana.GameEngine
+﻿using System;
+
+namespace RogueMetalicana.GameEngine
 {
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.Constants.Player;
@@ -53,7 +55,7 @@
             char newPositionCell = this.dungeon[newPlayerPosition.Row][newPlayerPosition.Col];
 
             //Executes different method depending on the cell that the player wants to step on.
-            //EVERYTIME THE PLAYER MOVES SUCCESSFULLY YOU MUST INVOKE THE SWAP SYMBOLS METHOD
+            //EVERYTIME THE PLAYER MOVES SUCCESSFULLY YOU MUST INVOKE THE SWAP SYMBOLS METHOD3
             //You must do it so the dungeon knows where the player is.
             switch (newPositionCell)
             {
@@ -69,8 +71,20 @@
                 case LevelConstants.Wall:
                     break;
 
+                case LevelConstants.SpellboundForest:
+                    Visualisator.PrintEndGameMessage(PlayerConstants.LostIntoSpellboundForest);
+                    break;
+
+                //all the monsters are traversed here.
                 default:
-                    //all the monsters are traversed here.
+                    foreach (var enemy in allEnemies)
+                    {
+                        //temp - to be developed once battle is possible
+                        if ((enemy.Position.Col == newPlayerPosition.Col) && (enemy.Position.Row == newPlayerPosition.Row))
+                        {
+                            Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
+                        }
+                    }
                     break;
             }
         }
