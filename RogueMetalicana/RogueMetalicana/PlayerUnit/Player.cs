@@ -63,7 +63,7 @@
         /// <summary>
         /// Get and set the armor outside of the class.
         /// </summary>
-        public int Armor
+        public int Defense
         {
             get { return this.armor; }
             set { this.armor = value; }
