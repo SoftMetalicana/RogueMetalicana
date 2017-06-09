@@ -5,12 +5,12 @@
     /// </summary>
     public interface IFightable
     {
-        int Health { get; set; }
+        double Health { get; set; }
         int Defense { get; set; }
         int Damage { get; set; }
 
         bool IsAlive { get; set; }
 
-        void TakeDamage(int damageToTake);
+        void TakeDamage(double damageToTake);
     }
 }

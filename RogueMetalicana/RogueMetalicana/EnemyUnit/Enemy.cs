@@ -15,7 +15,7 @@
         /// </summary>
         private string type;
         private int level;
-        private int health;
+        private double health;
         private int damage;
         private int defense;
         private int experienceGained;
@@ -26,7 +26,7 @@
         /// </summary>
         private Position position;
 
-        public Enemy(string type, int level, int health, int damage, int defense, int experienceGained, Position position)
+        public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
         {
             this.type = type;
             this.level = level;
@@ -58,7 +58,7 @@
         /// <summary>
         /// Get and set the health outside of the class.
         /// </summary>
-        public int Health
+        public double Health
         {
             get { return this.health; }
             set { this.health = value; }
@@ -109,9 +109,20 @@
             set { this.position = value; }
         }
 
-        public void TakeDamage(int damageToTake)
+        public void TakeDamage(double damageToTake)
         {
-            throw new NotImplementedException();
+            this.health -= damageToTake;
+
+            if (this.health <= 0)
+            {
+                EnemyDied();
+            }
+        }
+
+        private void EnemyDied()
+        {
+            Console.WriteLine("GG");
+            Environment.Exit(0);
         }
     }
 }

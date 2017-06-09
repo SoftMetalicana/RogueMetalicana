@@ -2,6 +2,7 @@
 
 namespace RogueMetalicana.GameEngine
 {
+    using RogueMetalicana.BattleGround;
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.EnemyUnit;
@@ -105,11 +106,17 @@ namespace RogueMetalicana.GameEngine
                         //temp - to be developed once battle is possible
                         if ((enemy.Position.Col == newPlayerPosition.Col) && (enemy.Position.Row == newPlayerPosition.Row))
                         {
+                            EnterInBattle(enemy);
                             Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
                         }
                     }
                     break;
             }
+        }
+
+        private void EnterInBattle(Enemy enemy)
+        {
+            BattleGround.Generate(player, enemy);
         }
 
         /// <summary>

@@ -15,7 +15,7 @@
         /// Stats of the player that describes his current health condition.
         /// MUSTN'T BE ACCESSED DIRECTLY OUTSIDE OF THIS CLASS.
         /// </summary>
-        private int health;
+        private double health;
         private int armor;
         private int damage;
         private bool isAlive;
@@ -54,7 +54,7 @@
         /// <summary>
         /// Get and set the health outside of the class.
         /// </summary>
-        public int Health
+        public double Health
         {
             get { return this.health; }
             set { this.health = value; }
@@ -170,14 +170,14 @@
             PlayerMoved?.Invoke(this, new PlayerEventArgs() { NewPlayerPosition = newPlayerPosition });
         }
 
-        public void TakeDamage(int damageToTake)
+        public void TakeDamage(double damageToTake)
         {
+            this.health -= damageToTake;
+
             if (this.health <= 0)
             {
                 OnPlayerDied();
             }
-
-            this.health -= damageToTake;
         }
 
         protected virtual void OnPlayerDied()

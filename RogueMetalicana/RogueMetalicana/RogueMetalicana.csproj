@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleGround\BattleGround.cs" />
     <Compile Include="ConsoleCare\ConsoleManager.cs" />
     <Compile Include="Constants\Console\ConsoleConstants.cs" />
     <Compile Include="Constants\Enemy\SnakeConstants.cs" />

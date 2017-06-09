@@ -13,7 +13,7 @@
         /// <summary>
         /// Starting stats for the player
         /// </summary>
-        public const int StartingHealth = 100;
+        public const double StartingHealth = 100;
         public const int StartingArmor = 20;
         public const int StartingDamage = 25;
 

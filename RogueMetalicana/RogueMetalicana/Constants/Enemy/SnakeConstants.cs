@@ -15,9 +15,9 @@
         /// </summary>
         public const string Type = "Snake";
         public const int Level = 1;
-        public const int Health = 25;
-        public const int Damage = 5;
-        public const int Defense = 2;
+        public const double Health = 25;
+        public const int Damage = 8;
+        public const int Defense = 5;
         public const int ExperienceGained = 7;
     }
 }
