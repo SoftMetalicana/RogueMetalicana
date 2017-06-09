@@ -45,6 +45,11 @@ namespace RogueMetalicana.GameEngine
 
         public List<char[]> Dungeon { get { return this.dungeon; } }
 
+        public void OnPlayerDied(object sender, PlayerEventArgs playerEventArgs)
+        {
+            Visualisator.PrintEndGameMessage(PlayerConstants.PlayerDiedDueToAttack);
+        }
+
         /// <summary>
         /// This method is executed everytime the player moves.
         /// </summary>

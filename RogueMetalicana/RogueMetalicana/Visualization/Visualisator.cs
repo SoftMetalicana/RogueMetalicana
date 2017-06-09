@@ -30,6 +30,10 @@
             PrintPlayerStats(player);
         }
 
+        /// <summary>
+        /// Prints the player current stats.
+        /// </summary>
+        /// <param name="player">The players start that you want to print</param>
         public static void PrintPlayerStats(Player player)
         {
             string[] messages = new string[3]
@@ -54,6 +58,7 @@
         /// <param name="messageToEndTheGameWith">The message that you want to print.</param>
         public static void PrintEndGameMessage(string messageToEndTheGameWith)
         {
+            Console.Clear();
             Console.WriteLine(messageToEndTheGameWith);
 
             Environment.Exit(0);

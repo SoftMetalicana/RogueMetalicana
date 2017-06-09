@@ -32,7 +32,7 @@
         /// Current position in the dungeon.
         /// </summary>
         private Position position;
-        
+
         /// <summary>
         /// Sets all the stats of the player to the starting ones.
         /// DOES NOT SET THE STARTING POSITION OF THE PLAYER!
@@ -124,6 +124,7 @@
         }
 
         public event EventHandler<PlayerEventArgs> PlayerMoved;
+        public event EventHandler<PlayerEventArgs> PlayerDied;
 
         public void MakeAMove()
         {
@@ -136,7 +137,7 @@
                 case ConsoleKey.UpArrow:
                     newDirection = Direction.Up;
                     break;
-                    
+
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
                     newDirection = Direction.Down;
@@ -171,7 +172,17 @@
 
         public void TakeDamage(int damageToTake)
         {
-            throw new NotImplementedException();
+            if (this.health <= 0)
+            {
+                OnPlayerDied();
+            }
+
+            this.health -= damageToTake;
+        }
+
+        protected virtual void OnPlayerDied()
+        {
+            PlayerDied?.Invoke(this, new PlayerEventArgs());
         }
 
         public override string ToString()

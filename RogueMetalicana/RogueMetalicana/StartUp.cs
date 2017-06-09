@@ -42,12 +42,15 @@
             //The movement of the player is an event
             //The engine is subscribed to this event so it can know about every move of the player.
             player.PlayerMoved += gameEngine.OnPlayerMoved;
+            player.PlayerDied += gameEngine.OnPlayerDied;
 
             Visualisator.PrintDungeon(dungeon, player);
             while (true)
             {
                 player.MakeAMove();
                 Visualisator.PrintDungeon(gameEngine.Dungeon, player);
+
+                player.TakeDamage(12);
             }
         }
     }

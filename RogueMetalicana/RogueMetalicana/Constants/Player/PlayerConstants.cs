@@ -27,5 +27,6 @@
         public const string FellOfTheDungeonMessage = "You fell of the dungeon...";
         public const string SteppedIntoLavaMessage = "You died because you stepped into hot lava...";
         public const string LostIntoSpellboundForest = "You died because you lost yourself into the spellbound forest and starved to death...";
+        public const string PlayerDiedDueToAttack = "Player died due to attack";
     }
 }
