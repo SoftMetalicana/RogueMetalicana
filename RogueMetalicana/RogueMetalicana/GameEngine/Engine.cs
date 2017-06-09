@@ -53,7 +53,7 @@
             char newPositionCell = this.dungeon[newPlayerPosition.Row][newPlayerPosition.Col];
 
             //Executes different method depending on the cell that the player wants to step on.
-            //EVERYTIME THE PLAYER MOVES SUCCESSFULLY YOU MUST INVOKE THE SWAP SYMBOLS METHOD
+            //EVERYTIME THE PLAYER MOVES SUCCESSFULLY YOU MUST INVOKE THE SWAP SYMBOLS METHOD3
             //You must do it so the dungeon knows where the player is.
             switch (newPositionCell)
             {
@@ -64,6 +64,10 @@
 
                 case LevelConstants.Lava:
                     Visualisator.PrintEndGameMessage(PlayerConstants.SteppedIntoLavaMessage);
+                    break;
+
+                case LevelConstants.SpellboundForest:
+                    Visualisator.PrintEndGameMessage(PlayerConstants.LostIntoSpellboundForest);
                     break;
 
                 default:
