@@ -1,5 +1,7 @@
 ﻿namespace RogueMetalicana.Visualization
 {
+    using RogueMetalicana.Constants.Console;
+    using RogueMetalicana.PlayerUnit;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -14,7 +16,7 @@
         /// The dungeon is printed line by line.
         /// </summary>
         /// <param name="dungeon">The dungeon that you want to print.</param>
-        public static void PrintDungeon(IEnumerable<char[]> dungeon)
+        public static void PrintDungeon(IEnumerable<char[]> dungeon, Player player)
         {
             Console.Clear();
 
@@ -25,6 +27,25 @@
             }
 
             Console.Write(result);
+            PrintPlayerStats(player);
+        }
+
+        public static void PrintPlayerStats(Player player)
+        {
+            string[] messages = new string[3]
+            {
+                $"Current health: {player.Health}",
+                $"Current armor: {player.Defense}",
+                $"Current damage: {player.Damage}"
+            };
+
+            StringBuilder result = new StringBuilder();
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 4; currentRow++, messageIndex++)
+            {
+                Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
+
+                Console.WriteLine(messages[messageIndex]);
+            }
         }
 
         /// <summary>

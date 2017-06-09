@@ -43,11 +43,11 @@
             //The engine is subscribed to this event so it can know about every move of the player.
             player.PlayerMoved += gameEngine.OnPlayerMoved;
 
-            Visualisator.PrintDungeon(dungeon);
+            Visualisator.PrintDungeon(dungeon, player);
             while (true)
             {
                 player.MakeAMove();
-                Visualisator.PrintDungeon(gameEngine.Dungeon);
+                Visualisator.PrintDungeon(gameEngine.Dungeon, player);
             }
         }
     }

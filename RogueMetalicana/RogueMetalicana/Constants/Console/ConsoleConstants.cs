@@ -27,5 +27,8 @@ namespace RogueMetalicana.Constants.Console
         // color of the selected option in the menu
         public const ConsoleColor SelectedConsoleBackgroundColor = ConsoleColor.White;
         public const ConsoleColor SelectedConsoleForegroundColor = ConsoleColor.Black;
+
+        public const int PlayerStatsPrintStartRow = 1;
+        public const int PlayerStatsPrintStartCol = 72;
     }
 }
