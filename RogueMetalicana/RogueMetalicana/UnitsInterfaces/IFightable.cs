@@ -6,7 +6,7 @@
     public interface IFightable
     {
         int Health { get; set; }
-        int Armor { get; set; }
+        int Defense { get; set; }
         int Damage { get; set; }
 
         bool IsAlive { get; set; }

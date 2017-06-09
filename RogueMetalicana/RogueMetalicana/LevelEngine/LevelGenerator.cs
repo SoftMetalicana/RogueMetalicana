@@ -1,4 +1,5 @@
-﻿namespace RogueMetalicana.LevelEngine
+﻿
+namespace RogueMetalicana.LevelEngine
 {
     using System.IO;
     using RogueMetalicana.Constants.Level;
@@ -7,6 +8,7 @@
     using RogueMetalicana.EnemyUnit;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.Positioning;
+    using RogueMetalicana.Constants.Enemy;
 
     /// <summary>
     /// Generates a level.
@@ -71,6 +73,10 @@
                         {
                             case PlayerConstants.Symbol:
                                 player.Position = new Position(currentRow, currentCol);
+                                break;
+
+                            case SnakeConstants.Symbol:
+                                allEnemies.Add(new Enemy(SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
                                 break;
 
                             case LevelConstants.Wall:

@@ -1,6 +1,7 @@
 ﻿namespace RogueMetalicana.EnemyUnit
 {
     using System;
+    using RogueMetalicana.Constants.Enemy;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
 
@@ -9,14 +10,104 @@
     /// </summary>
     public class Enemy : IPositionable, IFightable
     {
-        private char name;
-        private int experienceToGive;
+        /// <summary>
+        /// Stats of the enemy.
+        /// </summary>
+        private string type;
+        private int level;
+        private int health;
+        private int damage;
+        private int defense;
+        private int experienceGained;
+        private bool isAlive;
 
-        public Position Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Armor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Damage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsAlive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        /// <summary>
+        /// Enemy Position in the dungeon.
+        /// </summary>
+        private Position position;
+
+        public Enemy(string type, int level, int health, int damage, int defense, int experienceGained, Position position)
+        {
+            this.type = type;
+            this.level = level;
+            this.health = health;
+            this.damage = damage;
+            this.defense = defense;
+            this.experienceGained = experienceGained;
+            this.isAlive = true;
+            this.position = position;
+        }
+
+        /// <summary>
+        /// Get and set the enemy type outside of the class.
+        /// </summary>
+        public string Type
+        {
+            get { return this.type; }
+            set { this.type = value; }
+        }
+
+        /// <summary>
+        /// Get and set the enemy level outside of the class.
+        /// </summary>
+        public int Level
+        {
+            get { return this.level; }
+            set { this.level = value; }
+        }
+        /// <summary>
+        /// Get and set the health outside of the class.
+        /// </summary>
+        public int Health
+        {
+            get { return this.health; }
+            set { this.health = value; }
+        }
+
+        /// <summary>
+        /// Get and set the damage outside of the class.
+        /// </summary>
+        public int Damage
+        {
+            get { return this.damage; }
+            set { this.damage = value; }
+        }
+
+        /// <summary>
+        /// Get and set the defense outside of the class.
+        /// </summary>
+        public int Defense
+        {
+            get { return this.defense; }
+            set { this.defense = value; }
+        }
+
+        /// <summary>
+        /// Get and set the experience gained after dead outside of the class.
+        /// </summary>
+        public int ExperienceGained
+        {
+            get { return this.experienceGained; }
+            set { this.experienceGained = value; }
+        }
+
+        /// <summary>
+        /// Get and set the live status outside of the class.
+        /// </summary>
+        public bool IsAlive
+        {
+            get { return this.isAlive; }
+            set { this.isAlive = value; }
+        }
+
+        /// <summary>
+        /// Get and set the position outside of the class.
+        /// </summary>
+        public Position Position
+        {
+            get { return this.position; }
+            set { this.position = value; }
+        }
 
         public void TakeDamage(int damageToTake)
         {
