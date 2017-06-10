@@ -28,5 +28,16 @@
         public const char Ground = ' ';
         public const char Lava = '~';
         public const char SpellboundForest = '%';
+
+        /// <summary>
+        /// Holds the color for the wanted symbol.
+        /// </summary>
+        public static readonly Dictionary<char, ConsoleColor> SymbolsColors = new Dictionary<char, ConsoleColor>
+        {
+            [Wall] = ConsoleColor.White,
+            [Ground] = ConsoleColor.White,
+            [Lava] = ConsoleColor.Red,
+            [SpellboundForest] = ConsoleColor.Green,
+        };
     }
 }

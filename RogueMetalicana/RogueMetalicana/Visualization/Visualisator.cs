@@ -1,6 +1,7 @@
 ﻿namespace RogueMetalicana.Visualization
 {
     using RogueMetalicana.Constants.Console;
+    using RogueMetalicana.Constants.Level;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
     using System;
@@ -24,10 +25,26 @@
             StringBuilder result = new StringBuilder();
             foreach (char[] line in dungeon)
             {
-                result.AppendLine(string.Join(string.Empty, line));
-            }
+                foreach (char symbol in line)
+                {
+                    PrintSymbolInColor(symbol, LevelConstants.SymbolsColors.ContainsKey(symbol) ?
+                                                           LevelConstants.SymbolsColors[symbol] : 
+                                                           ConsoleColor.White);
+                }
 
-            Console.Write(result);
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Prints a symbol with a certain color on the console.
+        /// </summary>
+        /// <param name="symbolToPrint">The symbol that you want to print.</param>
+        /// <param name="toUse">The color that you want to use.</param>
+        private static void PrintSymbolInColor(char symbolToPrint, ConsoleColor toUse)
+        {
+            Console.ForegroundColor = toUse;
+            Console.Write(symbolToPrint);
         }
 
         /// <summary>
@@ -38,7 +55,7 @@
         {
             string[] messages = new string[3]
             {
-                $"Current health: {player.Health--}",
+                $"Current health: {player.Health}",
                 $"Current armor: {player.Defense}",
                 $"Current damage: {player.Damage}"
             };
