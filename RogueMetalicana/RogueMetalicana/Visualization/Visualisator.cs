@@ -64,9 +64,6 @@
         {
             Console.SetCursorPosition(toPrintOn.Col, toPrintOn.Row);
             Console.Write(newSymbol);
-            Console.Write("\b");
-
-            Console.SetCursorPosition(0, 31);
         }
 
         /// <summary>
