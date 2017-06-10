@@ -132,6 +132,8 @@ namespace RogueMetalicana.GameEngine
             Visualisator.DeleteSymbolOnPositionAndPrintNewOne(PlayerConstants.Symbol, newPlayerPosition);
 
             this.player.Position = newPlayerPosition;
+
+            Visualisator.PrintPlayerStats(this.player);
         }
 
         /// <summary>

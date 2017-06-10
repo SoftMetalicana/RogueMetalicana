@@ -55,20 +55,17 @@
         {
             string[] messages = new string[3]
             {
-                $"Current health: {player.Health}",
-                $"Current armor: {player.Defense}",
-                $"Current damage: {player.Damage}"
+                $"Current health: {player.Health}     ",
+                $"Current armor: {player.Defense}     ",
+                $"Current damage: {player.Damage}     "
             };
 
             StringBuilder result = new StringBuilder();
-            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow <= 4; currentRow++, messageIndex++)
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 4; currentRow++, messageIndex++)
             {
                 Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
 
-                if (currentRow != 4)
-                {
-                    Console.WriteLine(messages[messageIndex]);
-                }
+                Console.WriteLine(messages[messageIndex]);
             }
         }
 
