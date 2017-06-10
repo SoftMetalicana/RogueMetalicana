@@ -46,6 +46,7 @@
     <Compile Include="ConsoleCare\ConsoleManager.cs" />
     <Compile Include="Constants\Console\ConsoleConstants.cs" />
     <Compile Include="Constants\Enemy\SnakeConstants.cs" />
+    <Compile Include="Constants\Level\LegendConstants.cs" />
     <Compile Include="Constants\Level\LevelConstants.cs" />
     <Compile Include="Constants\Player\PlayerConstants.cs" />
     <Compile Include="Constants\Position\PositionConstants.cs" />
