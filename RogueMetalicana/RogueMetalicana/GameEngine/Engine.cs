@@ -128,8 +128,8 @@ namespace RogueMetalicana.GameEngine
         /// <param name="newPlayerPosition">The new position of the player.</param>
         private void PlaceThePlayerOnHisNewPosition(Position newPlayerPosition)
         {
-            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(' ', this.player.Position);
-            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(PlayerConstants.Symbol, newPlayerPosition);
+            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(' ', this.player.Position, PlayerConstants.Color);
+            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(PlayerConstants.Symbol, newPlayerPosition, PlayerConstants.Color);
 
             this.player.Position = newPlayerPosition;
 

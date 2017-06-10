@@ -1,5 +1,6 @@
 ﻿namespace RogueMetalicana.Constants.Level
 {
+    using RogueMetalicana.Constants.Player;
     using System;
     using System.Collections.Generic;
     
@@ -34,6 +35,7 @@
         /// </summary>
         public static readonly Dictionary<char, ConsoleColor> SymbolsColors = new Dictionary<char, ConsoleColor>
         {
+            [PlayerConstants.Symbol] = ConsoleColor.Cyan,
             [Wall] = ConsoleColor.White,
             [Ground] = ConsoleColor.White,
             [Lava] = ConsoleColor.Red,

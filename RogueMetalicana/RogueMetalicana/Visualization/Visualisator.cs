@@ -74,10 +74,10 @@
         /// </summary>
         /// <param name="newSymbol">The symbol that you want to print.</param>
         /// <param name="toPrintOn">The cell that you want to print it on.</param>
-        public static void DeleteSymbolOnPositionAndPrintNewOne(char newSymbol, Position toPrintOn)
+        public static void DeleteSymbolOnPositionAndPrintNewOne(char newSymbol, Position toPrintOn, ConsoleColor toUse)
         {
             Console.SetCursorPosition(toPrintOn.Col, toPrintOn.Row);
-            Console.Write(newSymbol);
+            PrintSymbolInColor(newSymbol, toUse);
         }
 
         /// <summary>
