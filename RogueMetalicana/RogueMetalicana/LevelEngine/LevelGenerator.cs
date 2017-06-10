@@ -9,6 +9,7 @@ namespace RogueMetalicana.LevelEngine
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Constants.Enemy;
+    using RogueMetalicana.Visualization;
 
     /// <summary>
     /// Generates a level.
@@ -99,6 +100,8 @@ namespace RogueMetalicana.LevelEngine
                     
                    currentRow++;
                 }
+
+                Visualisator.PrintDungeon(dungeon, player);
             }
         }
     }

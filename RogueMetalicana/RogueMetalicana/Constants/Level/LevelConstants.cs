@@ -1,5 +1,8 @@
 ﻿namespace RogueMetalicana.Constants.Level
 {
+    using System;
+    using System.Collections.Generic;
+    
     /// <summary>
     /// Provides all variables for LevelGenerator.cs
     /// </summary>

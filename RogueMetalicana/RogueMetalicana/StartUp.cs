@@ -44,11 +44,11 @@
             player.PlayerMoved += gameEngine.OnPlayerMoved;
             player.PlayerDied += gameEngine.OnPlayerDied;
 
-            Visualisator.PrintDungeon(dungeon, player);
+            //Visualisator.PrintDungeon(dungeon, player);
             while (true)
             {
                 player.MakeAMove();
-                Visualisator.PrintDungeon(gameEngine.Dungeon, player);
+                //Visualisator.PrintDungeon(gameEngine.Dungeon, player);
 
                 //player.TakeDamage(12);
             }

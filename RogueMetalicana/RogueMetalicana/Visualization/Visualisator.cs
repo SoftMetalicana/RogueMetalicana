@@ -2,6 +2,7 @@
 {
     using RogueMetalicana.Constants.Console;
     using RogueMetalicana.PlayerUnit;
+    using RogueMetalicana.Positioning;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -27,7 +28,6 @@
             }
 
             Console.Write(result);
-            PrintPlayerStats(player);
         }
 
         /// <summary>
@@ -38,18 +38,35 @@
         {
             string[] messages = new string[3]
             {
-                $"Current health: {player.Health}",
+                $"Current health: {player.Health--}",
                 $"Current armor: {player.Defense}",
                 $"Current damage: {player.Damage}"
             };
 
             StringBuilder result = new StringBuilder();
-            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 4; currentRow++, messageIndex++)
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow <= 4; currentRow++, messageIndex++)
             {
                 Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
 
-                Console.WriteLine(messages[messageIndex]);
+                if (currentRow != 4)
+                {
+                    Console.WriteLine(messages[messageIndex]);
+                }
             }
+        }
+
+        /// <summary>
+        /// This method prints a symbol on a given position.
+        /// </summary>
+        /// <param name="newSymbol">The symbol that you want to print.</param>
+        /// <param name="toPrintOn">The cell that you want to print it on.</param>
+        public static void DeleteSymbolOnPositionAndPrintNewOne(char newSymbol, Position toPrintOn)
+        {
+            Console.SetCursorPosition(toPrintOn.Col, toPrintOn.Row);
+            Console.Write(newSymbol);
+            Console.Write("\b");
+
+            Console.SetCursorPosition(0, 31);
         }
 
         /// <summary>

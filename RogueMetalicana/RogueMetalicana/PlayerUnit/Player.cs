@@ -130,7 +130,7 @@
         {
             Direction newDirection = default(Direction);
 
-            ConsoleKeyInfo pressedKey = Console.ReadKey(false);
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
             switch (pressedKey.Key)
             {
                 case ConsoleKey.W:
