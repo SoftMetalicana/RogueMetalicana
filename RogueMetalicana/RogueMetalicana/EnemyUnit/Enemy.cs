@@ -116,7 +116,7 @@
             set { this.position = value; }
         }
 
-        public void TakeDamage(double damageToTake, Enemy enemy)
+        public void TakeDamage(double damageToTake)
         {
             this.health -= damageToTake;
 

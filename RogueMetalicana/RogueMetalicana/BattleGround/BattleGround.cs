@@ -42,7 +42,7 @@
         public static void Battle(int playerDealingDamage, int playerDefense, int enemyDealingDamage, int enemyDefense, Player player, Enemy enemy)
         {
             player.TakeDamage(enemyDealingDamage - playerDefense);
-            enemy.TakeDamage(playerDealingDamage - enemyDefense, enemy);
+            enemy.TakeDamage(playerDealingDamage - enemyDefense);
 
             Generate(player, enemy);
         }
