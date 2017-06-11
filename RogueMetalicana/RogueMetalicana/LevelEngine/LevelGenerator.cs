@@ -102,8 +102,6 @@ namespace RogueMetalicana.LevelEngine
                    currentRow++;
                 }
 
-
-
                 //Processing every row element by element and finding the positions of all units.
                 currentRow = 0;
                 foreach (var line in dungeon)
@@ -135,6 +133,7 @@ namespace RogueMetalicana.LevelEngine
                 }
 
                 Visualisator.PrintDungeon(dungeon, player);
+                Visualisator.PrintMapLegend(levelEnemies);
             }
         }
 

@@ -1,4 +1,7 @@
-﻿namespace RogueMetalicana.Visualization
+﻿using RogueMetalicana.Constants.Enemy;
+using RogueMetalicana.Constants.Visualisator;
+
+namespace RogueMetalicana.Visualization
 {
     using RogueMetalicana.Constants.Console;
     using RogueMetalicana.Constants.Level;
@@ -35,7 +38,7 @@
                 Console.WriteLine();
             }
 
-            PrintTheMapLegend(dungeon);
+/*            PrintTheMapLegend(dungeon);*/
         }
 
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
@@ -43,6 +46,23 @@
             StringBuilder result = new StringBuilder();
             result.AppendLine($"");
             Console.SetCursorPosition(0, 16);
+        }
+
+        public static void PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies)
+        {
+            Console.WriteLine(VisualisatorConstants.LegendEnemyHeading);
+
+            foreach (var enemyData in enemies)
+            {
+                var difficulty = Enum.GetName(typeof(EnemyDifficulty), enemyData.Value.Value);
+
+
+                Console.WriteLine("{0, -20}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty);
+
+/*                Console.Write(enemyData.Key + "\t\t");
+                Console.Write(enemyData.Value.Key + "\t\t");
+                Console.Write(difficulty + "\t\t\n\r");*/
+            }
         }
 
         /// <summary>
