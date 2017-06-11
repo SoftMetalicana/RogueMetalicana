@@ -1,31 +1,24 @@
+####### ##############################################################
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#                                                                    #
+#            @                                                       #
 ######################################################################
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-                                                                     #
-#                                                                    #
-#     @                                                              #
-######################################################################
 
-ENEMIES:
-|Symbol 	|Meaning   	|EnemyLevel
-
-|G 		|ghost  	|low
-|Z 		|zombie  	|medium
-|B 		|basilisk  	|low
-|H 		|hydra  	|edium
-|M 		|EvilMaster  	|high
-
-OBSTACLES:
-|Symbol 	|Meaning   		|Threat
-
-|#		|wall			|No known threat	
-|~		|lava			|Swimming into hot lava will eventually lead to death
-|%		|spellbound forest	|Noone has ever escaped the spellbound forest
+/I/E|G 		|ghost  	|0
+/I/E|Z 		|zombie  	|1
+/I/E|B 		|basilisk  	|0
+/I/E|H 		|hydra  	|1
+/I/E|M 		|EvilMaster  	|2
+/I/O|#		|wall			|No known threat	
+/I/O|~		|lava			|Swimming into hot lava will eventually lead to death
+/I/O|%		|spellbound forest	|Noone has ever escaped the spellbound forest

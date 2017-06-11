@@ -45,11 +45,16 @@
     <Compile Include="BattleGround\BattleGround.cs" />
     <Compile Include="ConsoleCare\ConsoleManager.cs" />
     <Compile Include="Constants\Console\ConsoleConstants.cs" />
+    <Compile Include="Constants\Enemy\Difficult.cs" />
+    <Compile Include="Constants\Enemy\Easy.cs" />
+    <Compile Include="Constants\Enemy\EnemyDifficulty.cs" />
+    <Compile Include="Constants\Enemy\Medium.cs" />
     <Compile Include="Constants\Enemy\SnakeConstants.cs" />
     <Compile Include="Constants\Level\LegendConstants.cs" />
     <Compile Include="Constants\Level\LevelConstants.cs" />
     <Compile Include="Constants\Player\PlayerConstants.cs" />
     <Compile Include="Constants\Position\PositionConstants.cs" />
+    <Compile Include="Constants\Visualisator\VisualisatorConstants.cs" />
     <Compile Include="EnemyUnit\Enemy.cs" />
     <Compile Include="EnemyUnit\EnemyEventArgs.cs" />
     <Compile Include="GameEngine\Engine.cs" />
