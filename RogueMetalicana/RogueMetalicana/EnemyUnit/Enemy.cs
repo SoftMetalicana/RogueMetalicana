@@ -124,6 +124,7 @@
 
             if (this.health <= 0)
             {
+                this.isAlive = false;
                 OnEnemyDied();
             }
         }
@@ -133,7 +134,7 @@
         /// </summary>
         protected virtual void OnEnemyDied()
         {
-            EnemyDied?.Invoke(this, new EnemyEventArgs() { Position = this.position, ExperienceGained = this.experienceGained });
+            EnemyDied?.Invoke(this, new EnemyEventArgs() { Position = this.position, ExperienceGained = this.experienceGained});
         }
     }
 }

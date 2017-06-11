@@ -18,14 +18,14 @@
         /// <param name="enemy"></param>
         public static void Generate(Player player, Enemy enemy)
         {
-            int randomDefensePlayerPoints = getRandom.Next(player.Defense);
-            int randomDefenseEnemyPoints = getRandom.Next(enemy.Defense);
+            double randomDefensePlayerPoints = getRandom.Next(0, player.Defense);
+            double randomDefenseEnemyPoints = getRandom.Next(0, enemy.Defense);
 
-            int dealingDamagePlayer = getRandom.Next(1, player.Damage);
-            int dealingDamageEnemy = getRandom.Next(1, enemy.Damage);
+            double dealingDamagePlayer = getRandom.Next(1, player.Damage);
+            double dealingDamageEnemy = getRandom.Next(1, enemy.Damage);
 
-            int playerDefense = randomDefensePlayerPoints / dealingDamageEnemy;
-            int enemyDefense = randomDefenseEnemyPoints / dealingDamagePlayer;
+            double playerDefense = Math.Round((randomDefensePlayerPoints / dealingDamageEnemy), 2) ;
+            double enemyDefense = Math.Round((randomDefenseEnemyPoints / dealingDamagePlayer), 2);
 
             Battle(dealingDamagePlayer, playerDefense, dealingDamageEnemy, enemyDefense, player, enemy);
         }
@@ -39,12 +39,15 @@
         /// <param name="enemyDefense"></param>
         /// <param name="player"></param>
         /// <param name="enemy"></param>
-        public static void Battle(int playerDealingDamage, int playerDefense, int enemyDealingDamage, int enemyDefense, Player player, Enemy enemy)
+        public static void Battle(double playerDealingDamage, double playerDefense, double enemyDealingDamage, double enemyDefense, Player player, Enemy enemy)
         {
             player.TakeDamage(enemyDealingDamage - playerDefense);
             enemy.TakeDamage(playerDealingDamage - enemyDefense);
 
-            Generate(player, enemy);
+            if (enemy.IsAlive == true)
+            {
+                Generate(player, enemy);
+            }
         }
     }
 }

@@ -188,16 +188,24 @@
             PlayerDied?.Invoke(this, new PlayerEventArgs());
         }
 
-        public void GainExperience()
+        public void GainExperience(int experienceGained)
         {
-            //xp++;
-            //needxp ++
-           /// if (xp >= needxp)
-           // {
-           //stats++
-                // needxp *=2;
-                //xp =0;
-           // }
+            experience += experienceGained;
+
+            if (experience > NeedExperience)
+            {
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()
+        {
+            experience = 0;
+            level++;
+            armor += 2;
+            damage += 10;
+            health += 50;
+            NeedExperience *= 2;
         }
 
         public override string ToString()

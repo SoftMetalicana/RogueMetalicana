@@ -8,5 +8,7 @@ namespace RogueMetalicana.EnemyUnit
         public int ExperienceGained { get; set; }
 
         public Position Position { get; set; }
+
+        public bool IsAlive { get; set; }
     }
 }

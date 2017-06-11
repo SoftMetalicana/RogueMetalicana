@@ -109,20 +109,24 @@ namespace RogueMetalicana.GameEngine
                         if ((enemy.Position.Col == newPlayerPosition.Col) && (enemy.Position.Row == newPlayerPosition.Row))
                         {
                             EnterInBattle(enemy);
-                            Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
+                            break;
+                            //Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
                         }
                     }
                     break;
             }
         }
 
+        /// <summary>
+        /// Invokes when enemy die to gain expereince, gold and remove enemy from enemies list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="enemyEventArgs"></param>
         public void OnEnemyDied(object sender, EnemyEventArgs enemyEventArgs)
         {
-            //player += exp;
-            //new level?
-            //player += gold;
-
+            player.GainExperience(enemyEventArgs.ExperienceGained);
             allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
+            //replace enemy icon with " "
         }
 
         /// <summary>
@@ -175,11 +179,6 @@ namespace RogueMetalicana.GameEngine
 
             return rowToCheck < 0 || rowToCheck >= this.dungeon.Count ||
                    colToCheck < 0 || colToCheck >= this.dungeon[rowToCheck].Length;
-        }
-
-        public void EnemyDied(Enemy enemy)
-        {
-            allEnemies.Remove(enemy);
         }
     }
 }
