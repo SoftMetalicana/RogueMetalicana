@@ -1,7 +1,9 @@
 ﻿namespace RogueMetalicana.Visualization
 {
     using RogueMetalicana.Constants.Console;
+    using RogueMetalicana.Constants.Level;
     using RogueMetalicana.PlayerUnit;
+    using RogueMetalicana.Positioning;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -23,11 +25,35 @@
             StringBuilder result = new StringBuilder();
             foreach (char[] line in dungeon)
             {
-                result.AppendLine(string.Join(string.Empty, line));
+                foreach (char symbol in line)
+                {
+                    PrintSymbolInColor(symbol, LevelConstants.SymbolsColors.ContainsKey(symbol) ?
+                                                           LevelConstants.SymbolsColors[symbol] : 
+                                                           ConsoleColor.White);
+                }
+
+                Console.WriteLine();
             }
 
-            Console.Write(result);
-            PrintPlayerStats(player);
+            PrintTheMapLegend(dungeon);
+        }
+
+        private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendLine($"");
+            Console.SetCursorPosition(0, 16);
+        }
+
+        /// <summary>
+        /// Prints a symbol with a certain color on the console.
+        /// </summary>
+        /// <param name="symbolToPrint">The symbol that you want to print.</param>
+        /// <param name="toUse">The color that you want to use.</param>
+        private static void PrintSymbolInColor(char symbolToPrint, ConsoleColor toUse)
+        {
+            Console.ForegroundColor = toUse;
+            Console.Write(symbolToPrint);
         }
 
         /// <summary>
@@ -38,9 +64,9 @@
         {
             string[] messages = new string[3]
             {
-                $"Current health: {player.Health}",
-                $"Current armor: {player.Defense}",
-                $"Current damage: {player.Damage}"
+                $"Current health: {player.Health}     ",
+                $"Current armor: {player.Defense}     ",
+                $"Current damage: {player.Damage}     "
             };
 
             StringBuilder result = new StringBuilder();
@@ -50,6 +76,17 @@
 
                 Console.WriteLine(messages[messageIndex]);
             }
+        }
+
+        /// <summary>
+        /// This method prints a symbol on a given position.
+        /// </summary>
+        /// <param name="newSymbol">The symbol that you want to print.</param>
+        /// <param name="toPrintOn">The cell that you want to print it on.</param>
+        public static void DeleteSymbolOnPositionAndPrintNewOne(char newSymbol, Position toPrintOn, ConsoleColor toUse)
+        {
+            Console.SetCursorPosition(toPrintOn.Col, toPrintOn.Row);
+            PrintSymbolInColor(newSymbol, toUse);
         }
 
         /// <summary>

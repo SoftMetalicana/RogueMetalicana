@@ -85,6 +85,7 @@ namespace RogueMetalicana.GameEngine
             {
                 //If he wants to step on the ground we let him.
                 case LevelConstants.Ground:
+                case PlayerConstants.Symbol:
                     PlaceThePlayerOnHisNewPosition(newPlayerPosition);
                     break;
 
@@ -132,9 +133,12 @@ namespace RogueMetalicana.GameEngine
         /// <param name="newPlayerPosition">The new position of the player.</param>
         private void PlaceThePlayerOnHisNewPosition(Position newPlayerPosition)
         {
-            this.SwapSymbolsInDungeon(this.player.Position, newPlayerPosition);
+            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(' ', this.player.Position, PlayerConstants.Color);
+            Visualisator.DeleteSymbolOnPositionAndPrintNewOne(PlayerConstants.Symbol, newPlayerPosition, PlayerConstants.Color);
 
             this.player.Position = newPlayerPosition;
+
+            Visualisator.PrintPlayerStats(this.player);
         }
 
         /// <summary>

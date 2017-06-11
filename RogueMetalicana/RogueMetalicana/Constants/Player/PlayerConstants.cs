@@ -1,4 +1,6 @@
-﻿namespace RogueMetalicana.Constants.Player
+﻿using System;
+
+namespace RogueMetalicana.Constants.Player
 {
     /// <summary>
     /// Provides all variables needed for the Player.cs
@@ -9,6 +11,7 @@
         /// The player symbol in the game.
         /// </summary>
         public const char Symbol = '@';
+        public const ConsoleColor Color = ConsoleColor.Cyan;
 
         /// <summary>
         /// Starting stats for the player

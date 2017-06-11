@@ -1,5 +1,9 @@
 ﻿namespace RogueMetalicana.Constants.Level
 {
+    using RogueMetalicana.Constants.Player;
+    using System;
+    using System.Collections.Generic;
+    
     /// <summary>
     /// Provides all variables for LevelGenerator.cs
     /// </summary>
@@ -21,9 +25,34 @@
         /// <summary>
         /// Symbols used in a single level
         /// </summary>
-        public const char Wall = '#';
         public const char Ground = ' ';
+
+        public const char Wall = '#';
+        public const string WallMeaning = "wall";
+        public const string WallThreat = "No known theat";
+
         public const char Lava = '~';
+        public const string LavaMeaning = "lava";
+        public const string LavaThreat = "Swimming into hot lava will eventually lead to death";
+
         public const char SpellboundForest = '%';
+        public const string ForestMeaning = "SpellboundForest";
+        public const string ForestThreat = "Noone has ever escaped the spellbound forest";
+
+        public const char Ghost = 'G';
+        public const string GhostMeaning = "Ghost";
+        public const string GhostThreat = "Low";
+
+        /// <summary>
+        /// Holds the color for the wanted symbol.
+        /// </summary>
+        public static readonly Dictionary<char, ConsoleColor> SymbolsColors = new Dictionary<char, ConsoleColor>
+        {
+            [PlayerConstants.Symbol] = ConsoleColor.Cyan,
+            [Wall] = ConsoleColor.White,
+            [Ground] = ConsoleColor.White,
+            [Lava] = ConsoleColor.Red,
+            [SpellboundForest] = ConsoleColor.Green,
+        };
     }
 }
