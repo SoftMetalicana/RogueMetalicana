@@ -116,23 +116,24 @@
             set { this.position = value; }
         }
 
+        public event EventHandler<EnemyEventArgs> EnemyDied; 
+
         public void TakeDamage(double damageToTake)
         {
             this.health -= damageToTake;
 
             if (this.health <= 0)
             {
-                EnemyDied();
+                OnEnemyDied();
             }
         }
 
         /// <summary>
         /// Invokes when enemy is died.
         /// </summary>
-        private void EnemyDied()
+        protected virtual void OnEnemyDied()
         {
-            Console.WriteLine("GG");
-            Environment.Exit(0);
+            EnemyDied?.Invoke(this, new EnemyEventArgs() { Position = this.position, ExperienceGained = this.experienceGained });
         }
     }
 }

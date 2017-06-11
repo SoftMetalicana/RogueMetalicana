@@ -11,6 +11,9 @@
     /// </summary>
     public class Player : IPositionable, IFightable
     {
+
+        private static int NeedExperience = 100;
+
         /// <summary>
         /// Stats of the player that describes his current health condition.
         /// MUSTN'T BE ACCESSED DIRECTLY OUTSIDE OF THIS CLASS.
@@ -185,9 +188,22 @@
             PlayerDied?.Invoke(this, new PlayerEventArgs());
         }
 
+        public void GainExperience()
+        {
+            //xp++;
+            //needxp ++
+           /// if (xp >= needxp)
+           // {
+           //stats++
+                // needxp *=2;
+                //xp =0;
+           // }
+        }
+
         public override string ToString()
         {
             return base.ToString();
         }
+
     }
 }

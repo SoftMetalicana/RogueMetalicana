@@ -43,6 +43,10 @@
             //The engine is subscribed to this event so it can know about every move of the player.
             player.PlayerMoved += gameEngine.OnPlayerMoved;
             player.PlayerDied += gameEngine.OnPlayerDied;
+            foreach (Enemy enemy in allEnemies)
+            {
+                enemy.EnemyDied += gameEngine.OnEnemyDied;
+            }
 
             //Visualisator.PrintDungeon(dungeon, player);
             while (true)

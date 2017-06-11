@@ -51,6 +51,7 @@
     <Compile Include="Constants\Player\PlayerConstants.cs" />
     <Compile Include="Constants\Position\PositionConstants.cs" />
     <Compile Include="EnemyUnit\Enemy.cs" />
+    <Compile Include="EnemyUnit\EnemyEventArgs.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="LevelCreator\LevelCreator.cs" />
     <Compile Include="LevelEngine\LevelGenerator.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace RogueMetalicana.GameEngine
 {
@@ -113,6 +114,15 @@ namespace RogueMetalicana.GameEngine
                     }
                     break;
             }
+        }
+
+        public void OnEnemyDied(object sender, EnemyEventArgs enemyEventArgs)
+        {
+            //player += exp;
+            //new level?
+            //player += gold;
+
+            allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
         }
 
         /// <summary>
