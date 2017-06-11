@@ -12,7 +12,7 @@
     public class Player : IPositionable, IFightable
     {
 
-        private static int NeedExperience = 100;
+        public static int NeedExperience = 5;
 
         /// <summary>
         /// Stats of the player that describes his current health condition.

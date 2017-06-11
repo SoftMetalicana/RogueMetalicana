@@ -81,15 +81,16 @@ namespace RogueMetalicana.Visualization
         /// <param name="player">The players start that you want to print</param>
         public static void PrintPlayerStats(Player player)
         {
-            string[] messages = new string[3]
+            string[] messages = new string[4]
             {
                 $"Current health: {player.Health}     ",
                 $"Current armor: {player.Defense}     ",
-                $"Current damage: {player.Damage}     "
+                $"Current damage: {player.Damage}     ",
+                $"Current Level: {player.Level}     "
             };
 
             StringBuilder result = new StringBuilder();
-            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 4; currentRow++, messageIndex++)
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 5; currentRow++, messageIndex++)
             {
                 Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
 

@@ -13,7 +13,6 @@
         /// <summary>
         /// Stats of the enemy.
         /// </summary>
-        private int id;
         private string type;
         private int level;
         private double health;
@@ -29,7 +28,6 @@
 
         public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
         {
-            this.id = id;
             this.type = type;
             this.level = level;
             this.health = health;
@@ -40,11 +38,6 @@
             this.position = position;
         }
 
-        public int ID
-        {
-            get { return this.id; }
-            set { this.id = value; }
-        }
         /// <summary>
         /// Get and set the enemy type outside of the class.
         /// </summary>
