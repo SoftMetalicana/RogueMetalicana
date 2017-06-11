@@ -48,6 +48,10 @@ namespace RogueMetalicana.Visualization
             Console.SetCursorPosition(0, 16);
         }
 
+        /// <summary>
+        /// Print the legend of the map based on the enemies and obstacles dictionaries provided by LevelGenerator
+        /// </summary>
+        /// <param name="enemies"></param>
         public static void PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies)
         {
             Console.WriteLine(VisualisatorConstants.LegendEnemyHeading);
@@ -56,12 +60,7 @@ namespace RogueMetalicana.Visualization
             {
                 var difficulty = Enum.GetName(typeof(EnemyDifficulty), enemyData.Value.Value);
 
-
                 Console.WriteLine("{0, -20}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty);
-
-/*                Console.Write(enemyData.Key + "\t\t");
-                Console.Write(enemyData.Value.Key + "\t\t");
-                Console.Write(difficulty + "\t\t\n\r");*/
             }
         }
 
