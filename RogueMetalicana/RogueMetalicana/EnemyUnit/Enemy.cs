@@ -27,9 +27,9 @@
         /// </summary>
         private Position position;
 
-        public Enemy(int id, string type, int level, double health, int damage, int defense, int experienceGained, Position position)
+        public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
         {
-            this.id = 1;
+            this.id = id;
             this.type = type;
             this.level = level;
             this.health = health;

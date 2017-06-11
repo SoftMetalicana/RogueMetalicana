@@ -11,9 +11,7 @@ namespace RogueMetalicana.LevelCreator
 
     class LevelCreator
     {
-    
-
-       
+        
         private  static void CreateFile(string levelName)
         {
             string fileName = levelName;

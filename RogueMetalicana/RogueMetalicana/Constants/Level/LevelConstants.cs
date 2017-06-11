@@ -44,6 +44,20 @@
         public const string GhostThreat = "Low";
 
         /// <summary>
+        /// These symbols are used to split the input for enemies and objects when level is generated
+        /// </summary>
+        public static readonly char[] LegendSplitSymbols = {' ', '\t', '|'};
+
+
+        /// <summary>
+        /// Each single input for an enemy in the map legend should contain : type of input, symbol, type of enemy and enemy difficulty
+        /// </summary>
+        public const int EnemyInputArrayLength = 4;
+
+        public const string EnemyInput = "/I/E";
+        public const string ObstacleInput = "/I/O";
+
+        /// <summary>
         /// Holds the color for the wanted symbol.
         /// </summary>
         public static readonly Dictionary<char, ConsoleColor> SymbolsColors = new Dictionary<char, ConsoleColor>

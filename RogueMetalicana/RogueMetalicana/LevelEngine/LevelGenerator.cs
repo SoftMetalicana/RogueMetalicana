@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace RogueMetalicana.LevelEngine
 {
     using System.IO;
@@ -30,6 +32,11 @@ namespace RogueMetalicana.LevelEngine
         /// Variable that holds the index of the current level.
         /// </summary>
         private int currentLevelNumber;
+
+        /// <summary>
+        /// Holds basic data for all enemies which will be encountered in the current level 
+        /// </summary>
+        private static Dictionary<char, KeyValuePair<string, int>> levelEnemies;
 
         /// <summary>
         /// Initializes the field variables.
@@ -64,47 +71,131 @@ namespace RogueMetalicana.LevelEngine
         {
             using (leverReader)
             {
-                int currentRow = 0;
-                int enemyId = 1;
+                // Processes each line of the level txt file and either adds this line as char array to the dungeon list 
+                // or passes it to the GenerateEnemiesList method whenever the line hold technical info i.e. starts with /I/E for enemies or /I/O for obstacles
                 string currentLine;
+                int currentRow = 0;
                 while ((currentLine = leverReader.ReadLine()) != default(string))
                 {
-                    dungeon.Add(currentLine.ToCharArray());
-
-                    //Processing every row element by element and finding the positions of all units.
-
                     if (currentRow < Constants.Console.ConsoleConstants.FieldHeight)
                     {
-                        for (int currentCol = 0; currentCol < Constants.Console.ConsoleConstants.FieldWidth; currentCol++)
+                        dungeon.Add(currentLine.ToCharArray());
+                    }
+                    else
+                    {
+                        if (currentLine != string.Empty)
                         {
-                            char symbol = currentLine[currentCol];
+                            var objectTokens = currentLine.Split(LevelConstants.LegendSplitSymbols, StringSplitOptions.RemoveEmptyEntries);
 
-                            switch (symbol)
+                            switch (objectTokens[0])
                             {
-                                case PlayerConstants.Symbol:
-                                    player.Position = new Position(currentRow, currentCol);
+                                case LevelConstants.EnemyInput:
+                                    GenerateEnemiesList(objectTokens);
                                     break;
-
-                                case SnakeConstants.Symbol:
-                                    allEnemies.Add(new Enemy(enemyId, SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
-                                    enemyId++;
-                                    break;
-
-                                case LevelConstants.Wall:
-                                case LevelConstants.Ground:
-                                    break;
-
-                                default:
+                                case LevelConstants.ObstacleInput:
+                                    //to be implemented process for obstacles creation
                                     break;
                             }
-                        }
-                    } 
+                        }                       
+                    }
                     
                    currentRow++;
                 }
 
+
+
+                //Processing every row element by element and finding the positions of all units.
+                currentRow = 0;
+                foreach (var line in dungeon)
+                {
+
+                    for (int currentCol = 0;
+                        currentCol < Constants.Console.ConsoleConstants.FieldWidth;
+                        currentCol++)
+                    {
+                        char symbol = line[currentCol];
+
+                        switch (symbol)
+                        {
+                            case PlayerConstants.Symbol:
+                                player.Position = new Position(currentRow, currentCol);
+                                break;
+
+                            case LevelConstants.Wall:
+                            case LevelConstants.Ground:
+                                break;
+
+                            default:
+                                GenerateCurrentEnemy(symbol, allEnemies, new Position(currentRow, currentCol));
+                                break;
+                        }
+                    }
+
+                    currentRow++;
+                }
+
                 Visualisator.PrintDungeon(dungeon, player);
             }
+        }
+
+        /// <summary>
+        /// Generates an enemy based on its symbol whenever the symbol is encountered in the level template and adds this current enemy to the allEnemies list.
+        /// Checks whether the symbol is already populated in the levelEnemies dictionary and based on the that data creates the enemy.
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="allEnemies"></param>
+        /// <param name="position"></param>
+        private void GenerateCurrentEnemy(char symbol, List<Enemy>allEnemies, Position position)
+        {
+            if (!levelEnemies.ContainsKey(symbol))
+            {
+                // Printout message
+            }
+            else
+            {
+                var type = levelEnemies[symbol].Key;
+                var difficulty = levelEnemies[symbol].Value;
+
+                switch (difficulty)
+                {
+                    case (int)EnemyDifficulty.Easy: allEnemies.Add(new Enemy(type, currentLevelNumber, Easy.Health, Easy.Damage, Easy.Defense, Easy.ExperienceGained, position));
+                        break;
+                    case (int)EnemyDifficulty.Medium:
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Medium.Health, Medium.Damage, Medium.Defense, Medium.ExperienceGained, position));
+                        break;
+                    case (int)EnemyDifficulty.Difficult:
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Difficult.Health, Difficult.Damage, Difficult.Defense, Difficult.ExperienceGained, position));
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds to levelEnemies dictionary all custom input enemies described in the level txt file with their symbol, type and difficulty level.
+        /// </summary>
+        /// <param name="dungeonInfoLine"></param>
+        private void GenerateEnemiesList(string[] dungeonInfoLine)
+        {
+            // Checks if the input line holds all necessary information i.e. - symbol, type and difficulty level (+ type of object at index 0)
+            if (dungeonInfoLine.Length < LevelConstants.EnemyInputArrayLength)
+            {
+                return;                
+            }
+
+            var enemyCharacter = dungeonInfoLine[1].ToCharArray();
+            var enemyType = dungeonInfoLine[2];
+            var enemyDifficulty = int.Parse(dungeonInfoLine[3]);
+
+            if (levelEnemies == null)
+            {
+                levelEnemies = new Dictionary<char, KeyValuePair<string, int>>();
+            }
+
+            if (!levelEnemies.ContainsKey(enemyCharacter[0]))
+            {
+                levelEnemies[enemyCharacter[0]] = new KeyValuePair<string, int>(enemyType, enemyDifficulty);
+            }
+
         }
     }
 }
