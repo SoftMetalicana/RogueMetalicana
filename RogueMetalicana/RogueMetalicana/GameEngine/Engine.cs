@@ -114,8 +114,13 @@ namespace RogueMetalicana.GameEngine
             }
         }
 
+        /// <summary>
+        /// Generate battle screen and start battle.
+        /// </summary>
+        /// <param name="enemy"></param>
         private void EnterInBattle(Enemy enemy)
         {
+            //generate battle screen here.
             BattleGround.Generate(player, enemy);
         }
 
@@ -156,6 +161,11 @@ namespace RogueMetalicana.GameEngine
 
             return rowToCheck < 0 || rowToCheck >= this.dungeon.Count ||
                    colToCheck < 0 || colToCheck >= this.dungeon[rowToCheck].Length;
+        }
+
+        public void EnemyDied(Enemy enemy)
+        {
+            allEnemies.Remove(enemy);
         }
     }
 }

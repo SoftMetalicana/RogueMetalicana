@@ -13,6 +13,7 @@
         /// <summary>
         /// Stats of the enemy.
         /// </summary>
+        private int id;
         private string type;
         private int level;
         private double health;
@@ -26,8 +27,9 @@
         /// </summary>
         private Position position;
 
-        public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
+        public Enemy(int id, string type, int level, double health, int damage, int defense, int experienceGained, Position position)
         {
+            this.id = 1;
             this.type = type;
             this.level = level;
             this.health = health;
@@ -38,6 +40,11 @@
             this.position = position;
         }
 
+        public int ID
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
         /// <summary>
         /// Get and set the enemy type outside of the class.
         /// </summary>
@@ -109,7 +116,7 @@
             set { this.position = value; }
         }
 
-        public void TakeDamage(double damageToTake)
+        public void TakeDamage(double damageToTake, Enemy enemy)
         {
             this.health -= damageToTake;
 
@@ -119,6 +126,9 @@
             }
         }
 
+        /// <summary>
+        /// Invokes when enemy is died.
+        /// </summary>
         private void EnemyDied()
         {
             Console.WriteLine("GG");

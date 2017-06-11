@@ -64,6 +64,7 @@ namespace RogueMetalicana.LevelEngine
             using (leverReader)
             {
                 int currentRow = 0;
+                int enemyId = 1;
                 string currentLine;
                 while ((currentLine = leverReader.ReadLine()) != default(string))
                 {
@@ -84,7 +85,8 @@ namespace RogueMetalicana.LevelEngine
                                     break;
 
                                 case SnakeConstants.Symbol:
-                                    allEnemies.Add(new Enemy(SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
+                                    allEnemies.Add(new Enemy(enemyId, SnakeConstants.Type, SnakeConstants.Level, SnakeConstants.Health, SnakeConstants.Damage, SnakeConstants.Defense, SnakeConstants.ExperienceGained, new Position(currentRow, currentCol)));
+                                    enemyId++;
                                     break;
 
                                 case LevelConstants.Wall:
