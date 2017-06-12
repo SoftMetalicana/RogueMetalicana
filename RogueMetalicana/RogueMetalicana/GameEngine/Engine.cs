@@ -77,7 +77,7 @@ namespace RogueMetalicana.GameEngine
                 return;
             }
 
-            char newPositionCell = this.dungeon[newPlayerPosition.Row][newPlayerPosition.Col];
+            char newPositionCell = this.GetSymbolFromDungeon(newPlayerPosition);
 
             //Executes different method depending on the cell that the player wants to step on.
             //EVERYTIME THE PLAYER MOVES SUCCESSFULLY YOU MUST INVOKE THE SWAP SYMBOLS METHOD3
@@ -86,7 +86,6 @@ namespace RogueMetalicana.GameEngine
             {
                 //If he wants to step on the ground we let him.
                 case LevelConstants.Ground:
-                case PlayerConstants.Symbol:
                     PlaceThePlayerOnHisNewPosition(newPlayerPosition);
                     break;
 
@@ -147,12 +146,24 @@ namespace RogueMetalicana.GameEngine
         /// <param name="newPlayerPosition">The new position of the player.</param>
         private void PlaceThePlayerOnHisNewPosition(Position newPlayerPosition)
         {
+            this.SwapSymbolsInDungeon(this.player.Position, newPlayerPosition);
+
             Visualisator.DeleteSymbolOnPositionAndPrintNewOne(' ', this.player.Position, PlayerConstants.Color);
             Visualisator.DeleteSymbolOnPositionAndPrintNewOne(PlayerConstants.Symbol, newPlayerPosition, PlayerConstants.Color);
 
             this.player.Position = newPlayerPosition;
 
             Visualisator.PrintPlayerStats(this.player);
+        }
+
+        /// <summary>
+        /// Gets the symbol from a cell from the dungeon.
+        /// </summary>
+        /// <param name="toGetFrom">The row and column of the symbol that you want to get.</param>
+        /// <returns>The symbol at the given position.</returns>
+        private char GetSymbolFromDungeon(Position toGetFrom)
+        {
+            return this.dungeon[toGetFrom.Row][toGetFrom.Col];
         }
 
         /// <summary>

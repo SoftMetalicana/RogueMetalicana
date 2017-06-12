@@ -1,16 +1,15 @@
-﻿using RogueMetalicana.Constants.Enemy;
-using RogueMetalicana.Constants.Visualisator;
-
-namespace RogueMetalicana.Visualization
+﻿namespace RogueMetalicana.Visualization
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using RogueMetalicana.Constants.Enemy;
+    using RogueMetalicana.Constants.Visualisator;
     using RogueMetalicana.Constants.Console;
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
+    
     /// <summary>
     /// Takes care to print on the console.
     /// </summary>
@@ -61,20 +60,28 @@ namespace RogueMetalicana.Visualization
             Console.SetCursorPosition(0, 16);
         }
 
+        public static void PrintOnTheConsole(string textToPrint)
+        {
+            Console.WriteLine(textToPrint);
+        }
+
         /// <summary>
         /// Print the legend of the map based on the enemies and obstacles dictionaries provided by LevelGenerator
         /// </summary>
         /// <param name="enemies"></param>
-        public static void PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies)
+        public static string PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies)
         {
-            Console.WriteLine(VisualisatorConstants.LegendEnemyHeading);
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(VisualisatorConstants.LegendEnemyHeading);
 
             foreach (var enemyData in enemies)
             {
                 var difficulty = Enum.GetName(typeof(EnemyDifficulty), enemyData.Value.Value);
 
-                Console.WriteLine("{0, -20}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty);
+                result.AppendLine(string.Format("{0, -20}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty));
             }
+
+            return result.ToString();
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
-﻿using System;
-using RogueMetalicana.Positioning;
-
-namespace RogueMetalicana.EnemyUnit
+﻿namespace RogueMetalicana.EnemyUnit
 {
+    using System;
+    using RogueMetalicana.Positioning;
+    
     public class EnemyEventArgs : EventArgs
     {
         public int ExperienceGained { get; set; }
