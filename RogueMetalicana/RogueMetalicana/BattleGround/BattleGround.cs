@@ -7,7 +7,7 @@
     public static class BattleGround
     {
         /// <summary>
-        /// Generate random stats.
+        /// GenerateStats random stats.
         /// </summary>
         private static readonly Random getRandom = new Random();
 
@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="player"></param>
         /// <param name="enemy"></param>
-        public static void Generate(Player player, Enemy enemy)
+        public static void GenerateStats(Player player, Enemy enemy)
         {
             double randomDefensePlayerPoints = getRandom.Next(0, player.Defense);
             double randomDefenseEnemyPoints = getRandom.Next(0, enemy.Defense);
@@ -46,7 +46,7 @@
 
             if (enemy.IsAlive == true)
             {
-                Generate(player, enemy);
+                GenerateStats(player, enemy);
             }
         }
     }

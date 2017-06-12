@@ -41,6 +41,19 @@ namespace RogueMetalicana.Visualization
 /*            PrintTheMapLegend(dungeon);*/
         }
 
+        public static void PrintBattleGround()
+        {
+            Console.Clear();
+            //sled bitkata
+            //printirai dungeon
+            //printirai legenda
+        }
+
+        public static void PrintAllMap(List<char[]> dungeon, Player player)
+        {
+            Visualisator.PrintDungeon(dungeon, player);
+            Visualisator.PrintTheMapLegend(dungeon);
+        }
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
         {
             StringBuilder result = new StringBuilder();

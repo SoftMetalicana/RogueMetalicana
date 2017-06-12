@@ -130,13 +130,13 @@ namespace RogueMetalicana.GameEngine
         }
 
         /// <summary>
-        /// Generate battle screen and start battle.
+        /// GenerateStats battle screen and start battle.
         /// </summary>
         /// <param name="enemy"></param>
         private void EnterInBattle(Enemy enemy)
         {
-            //generate battle screen here.
-            BattleGround.Generate(player, enemy);
+            Visualisator.PrintBattleGround();
+            BattleGround.GenerateStats(player, enemy);
         }
 
         /// <summary>
