@@ -12,7 +12,7 @@ namespace RogueMetalicana.Constants.Console
         /// Variables for the initial console size.
         /// </summary>
         public const int ConsoleHeight = 35;
-        public const int ConsoleWidth = 100;
+        public const int ConsoleWidth = 120;
 
         /// <summary>
         /// Variables for the initial playfield size.

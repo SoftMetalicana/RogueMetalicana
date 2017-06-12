@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 
 namespace RogueMetalicana.GameEngine
 {
@@ -54,7 +55,9 @@ namespace RogueMetalicana.GameEngine
         /// <param name="playerEventArgs">Holds the needed things that changed.</param>
         public void OnPlayerDied(object sender, PlayerEventArgs playerEventArgs)
         {
-            Visualisator.PrintEndGameMessage(PlayerConstants.PlayerDiedDueToAttack);
+            BattleGround.BattleResult.AppendLine(PlayerConstants.PlayerDiedDueToAttack);
+            //Visualisator.PrintOnTheConsole(BattleGround.BattleResult.ToString());
+            Visualisator.PrintEndGameMessage(BattleGround.BattleResult.ToString());
         }
 
         /// <summary>
@@ -96,6 +99,10 @@ namespace RogueMetalicana.GameEngine
                 case LevelConstants.Wall:
                     break;
 
+                case LevelConstants.Door:
+                    TryOpenDoor(newPlayerPosition);
+                    break;
+
                 case LevelConstants.SpellboundForest:
                     Visualisator.PrintEndGameMessage(PlayerConstants.LostIntoSpellboundForest);
                     break;
@@ -116,6 +123,19 @@ namespace RogueMetalicana.GameEngine
             }
         }
 
+        private void TryOpenDoor(Position newPlayerPosition)
+        {
+            //dinamichno vzemane na levela za zavurshvane na nivoto.
+            if (player.Level >= 6)
+            {
+                PlaceThePlayerOnHisNewPosition(newPlayerPosition);
+            }
+            else
+            {
+                //print message why can't open the door.
+            }
+        }
+
         /// <summary>
         /// Invokes when enemy die to gain expereince, gold and remove enemy from enemies list.
         /// </summary>
@@ -123,8 +143,11 @@ namespace RogueMetalicana.GameEngine
         /// <param name="enemyEventArgs"></param>
         public void OnEnemyDied(object sender, EnemyEventArgs enemyEventArgs)
         {
+            BattleGround.BattleResult.AppendLine($"Enemy.Type has been defeated by Player.");
+            BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.ExperienceGained} xp");
             player.GainExperience(enemyEventArgs.ExperienceGained);
             allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
+            this.dungeon[enemyEventArgs.Position.Row][enemyEventArgs.Position.Col] = ' ';
             //replace enemy icon with " "
         }
 
@@ -134,8 +157,9 @@ namespace RogueMetalicana.GameEngine
         /// <param name="enemy"></param>
         private void EnterInBattle(Enemy enemy)
         {
-            Visualisator.PrintBattleGround();
+            BattleGround.BattleResult.Clear();
             BattleGround.GenerateStats(player, enemy);
+            Visualisator.PrintBattleGround(this.dungeon, this.player, BattleGround.BattleResult);
         }
 
         /// <summary>

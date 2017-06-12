@@ -28,6 +28,7 @@
         public const char Ground = ' ';
 
         public const char Wall = '#';
+        public const char Door = '|';
         public const string WallMeaning = "wall";
         public const string WallThreat = "No known theat";
 

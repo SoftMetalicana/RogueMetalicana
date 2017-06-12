@@ -1,4 +1,6 @@
-﻿namespace RogueMetalicana.BattleGround
+﻿using System.Text;
+
+namespace RogueMetalicana.BattleGround
 {
     using EnemyUnit;
     using PlayerUnit;
@@ -6,6 +8,7 @@
 
     public static class BattleGround
     {
+        public static StringBuilder BattleResult = new StringBuilder();
         /// <summary>
         /// GenerateStats random stats.
         /// </summary>
@@ -24,7 +27,7 @@
             double dealingDamagePlayer = getRandom.Next(1, player.Damage);
             double dealingDamageEnemy = getRandom.Next(1, enemy.Damage);
 
-            double playerDefense = Math.Round((randomDefensePlayerPoints / dealingDamageEnemy), 2) ;
+            double playerDefense = Math.Round((randomDefensePlayerPoints / dealingDamageEnemy), 2);
             double enemyDefense = Math.Round((randomDefenseEnemyPoints / dealingDamagePlayer), 2);
 
             Battle(dealingDamagePlayer, playerDefense, dealingDamageEnemy, enemyDefense, player, enemy);
@@ -41,8 +44,18 @@
         /// <param name="enemy"></param>
         public static void Battle(double playerDealingDamage, double playerDefense, double enemyDealingDamage, double enemyDefense, Player player, Enemy enemy)
         {
-            player.TakeDamage(enemyDealingDamage - playerDefense);
-            enemy.TakeDamage(playerDealingDamage - enemyDefense);
+
+            if (enemyDealingDamage - playerDefense >= 0)
+            {
+                BattleResult.AppendLine($"Enemy hits Player with {enemyDealingDamage} damage");
+                player.TakeDamage(enemyDealingDamage - playerDefense);
+            }
+
+            if (playerDealingDamage - enemyDefense >= 0)
+            {
+                BattleResult.AppendLine($"Player hits {enemy.Type} with {playerDealingDamage} damage").AppendLine();
+                enemy.TakeDamage(playerDealingDamage - enemyDefense);
+            }
 
             if (enemy.IsAlive == true)
             {

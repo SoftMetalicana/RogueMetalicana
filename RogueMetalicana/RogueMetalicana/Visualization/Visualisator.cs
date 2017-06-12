@@ -1,4 +1,6 @@
-﻿namespace RogueMetalicana.Visualization
+﻿using RogueMetalicana.LevelEngine;
+
+namespace RogueMetalicana.Visualization
 {
     using System;
     using System.Collections.Generic;
@@ -40,18 +42,19 @@
 /*            PrintTheMapLegend(dungeon);*/
         }
 
-        public static void PrintBattleGround()
+        public static void PrintBattleGround(List<char[]> dungeon, Player player, StringBuilder battleResult)
         {
             Console.Clear();
-            //sled bitkata
-            //printirai dungeon
-            //printirai legenda
+            Visualisator.PrintOnTheConsole(battleResult.ToString());
+            Visualisator.PrintOnTheConsole("Press any key to continue:");
+            Console.ReadKey(true);
+            PrintAllMap(dungeon, player);
         }
 
         public static void PrintAllMap(List<char[]> dungeon, Player player)
         {
             Visualisator.PrintDungeon(dungeon, player);
-            Visualisator.PrintTheMapLegend(dungeon);
+            Visualisator.PrintOnTheConsole(LevelGenerator.CurrentMapLegend);
         }
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
         {
@@ -101,16 +104,17 @@
         /// <param name="player">The players start that you want to print</param>
         public static void PrintPlayerStats(Player player)
         {
-            string[] messages = new string[4]
+            string[] messages = new string[5]
             {
-                $"Current health: {player.Health}     ",
+                $"Current health: {player.Health:F2}/{Player.MaxHealth}     ",
                 $"Current armor: {player.Defense}     ",
                 $"Current damage: {player.Damage}     ",
-                $"Current Level: {player.Level}     "
+                $"Current Level: {player.Level}     ",
+                $"Current Exp {player.Experience}/{Player.NeedExperience}    "
             };
 
             StringBuilder result = new StringBuilder();
-            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 5; currentRow++, messageIndex++)
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 6; currentRow++, messageIndex++)
             {
                 Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
 

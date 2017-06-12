@@ -14,6 +14,7 @@
         /// </summary>
         public static readonly Dictionary<Direction, Position> DirectionPositions = new Dictionary<Direction, Position>
         {
+            [Direction.None] = new Position(0, 0),
             [Direction.Up] = new Position(-1, 0),
             [Direction.Down] = new Position(+1, 0),
             [Direction.Left] = new Position(0, -1),
@@ -26,6 +27,7 @@
     /// </summary>
     public enum Direction
     {
+        None,
         Up,
         Down,
         Left,

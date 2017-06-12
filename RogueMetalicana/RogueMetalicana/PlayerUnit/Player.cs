@@ -12,7 +12,8 @@
     public class Player : IPositionable, IFightable
     {
 
-        public static int NeedExperience = 5;
+        public static int NeedExperience = 60;
+        public static double MaxHealth;
 
         /// <summary>
         /// Stats of the player that describes his current health condition.
@@ -45,6 +46,8 @@
         public Player()
         {
             this.health = PlayerConstants.StartingHealth;
+            MaxHealth = this.health;
+
             this.armor = PlayerConstants.StartingArmor;
             this.damage = PlayerConstants.StartingDamage;
             this.isAlive = false;
@@ -190,21 +193,22 @@
 
         public void GainExperience(int experienceGained)
         {
-            experience += experienceGained;
+            this.experience += experienceGained;
 
-            if (experience > NeedExperience)
+            while (experience >= NeedExperience)
             {
                 LevelUp();
-            }
+            } 
         }
 
         private void LevelUp()
         {
-            experience = 0;
-            level++;
-            armor += 2;
-            damage += 10;
-            health += 50;
+            this.experience -= NeedExperience;
+            this.level++;
+            this.armor += 2;
+            this.damage += 10;
+            MaxHealth += 50;
+            this.health += 25;
             NeedExperience *= 2;
         }
 
