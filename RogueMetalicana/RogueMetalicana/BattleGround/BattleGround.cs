@@ -1,10 +1,10 @@
-﻿using System.Text;
-
+﻿
 namespace RogueMetalicana.BattleGround
 {
     using EnemyUnit;
     using PlayerUnit;
     using System;
+    using System.Text;
 
     public static class BattleGround
     {
