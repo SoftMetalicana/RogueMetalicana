@@ -44,8 +44,7 @@ namespace RogueMetalicana.Visualization
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
         {
             StringBuilder result = new StringBuilder();
-            result.AppendLine($"");
-            Console.SetCursorPosition(0, 16);
+            result.AppendLine();
         }
 
         /// <summary>
