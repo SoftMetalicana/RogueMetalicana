@@ -38,6 +38,8 @@ namespace RogueMetalicana.LevelEngine
         /// </summary>
         private static Dictionary<char, KeyValuePair<string, int>> levelEnemies;
 
+        public static string CurrentMapLegend;
+
         /// <summary>
         /// Initializes the field variables.
         /// </summary>
@@ -133,7 +135,8 @@ namespace RogueMetalicana.LevelEngine
                 }
 
                 Visualisator.PrintDungeon(dungeon, player);
-                Visualisator.PrintMapLegend(levelEnemies);
+                CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies);
+                Visualisator.PrintOnTheConsole(CurrentMapLegend);
             }
         }
 
