@@ -72,17 +72,29 @@ namespace RogueMetalicana.Visualization
         /// Print the legend of the map based on the enemies and obstacles dictionaries provided by LevelGenerator
         /// </summary>
         /// <param name="enemies"></param>
-        public static string PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies)
+        public static string PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies, Dictionary<char, KeyValuePair<string, string>> obstacles)
         {
             StringBuilder result = new StringBuilder();
+            result.Append(VisualisatorConstants.SeparatorLine);
             result.AppendLine(VisualisatorConstants.LegendEnemyHeading);
 
             foreach (var enemyData in enemies)
             {
                 var difficulty = Enum.GetName(typeof(EnemyDifficulty), enemyData.Value.Value);
 
-                result.AppendLine(string.Format("{0, -20}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty));
+                result.AppendLine(string.Format("{0, -10}{1, -20}{2, -15}", enemyData.Key, enemyData.Value.Key, difficulty));
             }
+
+
+            result.Append(VisualisatorConstants.SeparatorLine);
+
+            result.AppendLine(VisualisatorConstants.LegendObstaclesHeading);
+
+            foreach (var obstacleData in obstacles)
+            {
+                result.AppendLine(string.Format("{0, -10}{1, -20}{2, -50}", obstacleData.Key, obstacleData.Value.Key, obstacleData.Value.Value));
+            }
+
 
             return result.ToString();
         }

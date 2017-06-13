@@ -107,6 +107,10 @@ namespace RogueMetalicana.GameEngine
                     Visualisator.PrintEndGameMessage(PlayerConstants.LostIntoSpellboundForest);
                     break;
 
+                case LevelConstants.RiverOfMercury:
+                    Visualisator.PrintEndGameMessage(PlayerConstants.EnterIntoRiverOfMercury);
+                    break;
+
                 //all the monsters are traversed here.
                 default:
                     foreach (var enemy in allEnemies)

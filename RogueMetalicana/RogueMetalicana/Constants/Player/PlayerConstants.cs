@@ -30,6 +30,7 @@ namespace RogueMetalicana.Constants.Player
         public const string FellOfTheDungeonMessage = "You fell of the dungeon...";
         public const string SteppedIntoLavaMessage = "You died because you stepped into hot lava...";
         public const string LostIntoSpellboundForest = "You died because you lost yourself into the spellbound forest and starved to death...";
+        public const string EnterIntoRiverOfMercury = "Minutes after stepping into these insidious waters and inhaling the lethal vapour,\nyour body tumbles to the ground in painful convulsions...";
         public const string PlayerDiedDueToAttack = "Player died due to attack";
     }
 }

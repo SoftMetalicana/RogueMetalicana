@@ -8,7 +8,7 @@
     
     public static class LegendConstants
     {
-        private const char PaddingChar = ' ';
+       /* private const char PaddingChar = ' ';
         private const int PaddingCount = 15;
 
         public const string EnemiesLabel = "ENEMIES:";
@@ -32,6 +32,6 @@
         private static string PadRight(string toPad)
         {
             return toPad.PadRight(PaddingCount, PaddingChar);
-        }
+        }*/
     }
 }

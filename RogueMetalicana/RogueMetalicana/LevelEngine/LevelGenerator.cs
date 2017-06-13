@@ -34,9 +34,15 @@ namespace RogueMetalicana.LevelEngine
         private int currentLevelNumber;
 
         /// <summary>
-        /// Holds basic data for all enemies which will be encountered in the current level 
+        /// Holds basic data for all enemies which will be encountered in the current level and described in the map's metadata
         /// </summary>
         private static Dictionary<char, KeyValuePair<string, int>> levelEnemies;
+
+        /// <summary>
+        /// Holds data for all obstacles in the current level described in the map's metadata
+        /// For the time being the obstacles are hardcoded and this info is only aimed to provide source for printing the legend
+        /// </summary>
+        private static Dictionary<char, KeyValuePair<string, string>> levelObstacles;
 
         public static string CurrentMapLegend;
 
@@ -95,7 +101,7 @@ namespace RogueMetalicana.LevelEngine
                                     GenerateEnemiesList(objectTokens);
                                     break;
                                 case LevelConstants.ObstacleInput:
-                                    //to be implemented process for obstacles creation
+                                    GenerateObstaclesList(objectTokens);
                                     break;
                             }
                         }                       
@@ -123,6 +129,10 @@ namespace RogueMetalicana.LevelEngine
 
                             case LevelConstants.Wall:
                             case LevelConstants.Ground:
+                            case LevelConstants.Door:
+                            case LevelConstants.SpellboundForest:
+                            case LevelConstants.Lava:
+                            case LevelConstants.RiverOfMercury:
                                 break;
 
                             default:
@@ -131,14 +141,17 @@ namespace RogueMetalicana.LevelEngine
                         }
                     }
 
+
                     currentRow++;
                 }
 
                 Visualisator.PrintDungeon(dungeon, player);
-                CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies);
+                CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies, levelObstacles);
                 Visualisator.PrintOnTheConsole(CurrentMapLegend);
             }
         }
+
+
 
         /// <summary>
         /// Generates an enemy based on its symbol whenever the symbol is encountered in the level template and adds this current enemy to the allEnemies list.
@@ -176,17 +189,17 @@ namespace RogueMetalicana.LevelEngine
         /// Adds to levelEnemies dictionary all custom input enemies described in the level txt file with their symbol, type and difficulty level.
         /// </summary>
         /// <param name="dungeonInfoLine"></param>
-        private void GenerateEnemiesList(string[] dungeonInfoLine)
+        private void GenerateEnemiesList(string[] enemyInfoLine)
         {
             // Checks if the input line holds all necessary information i.e. - symbol, type and difficulty level (+ type of object at index 0)
-            if (dungeonInfoLine.Length < LevelConstants.EnemyInputArrayLength)
+            if (enemyInfoLine.Length < LevelConstants.EnemyInputArrayLength)
             {
                 return;                
             }
 
-            var enemyCharacter = dungeonInfoLine[1].ToCharArray();
-            var enemyType = dungeonInfoLine[2];
-            var enemyDifficulty = int.Parse(dungeonInfoLine[3]);
+            var enemyCharacter = enemyInfoLine[1].ToCharArray();
+            var enemyType = enemyInfoLine[2];
+            var enemyDifficulty = int.Parse(enemyInfoLine[3]);
 
             if (levelEnemies == null)
             {
@@ -197,7 +210,33 @@ namespace RogueMetalicana.LevelEngine
             {
                 levelEnemies[enemyCharacter[0]] = new KeyValuePair<string, int>(enemyType, enemyDifficulty);
             }
+        }
 
+        /// <summary>
+        /// Adds to levelObstacles dictionary all obstacles described in the level txt file with their symbol, type and description
+        /// </summary>
+        /// <param name="obstacleInfoLine"></param>
+        private void GenerateObstaclesList(string[] obstacleInfoLine)
+        {
+            // Checks if the input line holds all necessary information i.e. - symbol, type and description (+ type of object at index 0)
+            if (obstacleInfoLine.Length < LevelConstants.ObstacleInputArrayLength)
+            {
+                return;
+            }
+
+            var obstacleCharacter = obstacleInfoLine[1].ToCharArray();
+            var obstacleType = obstacleInfoLine[2];
+            var obstacleDescription = obstacleInfoLine[3];
+
+            if (levelObstacles == null)
+            {
+                levelObstacles = new Dictionary<char, KeyValuePair<string, string>>();
+            }
+
+            if (!levelObstacles.ContainsKey(obstacleCharacter[0]))
+            {
+                levelObstacles[obstacleCharacter[0]] = new KeyValuePair<string, string>(obstacleType, obstacleDescription);
+            }
         }
     }
 }

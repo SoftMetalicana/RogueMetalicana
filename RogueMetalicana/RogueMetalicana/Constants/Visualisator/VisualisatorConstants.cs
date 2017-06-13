@@ -8,7 +8,12 @@ namespace RogueMetalicana.Constants.Visualisator
 {
     class VisualisatorConstants
     {
-        public const string LegendEnemyHeading = "\nSymbol              Meaning             Difficulty" +
-                                                 "\n--------------------------------------------------";
+        public const string LegendEnemyHeading = "\nSymbol    Meaning             Difficulty" +
+                                                 "\n----------------------------------------------------------------------------------";
+
+        public const string LegendObstaclesHeading = "\nSymbol    Meaning             Description" +
+                                                 "\n----------------------------------------------------------------------------------";
+
+        public const string SeparatorLine = "----------------------------------------------------------------------------------";
     }
 }
