@@ -14,6 +14,13 @@ namespace RogueMetalicana.Constants.Visualisator
         public const string LegendObstaclesHeading = "\nSymbol    Meaning             Description" +
                                                  "\n----------------------------------------------------------------------------------";
 
+        public const string LegendPlacesHeading = "\nSymbol    Meaning" +
+                                                     "\n----------------------------------------------------------------------------------";
+
         public const string SeparatorLine = "----------------------------------------------------------------------------------";
+
+        public const string PlaceGainConsumed = "Congratulations you have just gained: ";
+
+        public const string PlaceAlreadyVisited = "Dude, you have already visited this place! Nothing to consume!";
     }
 }

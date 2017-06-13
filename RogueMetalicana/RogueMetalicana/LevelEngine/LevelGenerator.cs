@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 
 namespace RogueMetalicana.LevelEngine
 {
@@ -12,6 +13,7 @@ namespace RogueMetalicana.LevelEngine
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Constants.Enemy;
     using RogueMetalicana.Visualization;
+    using RogueMetalicana.MapPlace;
 
     /// <summary>
     /// Generates a level.
@@ -44,6 +46,11 @@ namespace RogueMetalicana.LevelEngine
         /// </summary>
         private static Dictionary<char, KeyValuePair<string, string>> levelObstacles;
 
+        /// <summary>
+        /// Holds data for all places in the current level described in the map's metadata
+        /// </summary>
+        private static Dictionary<KeyValuePair<char, string>, KeyValuePair<Place.PlaceGain, int>> levelPlaces;
+
         public static string CurrentMapLegend;
 
         /// <summary>
@@ -75,7 +82,7 @@ namespace RogueMetalicana.LevelEngine
         /// <param name="player">The player in the game that you want to initialize.</param>
         /// <param name="allEnemies">The enemies in the game which you want to initialize.</param>
         /// <param name="dungeon">The dungeon that you want to create.</param>
-        public void GenerateLevel(Player player, List<Enemy> allEnemies, List<char[]> dungeon)
+        public void GenerateLevel(Player player, List<Enemy> allEnemies, List<Place> allPlaces, List<char[]> dungeon)
         {
             using (leverReader)
             {
@@ -102,6 +109,9 @@ namespace RogueMetalicana.LevelEngine
                                     break;
                                 case LevelConstants.ObstacleInput:
                                     GenerateObstaclesList(objectTokens);
+                                    break;
+                                case LevelConstants.PlaceInput:
+                                    GeneratePlacesList(objectTokens);
                                     break;
                             }
                         }                       
@@ -136,8 +146,16 @@ namespace RogueMetalicana.LevelEngine
                                 break;
 
                             default:
-                                GenerateCurrentEnemy(symbol, allEnemies, new Position(currentRow, currentCol));
-                                break;
+
+                                if (levelEnemies.ContainsKey(symbol))
+                                {
+                                    GenerateCurrentEnemy(symbol, allEnemies, new Position(currentRow, currentCol));
+                                    break;
+                                } else
+                                {
+                                    GenerateCurrentPlace(symbol, allPlaces, new Position(currentRow, currentCol));
+                                    break;
+                                }
                         }
                     }
 
@@ -146,11 +164,41 @@ namespace RogueMetalicana.LevelEngine
                 }
 
                 Visualisator.PrintDungeon(dungeon, player);
-                CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies, levelObstacles);
+                CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies, levelObstacles, levelPlaces);
                 Visualisator.PrintOnTheConsole(CurrentMapLegend);
+
+                Console.SetWindowPosition(0, 0);
+
             }
         }
 
+        /// <summary>
+        ///Generates a place based on its symbol whenever the symbol is encountered in the level template and adds this current place to the allPlaces list.
+        /// Checks whether the symbol is already populated in the levelPlaces dictionary and based on the that data creates the place.
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <param name="allPlaces"></param>
+        /// <param name="position"></param>
+        private void GenerateCurrentPlace(char symbol, List<Place> allPlaces, Position position)
+        {
+            // all places that are described with a symbol, type, gain and value in the map legend
+            var describedPlaces = levelPlaces.Keys.Select(x => x.Key).ToList();
+
+            if (!describedPlaces.Contains(symbol))
+            {
+                // Printout message
+            }
+            else
+            {
+                var type = levelPlaces.Keys.Where(x => x.Key == symbol).First().Value;
+                var gain = levelPlaces[new KeyValuePair<char, string>(symbol, type)].Key;
+                var value = levelPlaces[new KeyValuePair<char, string>(symbol, type)].Value;
+
+                var currentPlace = new Place(type, gain, value, position);
+
+                allPlaces.Add(currentPlace);
+            }
+        }
 
 
         /// <summary>
@@ -173,7 +221,8 @@ namespace RogueMetalicana.LevelEngine
 
                 switch (difficulty)
                 {
-                    case (int)EnemyDifficulty.Easy: allEnemies.Add(new Enemy(type, currentLevelNumber, Easy.Health, Easy.Damage, Easy.Defense, Easy.ExperienceGained, position));
+                    case (int)EnemyDifficulty.Easy:
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Easy.Health, Easy.Damage, Easy.Defense, Easy.ExperienceGained, position));
                         break;
                     case (int)EnemyDifficulty.Medium:
                         allEnemies.Add(new Enemy(type, currentLevelNumber, Medium.Health, Medium.Damage, Medium.Defense, Medium.ExperienceGained, position));
@@ -236,6 +285,33 @@ namespace RogueMetalicana.LevelEngine
             if (!levelObstacles.ContainsKey(obstacleCharacter[0]))
             {
                 levelObstacles[obstacleCharacter[0]] = new KeyValuePair<string, string>(obstacleType, obstacleDescription);
+            }
+        }
+
+        private void GeneratePlacesList(string[] placeInfoLine)
+        {
+
+            // Checks if the input line holds all necessary information i.e. - symbol, type, type of gain and value (+ type of object at index 0)
+            if (placeInfoLine.Length < LevelConstants.PlaceInputArrayLength)
+            {
+                return;
+            }
+
+            var placeChar = placeInfoLine[1].ToCharArray();
+            var placeType = placeInfoLine[2];
+            Place.PlaceGain placeGain = (Place.PlaceGain)int.Parse(placeInfoLine[3]);
+            var placeValue = int.Parse(placeInfoLine[4]);
+
+            if (levelPlaces == null)
+            {
+                levelPlaces = new Dictionary<KeyValuePair<char, string>, KeyValuePair<Place.PlaceGain, int>>();
+            }
+
+            var key = new KeyValuePair<char, string>(placeChar[0], placeType);
+
+            if (!levelPlaces.ContainsKey(key))
+            {
+                levelPlaces[key] = new KeyValuePair<Place.PlaceGain, int>(placeGain, placeValue);
             }
         }
     }

@@ -26,6 +26,11 @@
         /// </summary>
         private Position position;
 
+        public Enemy()
+        {
+            
+        }
+
         public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
         {
             this.type = type;

@@ -61,8 +61,15 @@
         /// </summary>
         public const int ObstacleInputArrayLength = 4;
 
+        /// <summary>
+        /// Each single input for a place in the map legend should contain : type of input, symbol, type of place, type of gain, value
+        /// </summary>
+        public const int PlaceInputArrayLength = 5;
+
         public const string EnemyInput = "/I/E";
         public const string ObstacleInput = "/I/O";
+        public const string PlaceInput = "/I/P";
+
 
         /// <summary>
         /// Holds the color for the wanted symbol.

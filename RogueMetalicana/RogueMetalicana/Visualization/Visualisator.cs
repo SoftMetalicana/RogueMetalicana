@@ -1,4 +1,5 @@
 ﻿using RogueMetalicana.LevelEngine;
+using RogueMetalicana.MapPlace;
 
 namespace RogueMetalicana.Visualization
 {
@@ -11,6 +12,7 @@ namespace RogueMetalicana.Visualization
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
+    using RogueMetalicana.MapPlace;
     
     /// <summary>
     /// Takes care to print on the console.
@@ -55,6 +57,7 @@ namespace RogueMetalicana.Visualization
         {
             Visualisator.PrintDungeon(dungeon, player);
             Visualisator.PrintOnTheConsole(LevelGenerator.CurrentMapLegend);
+            Console.SetWindowPosition(0, 0);
         }
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
         {
@@ -68,13 +71,24 @@ namespace RogueMetalicana.Visualization
             Console.WriteLine(textToPrint);
         }
 
+        public static void PrintGainOnTheConsole(string textToPrint)
+        {
+            Console.SetCursorPosition(2, 16);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(2, 16);
+            Console.WriteLine(textToPrint);
+        }
+
         /// <summary>
         /// Print the legend of the map based on the enemies and obstacles dictionaries provided by LevelGenerator
         /// </summary>
         /// <param name="enemies"></param>
-        public static string PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies, Dictionary<char, KeyValuePair<string, string>> obstacles)
+        public static string PrintMapLegend(Dictionary<char, KeyValuePair<string, int>> enemies, Dictionary<char, KeyValuePair<string, string>> obstacles, Dictionary<KeyValuePair<char, string>, KeyValuePair<Place.PlaceGain, int>> places)
         {
             StringBuilder result = new StringBuilder();
+            result.AppendLine();
+            result.AppendLine();
+            result.AppendLine();
             result.Append(VisualisatorConstants.SeparatorLine);
             result.AppendLine(VisualisatorConstants.LegendEnemyHeading);
 
@@ -93,6 +107,15 @@ namespace RogueMetalicana.Visualization
             foreach (var obstacleData in obstacles)
             {
                 result.AppendLine(string.Format("{0, -10}{1, -20}{2, -50}", obstacleData.Key, obstacleData.Value.Key, obstacleData.Value.Value));
+            }
+
+            result.Append(VisualisatorConstants.SeparatorLine);
+
+            result.AppendLine(VisualisatorConstants.LegendPlacesHeading);
+
+            foreach (var placeData in places)
+            {
+                result.AppendLine(string.Format("{0, -10}{1, -20}", placeData.Key.Key, placeData.Key.Value));
             }
 
 

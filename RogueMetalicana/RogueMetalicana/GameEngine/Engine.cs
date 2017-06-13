@@ -13,6 +13,8 @@ namespace RogueMetalicana.GameEngine
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Visualization;
     using System.Collections.Generic;
+    using RogueMetalicana.MapPlace;
+    using RogueMetalicana.Constants.Visualisator;
 
     /// <summary>
     /// Packs everything needed in the game into itself.
@@ -25,6 +27,7 @@ namespace RogueMetalicana.GameEngine
         /// </summary>
         private Player player;
         private List<Enemy> allEnemies;
+        private List<Place> allPlaces;
 
         private List<char[]> dungeon;
 
@@ -36,10 +39,11 @@ namespace RogueMetalicana.GameEngine
         /// <param name="player">The player that you want to create in the engine.</param>
         /// <param name="allEnemies">The enemies that you want to create in the engine.</param>
         /// <param name="dungeon">The dungeon you want to create in the engine.</param>
-        public Engine(Player player, List<Enemy> allEnemies, List<char[]> dungeon, LevelGenerator levelGenerator)
+        public Engine(Player player, List<Enemy> allEnemies, List<Place> allPlaces, List<char[]> dungeon, LevelGenerator levelGenerator)
         {
             this.player = player;
             this.allEnemies = allEnemies;
+            this.allPlaces = allPlaces;
 
             this.dungeon = dungeon;
 
@@ -72,10 +76,11 @@ namespace RogueMetalicana.GameEngine
             if (PlayerFellOfTheDungeon(newPlayerPosition))
             {
                 this.allEnemies = new List<Enemy>();
+                this.allPlaces = new List<Place>();
                 this.dungeon = new List<char[]>();
                 
                 levelGenerator.GenerateFullLevelPath();
-                levelGenerator.GenerateLevel(this.player, this.allEnemies, this.dungeon);
+                levelGenerator.GenerateLevel(this.player, this.allEnemies, this.allPlaces, this.dungeon);
 
                 return;
             }
@@ -113,17 +118,94 @@ namespace RogueMetalicana.GameEngine
 
                 //all the monsters are traversed here.
                 default:
-                    foreach (var enemy in allEnemies)
+
+                    bool isEnemy = false;
+                    var enemy = new Enemy();
+
+                    foreach (var thisEnemy in allEnemies)
                     {
-                        //temp - to be developed once battle is possible
-                        if ((enemy.Position.Col == newPlayerPosition.Col) && (enemy.Position.Row == newPlayerPosition.Row))
+                        if ((thisEnemy.Position.Col == newPlayerPosition.Col) &&
+                            (thisEnemy.Position.Row == newPlayerPosition.Row))
                         {
-                            EnterInBattle(enemy);
+                            isEnemy = true;
+                            enemy = thisEnemy;
                             break;
-                            //Visualisator.PrintEndGameMessage($"You just encountered a fat ugly {enemy.Type}");
                         }
                     }
-                    break;
+
+                    //temp - to be developed once battle is possible
+                    if (isEnemy)
+                    {
+                        EnterInBattle(enemy);
+                        break;
+                    }
+                    else
+                    {
+
+                        ConsumePlaceGains(newPlayerPosition);
+
+                        break;
+                    }
+
+            }
+        }
+
+        private void ConsumePlaceGains(Position newPlayerPosition)
+        {
+            foreach (var place in allPlaces)
+            {
+                if (place.Position.Row == newPlayerPosition.Row &&
+                    place.Position.Col == newPlayerPosition.Col)
+                {
+                    if (!place.IsVisited)
+                    {
+                        var gain = place.Gain;
+                        var gainType = string.Empty;
+                        double gainValue = place.Value;
+
+                        switch (gain)
+                        {
+                            case Place.PlaceGain.Health:
+
+                                if (this.player.Health + place.Value <= 100)
+                                {
+                                    this.player.Health += place.Value;
+                                }
+                                else
+                                {
+                                    gainValue = PlayerConstants.StartingHealth - this.player.Health;
+                                    this.player.Health = PlayerConstants.StartingHealth;
+
+                                }
+
+                                gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Health);
+                                break;
+
+                            case Place.PlaceGain.Armor:
+                                this.player.Defense += place.Value;
+                                gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Armor);
+                                break;
+
+                            case Place.PlaceGain.Experience:
+                                this.player.Experience += place.Value;
+                                gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Experience);
+                                break;
+
+                            case Place.PlaceGain.Gold:
+                                this.player.Gold += place.Value;
+                                gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Gold);
+                                break;
+                        }
+
+                        Visualisator.PrintGainOnTheConsole(VisualisatorConstants.PlaceGainConsumed + gainValue + " " + gainType);
+                        place.IsVisited = true;
+                    }
+                    else
+                    {
+                        Visualisator.PrintGainOnTheConsole(VisualisatorConstants.PlaceAlreadyVisited);
+                    }
+                    
+                }
             }
         }
 
