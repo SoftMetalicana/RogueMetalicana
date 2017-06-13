@@ -1,4 +1,5 @@
-﻿using RogueMetalicana.LevelEngine;
+﻿using System.Runtime.InteropServices;
+using RogueMetalicana.LevelEngine;
 using RogueMetalicana.MapPlace;
 
 namespace RogueMetalicana.Visualization
@@ -176,6 +177,8 @@ namespace RogueMetalicana.Visualization
         {
             Console.Clear();
             Console.WriteLine(messageToEndTheGameWith);
+
+/*            Console.ReadLine();*/
 
             Environment.Exit(0);
         }
