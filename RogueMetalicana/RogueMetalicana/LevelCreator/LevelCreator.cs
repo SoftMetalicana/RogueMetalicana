@@ -14,6 +14,7 @@ namespace RogueMetalicana.LevelCreator
         
         private  static void CreateFile(string levelName)
         {
+            string patternPath = @"..\..\CustomLevels\pattern.txt";
             string fileName = levelName;
             string extension = $".txt";
             string folder = @"..\..\CustomLevels\";
@@ -25,8 +26,7 @@ namespace RogueMetalicana.LevelCreator
             fullPath.ToString();
 
 
-            FileStream fileCreator = File.Create(fullPath.ToString());
-            fileCreator.Close();
+            File.Copy(patternPath, fullPath.ToString());
             OpenFile(fullPath.ToString());
         } 
         private static void OpenFile(string fullPath)

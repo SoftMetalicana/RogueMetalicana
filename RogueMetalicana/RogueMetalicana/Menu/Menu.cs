@@ -25,11 +25,27 @@
             switch (menuPagination.ReturnResult())
             {
                 case "New Game": break;
-                case "Load Game": break;
+                case "Load Game":LoadMenu(); break;
                 case "Create Level": LevelCreator.CreateLevel(); Menu.StartMenu(); break;
                 case "Options":  break;
                 case "Exit": Environment.Exit(0); break;
             }
         }
+        public static void LoadMenu()
+        {
+            List<string> options = new List<string>();
+            options.Add("Story Mode");
+            options.Add("Custom Levels");
+           
+            Pagination menuPagination = new Pagination(options);
+            menuPagination.Paginate();
+
+            switch (menuPagination.ReturnResult())
+            {
+                case "Story Mode": break;
+                case "Custom Levels": break;             
+            }
+        } 
+
     }
 }
