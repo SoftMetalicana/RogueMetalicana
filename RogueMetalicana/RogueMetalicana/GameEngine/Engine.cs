@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-
-namespace RogueMetalicana.GameEngine
+﻿namespace RogueMetalicana.GameEngine
 {
     using RogueMetalicana.BattleGround;
     using RogueMetalicana.Constants.Level;
@@ -15,6 +11,9 @@ namespace RogueMetalicana.GameEngine
     using System.Collections.Generic;
     using RogueMetalicana.MapPlace;
     using RogueMetalicana.Constants.Visualisator;
+    using System;
+    using System.Linq;
+    using System.Threading;
 
     /// <summary>
     /// Packs everything needed in the game into itself.
@@ -60,7 +59,6 @@ namespace RogueMetalicana.GameEngine
         public void OnPlayerDied(object sender, PlayerEventArgs playerEventArgs)
         {
             BattleGround.BattleResult.AppendLine(PlayerConstants.PlayerDiedDueToAttack);
-            //Visualisator.PrintOnTheConsole(BattleGround.BattleResult.ToString());
             Visualisator.PrintEndGameMessage(BattleGround.BattleResult.ToString());
         }
 
@@ -78,7 +76,7 @@ namespace RogueMetalicana.GameEngine
                 this.allEnemies = new List<Enemy>();
                 this.allPlaces = new List<Place>();
                 this.dungeon = new List<char[]>();
-                
+
                 levelGenerator.GenerateFullLevelPath();
                 levelGenerator.GenerateLevel(this.player, this.allEnemies, this.allPlaces, this.dungeon);
 
@@ -204,11 +202,15 @@ namespace RogueMetalicana.GameEngine
                     {
                         Visualisator.PrintGainOnTheConsole(VisualisatorConstants.PlaceAlreadyVisited);
                     }
-                    
+
                 }
             }
         }
 
+        /// <summary>
+        /// Open door to the boss and goes to next level.
+        /// </summary>
+        /// <param name="newPlayerPosition"></param>
         private void TryOpenDoor(Position newPlayerPosition)
         {
             //dinamichno vzemane na levela za zavurshvane na nivoto.
@@ -229,12 +231,12 @@ namespace RogueMetalicana.GameEngine
         /// <param name="enemyEventArgs"></param>
         public void OnEnemyDied(object sender, EnemyEventArgs enemyEventArgs)
         {
-            BattleGround.BattleResult.AppendLine($"Enemy.Type has been defeated by Player.");
-            BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.ExperienceGained} xp");
-            player.GainExperience(enemyEventArgs.ExperienceGained);
-            allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
+            BattleGround.BattleResult.AppendLine($"{enemyEventArgs.EnemyType} has been defeated by Player.");
+            BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.ExperienceGained} experience");
+            BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.GoldGained} gold");
+            this.player.GainGoldAndExperience(enemyEventArgs.ExperienceGained, enemyEventArgs.GoldGained);
+            this.allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
             this.dungeon[enemyEventArgs.Position.Row][enemyEventArgs.Position.Col] = ' ';
-            //replace enemy icon with " "
         }
 
         /// <summary>

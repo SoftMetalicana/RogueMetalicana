@@ -45,6 +45,12 @@ namespace RogueMetalicana.Visualization
 /*            PrintTheMapLegend(dungeon);*/
         }
 
+        /// <summary>
+        /// Displays battleground.
+        /// </summary>
+        /// <param name="dungeon"></param>
+        /// <param name="player"></param>
+        /// <param name="battleResult"></param>
         public static void PrintBattleGround(List<char[]> dungeon, Player player, StringBuilder battleResult)
         {
             Console.Clear();
@@ -54,12 +60,22 @@ namespace RogueMetalicana.Visualization
             PrintAllMap(dungeon, player);
         }
 
+        /// <summary>
+        /// Draw all map on the console.
+        /// </summary>
+        /// <param name="dungeon"></param>
+        /// <param name="player"></param>
         public static void PrintAllMap(List<char[]> dungeon, Player player)
         {
             Visualisator.PrintDungeon(dungeon, player);
             Visualisator.PrintOnTheConsole(LevelGenerator.CurrentMapLegend);
             Console.SetWindowPosition(0, 0);
         }
+
+        /// <summary>
+        /// Draw Legend on the console.
+        /// </summary>
+        /// <param name="dungeon"></param>
         private static void PrintTheMapLegend(IEnumerable<char[]> dungeon)
         {
             StringBuilder result = new StringBuilder();
@@ -140,17 +156,18 @@ namespace RogueMetalicana.Visualization
         /// <param name="player">The players start that you want to print</param>
         public static void PrintPlayerStats(Player player)
         {
-            string[] messages = new string[5]
+            string[] messages = new string[6]
             {
                 $"Current health: {player.Health:F2}/{Player.MaxHealth}     ",
                 $"Current armor: {player.Defense}     ",
                 $"Current damage: {player.Damage}     ",
                 $"Current Level: {player.Level}     ",
-                $"Current Exp {player.Experience}/{Player.NeedExperience}    "
+                $"Current Exp: {player.Experience}/{Player.NeedExperience}    ",
+                $"Player Gold: {player.Gold}       "
             };
 
             StringBuilder result = new StringBuilder();
-            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 6; currentRow++, messageIndex++)
+            for (int currentRow = ConsoleConstants.PlayerStatsPrintStartRow, messageIndex = 0; currentRow < 7; currentRow++, messageIndex++)
             {
                 Console.SetCursorPosition(ConsoleConstants.PlayerStatsPrintStartCol, currentRow);
 

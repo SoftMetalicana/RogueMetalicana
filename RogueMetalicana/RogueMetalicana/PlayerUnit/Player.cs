@@ -176,6 +176,10 @@
             PlayerMoved?.Invoke(this, new PlayerEventArgs() { NewPlayerPosition = newPlayerPosition });
         }
 
+        /// <summary>
+        /// Deal damage to player from enemy.
+        /// </summary>
+        /// <param name="damageToTake"></param>
         public void TakeDamage(double damageToTake)
         {
             this.health -= damageToTake;
@@ -191,9 +195,14 @@
             PlayerDied?.Invoke(this, new PlayerEventArgs());
         }
 
-        public void GainExperience(int experienceGained)
+        /// <summary>
+        /// Add experience to the player when enemy die.
+        /// </summary>
+        /// <param name="experienceGained"></param>
+        public void GainGoldAndExperience(int experienceGained, int goldGained)
         {
             this.experience += experienceGained;
+            this.gold += goldGained;
 
             while (experience >= NeedExperience)
             {
@@ -201,6 +210,9 @@
             } 
         }
 
+        /// <summary>
+        /// Invoke when player experience >= needed experience.
+        /// </summary>
         private void LevelUp()
         {
             this.experience -= NeedExperience;
@@ -210,6 +222,7 @@
             MaxHealth += 50;
             this.health += 25;
             NeedExperience *= 2;
+            gold += 10;
         }
 
         public override string ToString()

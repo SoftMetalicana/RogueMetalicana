@@ -19,6 +19,7 @@
         private int damage;
         private int defense;
         private int experienceGained;
+        private int goldGained;
         private bool isAlive;
 
         /// <summary>
@@ -28,10 +29,10 @@
 
         public Enemy()
         {
-            
+
         }
 
-        public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, Position position)
+        public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, int goldGained, Position position)
         {
             this.type = type;
             this.level = level;
@@ -39,6 +40,7 @@
             this.damage = damage;
             this.defense = defense;
             this.experienceGained = experienceGained;
+            this.goldGained = goldGained;
             this.isAlive = true;
             this.position = position;
         }
@@ -97,6 +99,15 @@
         }
 
         /// <summary>
+        /// Get and set gold drop when enemy die.
+        /// </summary>
+        public int GoldGained
+        {
+            get { return this.goldGained; }
+            set { this.goldGained = value; }
+        }
+
+        /// <summary>
         /// Get and set the live status outside of the class.
         /// </summary>
         public bool IsAlive
@@ -114,8 +125,12 @@
             set { this.position = value; }
         }
 
-        public event EventHandler<EnemyEventArgs> EnemyDied; 
+        public event EventHandler<EnemyEventArgs> EnemyDied;
 
+        /// <summary>
+        /// Player take damage to enemy.
+        /// </summary>
+        /// <param name="damageToTake"></param>
         public void TakeDamage(double damageToTake)
         {
             this.health -= damageToTake;
@@ -132,7 +147,7 @@
         /// </summary>
         protected virtual void OnEnemyDied()
         {
-            EnemyDied?.Invoke(this, new EnemyEventArgs() { Position = this.position, ExperienceGained = this.experienceGained});
+            EnemyDied?.Invoke(this, new EnemyEventArgs() { EnemyType = this.type, ExperienceGained = this.experienceGained, GoldGained = this.goldGained, Position = this.position, IsAlive = this.isAlive});
         }
     }
 }

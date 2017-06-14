@@ -11,5 +11,6 @@
         public const int Damage = 21;
         public const int Defense = 15;
         public const int ExperienceGained = 18;
+        public const int GoldGained = 10;
     }
 }

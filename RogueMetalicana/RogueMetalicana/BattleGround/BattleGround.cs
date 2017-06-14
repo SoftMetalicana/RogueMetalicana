@@ -1,5 +1,4 @@
-﻿
-namespace RogueMetalicana.BattleGround
+﻿namespace RogueMetalicana.BattleGround
 {
     using EnemyUnit;
     using PlayerUnit;
@@ -8,7 +7,11 @@ namespace RogueMetalicana.BattleGround
 
     public static class BattleGround
     {
+        /// <summary>
+        /// Append every round from the battle.
+        /// </summary>
         public static StringBuilder BattleResult = new StringBuilder();
+
         /// <summary>
         /// GenerateStats random stats.
         /// </summary>
@@ -47,7 +50,7 @@ namespace RogueMetalicana.BattleGround
 
             if (enemyDealingDamage - playerDefense >= 0)
             {
-                BattleResult.AppendLine($"Enemy hits Player with {enemyDealingDamage} damage");
+                BattleResult.AppendLine($"{enemy.Type} hits Player with {enemyDealingDamage} damage");
                 player.TakeDamage(enemyDealingDamage - playerDefense);
             }
 

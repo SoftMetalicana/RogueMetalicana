@@ -159,7 +159,6 @@ namespace RogueMetalicana.LevelEngine
                         }
                     }
 
-
                     currentRow++;
                 }
 
@@ -222,13 +221,13 @@ namespace RogueMetalicana.LevelEngine
                 switch (difficulty)
                 {
                     case (int)EnemyDifficulty.Easy:
-                        allEnemies.Add(new Enemy(type, currentLevelNumber, Easy.Health, Easy.Damage, Easy.Defense, Easy.ExperienceGained, position));
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Easy.Health, Easy.Damage, Easy.Defense, Easy.ExperienceGained, Easy.GoldGained, position));
                         break;
                     case (int)EnemyDifficulty.Medium:
-                        allEnemies.Add(new Enemy(type, currentLevelNumber, Medium.Health, Medium.Damage, Medium.Defense, Medium.ExperienceGained, position));
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Medium.Health, Medium.Damage, Medium.Defense, Medium.ExperienceGained, Medium.GoldGained, position));
                         break;
                     case (int)EnemyDifficulty.Difficult:
-                        allEnemies.Add(new Enemy(type, currentLevelNumber, Difficult.Health, Difficult.Damage, Difficult.Defense, Difficult.ExperienceGained, position));
+                        allEnemies.Add(new Enemy(type, currentLevelNumber, Difficult.Health, Difficult.Damage, Difficult.Defense, Difficult.ExperienceGained, Difficult.GoldGained, position));
                         break;
                 }
             }
