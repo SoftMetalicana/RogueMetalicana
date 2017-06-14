@@ -177,9 +177,6 @@ namespace RogueMetalicana.Visualization
         {
             Console.Clear();
             Console.WriteLine(messageToEndTheGameWith);
-
-/*            Console.ReadLine();*/
-
             Environment.Exit(0);
         }
     }
