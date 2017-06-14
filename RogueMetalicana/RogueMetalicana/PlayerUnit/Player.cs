@@ -1,17 +1,16 @@
 ﻿namespace RogueMetalicana.PlayerUnit
 {
     using System;
-    using RogueMetalicana.Positioning;
-    using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.Constants.Position;
+    using RogueMetalicana.Positioning;
+    using RogueMetalicana.UnitsInterfaces;
 
     /// <summary>
     /// This represents the player in the game.
     /// </summary>
     public class Player : IPositionable, IFightable
     {
-
         public static int NeedExperience = 60;
         public static double MaxHealth;
 
@@ -229,6 +228,5 @@
         {
             return base.ToString();
         }
-
     }
 }

@@ -1,25 +1,28 @@
-﻿using System.Runtime.InteropServices;
-using RogueMetalicana.LevelEngine;
-using RogueMetalicana.MapPlace;
-
-namespace RogueMetalicana.Visualization
+﻿namespace RogueMetalicana.Visualization
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Text;
-    using RogueMetalicana.Constants.Enemy;
-    using RogueMetalicana.Constants.Visualisator;
     using RogueMetalicana.Constants.Console;
+    using RogueMetalicana.Constants.Enemy;
     using RogueMetalicana.Constants.Level;
+    using RogueMetalicana.Constants.Visualisator;
+    using RogueMetalicana.LevelEngine;
+    using RogueMetalicana.MapPlace;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
-    using RogueMetalicana.MapPlace;
-    
+
     /// <summary>
     /// Takes care to print on the console.
     /// </summary>
     public static class Visualisator
     {
+        /// <summary>
+        /// Holds BattleGround template.
+        /// </summary>
+        public static string BattleTemplate = LoadBattleGroundTemplate();
+
         /// <summary>
         /// Refreshes the console (Console.Clear();) and than prints the latest condition of the dungeon.
         /// The dungeon is printed line by line.
@@ -54,6 +57,7 @@ namespace RogueMetalicana.Visualization
         public static void PrintBattleGround(List<char[]> dungeon, Player player, StringBuilder battleResult)
         {
             Console.Clear();
+            Visualisator.PrintOnTheConsole(BattleTemplate);
             Visualisator.PrintOnTheConsole(battleResult.ToString());
             Visualisator.PrintOnTheConsole("Press any key to continue:");
             Console.ReadKey(true);
@@ -83,6 +87,10 @@ namespace RogueMetalicana.Visualization
             Console.SetCursorPosition(0, 16);
         }
 
+        /// <summary>
+        /// Prints text on the console.
+        /// </summary>
+        /// <param name="textToPrint"></param>
         public static void PrintOnTheConsole(string textToPrint)
         {
             Console.WriteLine(textToPrint);
@@ -94,6 +102,26 @@ namespace RogueMetalicana.Visualization
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(2, 16);
             Console.WriteLine(textToPrint);
+        }
+
+        /// <summary>
+        /// Loads BattleGroundTemplate to BattleTemplate.
+        /// </summary>
+        /// <returns></returns>
+        private static string LoadBattleGroundTemplate()
+        {
+            StringBuilder template = new StringBuilder();
+            using (StreamReader battleGround = new StreamReader("../../BattleGroundTemplate/BattleGroundTemplate.txt"))
+            {
+                string line = battleGround.ReadLine();
+                while (!string.IsNullOrEmpty(line))
+                {
+                    template.AppendLine(line);
+                    line = battleGround.ReadLine();
+                }
+            }
+
+            return template.ToString();
         }
 
         /// <summary>

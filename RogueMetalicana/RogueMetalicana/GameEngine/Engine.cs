@@ -1,19 +1,19 @@
 ﻿namespace RogueMetalicana.GameEngine
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using RogueMetalicana.BattleGround;
     using RogueMetalicana.Constants.Level;
     using RogueMetalicana.Constants.Player;
+    using RogueMetalicana.Constants.Visualisator;
     using RogueMetalicana.EnemyUnit;
+    using RogueMetalicana.MapPlace;
     using RogueMetalicana.LevelEngine;
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Visualization;
-    using System.Collections.Generic;
-    using RogueMetalicana.MapPlace;
-    using RogueMetalicana.Constants.Visualisator;
-    using System;
-    using System.Linq;
-    using System.Threading;
+
 
     /// <summary>
     /// Packs everything needed in the game into itself.

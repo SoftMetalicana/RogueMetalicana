@@ -1,7 +1,6 @@
 ﻿namespace RogueMetalicana.EnemyUnit
 {
     using System;
-    using RogueMetalicana.Constants.Enemy;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
 
@@ -32,6 +31,17 @@
 
         }
 
+        /// <summary>
+        /// Sets all the stats of the enemy.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="level"></param>
+        /// <param name="health"></param>
+        /// <param name="damage"></param>
+        /// <param name="defense"></param>
+        /// <param name="experienceGained"></param>
+        /// <param name="goldGained"></param>
+        /// <param name="position"></param>
         public Enemy(string type, int level, double health, int damage, int defense, int experienceGained, int goldGained, Position position)
         {
             this.type = type;

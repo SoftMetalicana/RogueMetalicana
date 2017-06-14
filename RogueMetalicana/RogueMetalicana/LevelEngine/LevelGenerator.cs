@@ -1,19 +1,17 @@
-﻿
-using System;
-using System.Linq;
-
-namespace RogueMetalicana.LevelEngine
+﻿namespace RogueMetalicana.LevelEngine
 {
-    using System.IO;
-    using RogueMetalicana.Constants.Level;
-    using RogueMetalicana.PlayerUnit;
+    using System;
     using System.Collections.Generic;
-    using RogueMetalicana.EnemyUnit;
-    using RogueMetalicana.Constants.Player;
-    using RogueMetalicana.Positioning;
+    using System.IO;
+    using System.Linq;
     using RogueMetalicana.Constants.Enemy;
-    using RogueMetalicana.Visualization;
+    using RogueMetalicana.Constants.Level;
+    using RogueMetalicana.Constants.Player;
+    using RogueMetalicana.EnemyUnit;
     using RogueMetalicana.MapPlace;
+    using RogueMetalicana.PlayerUnit;
+    using RogueMetalicana.Positioning;
+    using RogueMetalicana.Visualization;
 
     /// <summary>
     /// Generates a level.

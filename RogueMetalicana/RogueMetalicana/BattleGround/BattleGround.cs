@@ -1,9 +1,9 @@
 ﻿namespace RogueMetalicana.BattleGround
 {
-    using EnemyUnit;
-    using PlayerUnit;
     using System;
     using System.Text;
+    using EnemyUnit;
+    using PlayerUnit;
 
     public static class BattleGround
     {
