@@ -4,6 +4,8 @@
     using RogueMetalicana.Constants.Potions;
     public class Potion
     {
+        private int id;
+
         /// <summary>
         /// Potion stats. If the potion is Health Potion all other stats will be set to 0
         /// </summary>
@@ -15,6 +17,9 @@
 
         public Potion(PotionType potionType)
         {
+            this.id = PotionsConstants.CurrentId;
+            PotionsConstants.CurrentId++;
+
             this.xpBonus = PotionsConstants.DefaultStat;
             this.healthBonus = PotionsConstants.DefaultStat;
             this.damageBonus = PotionsConstants.DefaultStat;
@@ -30,6 +35,14 @@
                     break;
                 default:
                     break;
+            }
+        }
+
+        public int UniqueId
+        {
+            get
+            {
+                return this.id;
             }
         }
 

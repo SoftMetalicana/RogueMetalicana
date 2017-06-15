@@ -6,6 +6,7 @@
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Potion;
+    using System.Collections.Generic;
 
     /// <summary>
     /// This represents the player in the game.
@@ -55,6 +56,8 @@
             this.level = PlayerConstants.StartingLevel;
             this.experience = PlayerConstants.StartinExperience;
             this.gold = PlayerConstants.StartingGold;
+
+            this.potionInventory = new List<Potion>();
         }
 
         /// <summary>
@@ -225,13 +228,16 @@
             gold += 10;
         }
 
-
         /// <summary>
-        /// Adds potion bonuses and takes care if they are above the maximum 
+        /// Adds potion bonuses, takes care if they are above the maximum and removes the potion from the inventory
         /// </summary>
         /// <param name="currentPotion"></param>
         public void ConsumePotion(Potion currentPotion)
         {
+            if (currentPotion == null)
+            {
+                return;
+            }
             this.health += currentPotion.HealthBonus;
             this.damage += currentPotion.DamageBonus;
             this.experience += currentPotion.XpBonus;
@@ -242,6 +248,22 @@
             if (this.health>MaxHealth)
             {
                 this.health = MaxHealth;
+            }
+
+            var indexOfCurrentPotion = potionInventory.FindIndex(p=> p.UniqueId == currentPotion.UniqueId);
+            if (indexOfCurrentPotion!=-1)
+            {
+                potionInventory.RemoveAt(indexOfCurrentPotion);
+            }
+        }
+
+        private List<Potion> potionInventory;
+
+        public List<Potion> PotionInventory
+        {
+            get
+            {
+                return this.potionInventory;
             }
         }
 
