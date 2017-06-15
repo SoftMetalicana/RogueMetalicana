@@ -2,12 +2,12 @@
 {
     using System;
     using RogueMetalicana.Constants.Potions;
-    class Potion
+    public class Potion
     {
         /// <summary>
         /// Potion stats. If the potion is Health Potion all other stats will be set to 0
         /// </summary>
-        private int manaBonus;
+        private int xpBonus;
         private int healthBonus;
         private int damageBonus;
         private decimal marketPrice;
@@ -15,7 +15,7 @@
 
         public Potion(PotionType potionType)
         {
-            this.manaBonus = PotionsConstants.DefaultStat;
+            this.xpBonus = PotionsConstants.DefaultStat;
             this.healthBonus = PotionsConstants.DefaultStat;
             this.damageBonus = PotionsConstants.DefaultStat;
             this.marketPrice = PotionsConstants.MarketPrice;
@@ -24,7 +24,7 @@
             {
                 case PotionType.HeathPotion: this.healthBonus = PotionsConstants.HealthBonus;
                     break;
-                case PotionType.ManaPotion: this.manaBonus = PotionsConstants.ManaBonus;
+                case PotionType.XpPotion: this.xpBonus = PotionsConstants.XpBonus;
                     break;
                 case PotionType.DamageBonus: this.damageBonus = PotionsConstants.DamageBonus;
                     break;
@@ -33,11 +33,11 @@
             }
         }
 
-        public int ManaBonus
+        public int XpBonus
         {
             get
             {
-                return this.manaBonus;
+                return this.xpBonus;
             }
         }
 

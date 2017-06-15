@@ -3,7 +3,7 @@
     public enum PotionType
     {
         HeathPotion,
-        ManaPotion,
+        XpPotion,
         DamageBonus
     }
 }

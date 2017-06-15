@@ -5,6 +5,7 @@
     using RogueMetalicana.Constants.Position;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
+    using RogueMetalicana.Potion;
 
     /// <summary>
     /// This represents the player in the game.
@@ -222,6 +223,26 @@
             this.health += 25;
             NeedExperience *= 2;
             gold += 10;
+        }
+
+
+        /// <summary>
+        /// Adds potion bonuses and takes care if they are above the maximum 
+        /// </summary>
+        /// <param name="currentPotion"></param>
+        public void ConsumePotion(Potion currentPotion)
+        {
+            this.health += currentPotion.HealthBonus;
+            this.damage += currentPotion.DamageBonus;
+            this.experience += currentPotion.XpBonus;
+            if (this.experience>= NeedExperience)
+            {
+                LevelUp();
+            }
+            if (this.health>MaxHealth)
+            {
+                this.health = MaxHealth;
+            }
         }
 
         public override string ToString()
