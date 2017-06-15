@@ -239,6 +239,7 @@
             var potionGenerated = PotionGenerator.GeneratePotion();
             if (potionGenerated.PotionType!=PotionType.None)
             {
+                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}");
                 this.player.RecievePotion(potionGenerated);
             }
             this.player.GainGoldAndExperience(enemyEventArgs.ExperienceGained, enemyEventArgs.GoldGained);

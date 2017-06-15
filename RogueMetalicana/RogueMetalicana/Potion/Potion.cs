@@ -33,11 +33,11 @@
             this.type = potionType;
             switch (potionType)
             {
-                case PotionType.HeathPotion: this.healthBonus = PotionsConstants.HealthBonus;
+                case PotionType.HealthPotion: this.healthBonus = PotionsConstants.HealthBonus;
                     break;
                 case PotionType.XpPotion: this.xpBonus = PotionsConstants.XpBonus;
                     break;
-                case PotionType.DamageBonus: this.damageBonus = PotionsConstants.DamageBonus;
+                case PotionType.BonusDamagePotion: this.damageBonus = PotionsConstants.DamageBonus;
                     break;
                 default:
                     break;

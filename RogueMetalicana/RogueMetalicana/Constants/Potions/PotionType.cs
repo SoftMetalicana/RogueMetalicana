@@ -2,9 +2,9 @@
 {
     public enum PotionType
     {
-        HeathPotion,
+        HealthPotion,
         XpPotion,
-        DamageBonus,
+        BonusDamagePotion,
         None
     }
 }
