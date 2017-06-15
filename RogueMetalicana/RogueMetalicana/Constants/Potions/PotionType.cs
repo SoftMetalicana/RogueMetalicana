@@ -4,6 +4,7 @@
     {
         HeathPotion,
         XpPotion,
-        DamageBonus
+        DamageBonus,
+        None
     }
 }

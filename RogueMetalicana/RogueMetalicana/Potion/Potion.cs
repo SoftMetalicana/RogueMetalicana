@@ -14,7 +14,12 @@
         private int damageBonus;
         private decimal marketPrice;
         private decimal sellPrice;
+        private PotionType type;
 
+        /// <summary>
+        // 
+        /// </summary>
+        /// <param name="potionType"></param>
         public Potion(PotionType potionType)
         {
             this.id = PotionsConstants.CurrentId;
@@ -25,6 +30,7 @@
             this.damageBonus = PotionsConstants.DefaultStat;
             this.marketPrice = PotionsConstants.MarketPrice;
             this.sellPrice = PotionsConstants.ResellPrice;
+            this.type = potionType;
             switch (potionType)
             {
                 case PotionType.HeathPotion: this.healthBonus = PotionsConstants.HealthBonus;
@@ -59,6 +65,14 @@
             get
             {
                 return this.healthBonus;
+            }
+        }
+
+        public PotionType PotionType
+        {
+            get
+            {
+                return this.type;
             }
         }
 

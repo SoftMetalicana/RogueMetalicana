@@ -13,6 +13,8 @@
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Visualization;
+    using RogueMetalicana.Constants.Potions;
+    using RogueMetalicana.Potion;
 
 
     /// <summary>
@@ -234,6 +236,11 @@
             BattleGround.BattleResult.AppendLine($"{enemyEventArgs.EnemyType} has been defeated by Player.");
             BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.ExperienceGained} experience");
             BattleGround.BattleResult.AppendLine($"Player won {enemyEventArgs.GoldGained} gold");
+            var potionGenerated = PotionGenerator.GeneratePotion();
+            if (potionGenerated.PotionType!=PotionType.None)
+            {
+                this.player.RecievePotion(potionGenerated);
+            }
             this.player.GainGoldAndExperience(enemyEventArgs.ExperienceGained, enemyEventArgs.GoldGained);
             this.allEnemies = allEnemies.Where(e => e.IsAlive).ToList();
             this.dungeon[enemyEventArgs.Position.Row][enemyEventArgs.Position.Col] = ' ';

@@ -257,6 +257,10 @@
             }
         }
 
+
+        /// <summary>
+        /// Holds all the looted potions
+        /// </summary>
         private List<Potion> potionInventory;
 
         public List<Potion> PotionInventory
@@ -265,6 +269,15 @@
             {
                 return this.potionInventory;
             }
+        }
+
+        public void RecievePotion(Potion potion)
+        {
+            if (potion==null)
+            {
+                return;
+            }
+            this.potionInventory.Add(potion);
         }
 
         public override string ToString()

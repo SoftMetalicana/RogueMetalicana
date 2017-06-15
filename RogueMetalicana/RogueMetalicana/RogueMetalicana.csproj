@@ -69,6 +69,7 @@
     <Compile Include="PlayerUnit\PlayerEventArgs.cs" />
     <Compile Include="Positioning\Position.cs" />
     <Compile Include="Potion\Potion.cs" />
+    <Compile Include="Potion\PotionGenerator.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitsInterfaces\IFightable.cs" />
