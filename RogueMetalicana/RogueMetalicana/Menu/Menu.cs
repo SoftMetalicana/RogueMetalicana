@@ -7,6 +7,9 @@
     using System.Threading.Tasks;
     using RogueMetalicana.Pagination;
     using RogueMetalicana.LevelCreator;
+    using RogueMetalicana.PlayerUnit;
+    using RogueMetalicana.Potion;
+    using RogueMetalicana.Constants.Potions;
     public class Menu
     {
         public static void StartMenu()
@@ -14,8 +17,9 @@
             List<string> options = new List<string>();
             options.Add("New Game");
             options.Add("Load Game");
-            options.Add("Create Level");
+            options.Add("Create Level"); 
             options.Add("Options");
+            options.Add("Shop");
             options.Add("Exit");
 
 
@@ -28,6 +32,7 @@
                 case "Load Game":LoadMenu(); break;
                 case "Create Level": LevelCreator.CreateLevel(); Menu.StartMenu(); break;
                 case "Options":  break;
+                case "Shop": OpenShop(); break;
                 case "Exit": Environment.Exit(0); break;
             }
         }
@@ -45,7 +50,26 @@
                 case "Story Mode": break;
                 case "Custom Levels": break;             
             }
-        } 
+        }
+        public static void OpenShop()
+        {
+            var values = Enum.GetValues(typeof(PotionType));
+            var options = new List<string>();
+            foreach (var value in values)
+            {
+                options.Add(value.ToString());
+            }
+            options.RemoveAt(options.Count - 1);
 
+            Pagination menuPagination = new Pagination(options);
+            menuPagination.Paginate();
+
+            switch (menuPagination.ReturnResult())
+            {
+                case "HealthPotion": break;
+                case "XpPotion": break;
+                case "BonusDamagePotion": break;
+            }
+        }
     }
 }
