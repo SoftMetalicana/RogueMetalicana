@@ -12,8 +12,8 @@
         private int xpBonus;
         private int healthBonus;
         private int damageBonus;
-        private decimal marketPrice;
-        private decimal sellPrice;
+        private int marketPrice;
+        private int sellPrice;
         private PotionType type;
 
         /// <summary>
@@ -81,6 +81,22 @@
             get
             {
                 return this.damageBonus;
+            }
+        }
+
+        public int MarketValue
+        {
+            get
+            {
+                return this.marketPrice;
+            }
+        }
+
+        public int ResellPrice
+        {
+            get
+            {
+                return this.ResellPrice;
             }
         }
     }

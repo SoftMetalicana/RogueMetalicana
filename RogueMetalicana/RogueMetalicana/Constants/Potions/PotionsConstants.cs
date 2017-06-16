@@ -15,8 +15,8 @@
         /// <summary>
         /// Buying and reselling prices
         /// </summary>
-        public const decimal MarketPrice = 25;
-        public const decimal ResellPrice = 12.5m;
+        public const int MarketPrice = 25;
+        public const int ResellPrice = 12;
 
 
     }

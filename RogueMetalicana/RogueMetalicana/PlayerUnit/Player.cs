@@ -3,6 +3,7 @@
     using System;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.Constants.Position;
+    using RogueMetalicana.Constants.Potions;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Potion;
@@ -278,6 +279,28 @@
                 return;
             }
             this.potionInventory.Add(potion);
+        }
+
+        public void BuyPotion(string potionType)
+        {
+            if (potionType == null)
+            {
+                return;
+            }
+
+            switch (potionType)
+            {
+                case "HealthPotion": PotionInventory.Add(new Potion(PotionType.HealthPotion));
+                    break;
+                case "XpPotion": PotionInventory.Add(new Potion(PotionType.XpPotion));
+                    break;
+                case "BonusDamagePotion": PotionInventory.Add(new Potion(PotionType.BonusDamagePotion));
+                    break;
+                default:
+                    break;
+            }
+            Gold -= Constants.Potions.PotionsConstants.MarketPrice;
+          
         }
 
         public override string ToString()
