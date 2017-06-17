@@ -13,7 +13,8 @@
     using RogueMetalicana.Visualization;
     using RogueMetalicana.Menu;
     using RogueMetalicana.MapPlace;
-
+    
+   
     public class StartUp
     {
         public static void Main()
@@ -31,6 +32,8 @@
             Player player = new Player();
             List<Enemy> allEnemies = new List<Enemy>();
             List<Place> allPlaces = new List<Place>();
+          
+
             List<char[]> dungeon = new List<char[]>();
 
             //Processes and generates the level from the Level.txt file
@@ -51,6 +54,7 @@
             }
 
             //Visualisator.PrintDungeon(dungeon, player);
+           
             while (true)
             {
                 player.MakeAMove();

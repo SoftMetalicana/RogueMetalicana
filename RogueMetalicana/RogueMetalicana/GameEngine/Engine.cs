@@ -15,6 +15,9 @@
     using RogueMetalicana.Visualization;
     using RogueMetalicana.Constants.Potions;
     using RogueMetalicana.Potion;
+   
+    using RogueMetalicana.Menu;
+    using RogueMetalicana.Constants.Shop; 
 
 
     /// <summary>
@@ -29,6 +32,9 @@
         private Player player;
         private List<Enemy> allEnemies;
         private List<Place> allPlaces;
+        
+        
+        
 
         private List<char[]> dungeon;
 
@@ -45,7 +51,8 @@
             this.player = player;
             this.allEnemies = allEnemies;
             this.allPlaces = allPlaces;
-
+           
+          
             this.dungeon = dungeon;
 
             this.levelGenerator = levelGenerator;
@@ -77,10 +84,13 @@
             {
                 this.allEnemies = new List<Enemy>();
                 this.allPlaces = new List<Place>();
+               
+             
+              
                 this.dungeon = new List<char[]>();
 
                 levelGenerator.GenerateFullLevelPath();
-                levelGenerator.GenerateLevel(this.player, this.allEnemies, this.allPlaces, this.dungeon);
+                levelGenerator.GenerateLevel(this.player, this.allEnemies, this.allPlaces,this.dungeon);
 
                 return;
             }
@@ -115,12 +125,16 @@
                 case LevelConstants.RiverOfMercury:
                     Visualisator.PrintEndGameMessage(PlayerConstants.EnterIntoRiverOfMercury);
                     break;
+                case ShopConstants.Symbol:
+                    Menu.OpenShop(); break;
 
                 //all the monsters are traversed here.
                 default:
 
                     bool isEnemy = false;
+                    bool isShop = false;
                     var enemy = new Enemy();
+                    
 
                     foreach (var thisEnemy in allEnemies)
                     {
@@ -132,11 +146,17 @@
                             break;
                         }
                     }
+               
 
                     //temp - to be developed once battle is possible
                     if (isEnemy)
                     {
                         EnterInBattle(enemy);
+                        break;
+                    }
+                    else if (isShop)
+                    {
+                        Menu.OpenShop();
                         break;
                     }
                     else

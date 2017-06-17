@@ -281,7 +281,7 @@
             this.potionInventory.Add(potion);
         }
 
-        public void BuyPotion(string potionType)
+        public  void BuyPotion(string potionType)
         {
             if (potionType == null)
             {
