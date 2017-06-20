@@ -37,6 +37,7 @@
 
         private LevelGenerator levelGenerator;
 
+    
         /// <summary>
         /// Sets values to the game units.
         /// </summary>
@@ -133,8 +134,9 @@
                     break;
 
                 case ShopConstants.Symbol:
-                    Menu.OpenShop(); break;
-
+                    Menu.OpenShop();            
+                    Visualisator.PrintAllMap(dungeon, player);
+                    break;
                 //all the monsters are traversed here.
                 default:
 

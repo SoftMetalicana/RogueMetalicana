@@ -5,6 +5,9 @@
     using RogueMetalicana.Pagination;
     using RogueMetalicana.LevelCreator;
     using RogueMetalicana.Constants.Potions;
+    using RogueMetalicana.Visualization;
+    using RogueMetalicana.Potion;
+    using RogueMetalicana.GameEngine;
     public class Menu
     {
         public static void StartMenu()
@@ -15,7 +18,6 @@
             options.Add("Create Level"); 
             options.Add("Options");
             
-            options.Add("Exit");
 
 
             Pagination menuPagination = new Pagination(options);
@@ -60,9 +62,10 @@
 
             switch (menuPagination.ReturnResult())
             {
-                case "HealthPotion":  break;
+                case "HealthPotion":break;
                 case "XpPotion": break;
                 case "BonusDamagePotion": break;
+                case "Exit":return; break;
             }
         }
     }

@@ -20,6 +20,7 @@ namespace RogueMetalicana.Pagination
             {
              Console.Clear();
 
+            options.Add("Exit");
                 int pointer = 0;
                 string key = "";
                 while (key != "Enter")
