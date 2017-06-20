@@ -13,6 +13,7 @@
     using RogueMetalicana.Visualization;
     using RogueMetalicana.Menu;
     using RogueMetalicana.MapPlace;
+    using RogueMetalicana.GameSaver;
 
     public class StartUp
     {
@@ -37,6 +38,9 @@
             //Sets the player position fills the list with enemies and creates the dungeon from the file.
             LevelGenerator levelGenerator = new LevelGenerator();
             levelGenerator.GenerateLevel(player, allEnemies, allPlaces, dungeon);
+
+            GameSave gameSave = new GameSave();
+            levelGenerator.LevelGenerated += gameSave.OnLevelGenerated;
 
             //Knows about all objects/units and takes the care about the interaction of the units.
             Engine gameEngine = new Engine(player, allEnemies, allPlaces, dungeon, levelGenerator);

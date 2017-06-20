@@ -72,6 +72,8 @@
             this.leverReader = new StreamReader(fullLevelPath);
         }
 
+        public event EventHandler<LevelGeneratedEventArgs> LevelGenerated;
+
         /// <summary>
         /// Processes the level and inializes the arguments.
         /// Finds the player position and the enemies positions.
@@ -132,6 +134,13 @@
                         switch (symbol)
                         {
                             case PlayerConstants.Symbol:
+
+                                // if (loadGameExists)
+
+                                // We could insert our load logic here ! But we need to pass the whole player class not only his possition property
+
+                                //   player = new Player();
+
                                 player.Position = new Position(currentRow, currentCol);
                                 break;
 
@@ -160,13 +169,22 @@
                     currentRow++;
                 }
 
+                 
+
                 Visualisator.PrintDungeon(dungeon, player);
                 CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies, levelObstacles, levelPlaces);
                 Visualisator.PrintOnTheConsole(CurrentMapLegend);
 
                 Console.SetWindowPosition(0, 0);
-
+                
             }
+
+            OnLevelGenerated(player);
+        }
+
+        protected virtual void OnLevelGenerated(Player player)
+        {
+            LevelGenerated?.Invoke(this, new LevelGeneratedEventArgs { Player = player });
         }
 
         /// <summary>

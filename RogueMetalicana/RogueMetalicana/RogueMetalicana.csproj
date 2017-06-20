@@ -60,7 +60,9 @@
     <Compile Include="EnemyUnit\Enemy.cs" />
     <Compile Include="EnemyUnit\EnemyEventArgs.cs" />
     <Compile Include="GameEngine\Engine.cs" />
+    <Compile Include="GameSaver\GameSave.cs" />
     <Compile Include="LevelCreator\LevelCreator.cs" />
+    <Compile Include="LevelEngine\LevelGeneratedEventArgs.cs" />
     <Compile Include="LevelEngine\LevelGenerator.cs" />
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="Menu\Pagination.cs" />
