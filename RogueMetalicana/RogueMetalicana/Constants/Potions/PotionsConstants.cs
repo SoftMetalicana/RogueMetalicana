@@ -8,9 +8,12 @@
         /// Default stat of potion
         /// </summary>
         public const int DefaultStat = 0;
-        public const int HealthBonus = 33;
-        public const int XpBonus = 33;
-        public const int DamageBonus = 33;
+        public const int MaxHealthBonus = 33;
+        public const int MinHealthBonus = 10;
+        public const int MaxXpBonus = 33;
+        public const int MinXpBonus = 5;
+        public const int MaxDamageBonus = 20;
+        public const int MinDmgBonus = 4;
 
         /// <summary>
         /// Buying and reselling prices
@@ -18,6 +21,6 @@
         public const int MarketPrice = 25;
         public const int ResellPrice = 12;
 
-
+        
     }
 }

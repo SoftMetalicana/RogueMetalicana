@@ -269,7 +269,20 @@
             var potionGenerated = PotionGenerator.GeneratePotion();
             if (potionGenerated.PotionType!=PotionType.None)
             {
-                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}");
+                switch (potionGenerated.PotionType)
+                {
+                    case PotionType.HealthPotion:
+                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.HealthBonus} health)");
+                        break;
+                    case PotionType.XpPotion:
+                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.XpBonus} xp bonus)");
+                        break;
+                    case PotionType.BonusDamagePotion:
+                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.DamageBonus}) damage bonus)");
+                        break;
+                    default:
+                        break;
+                }
                 this.player.RecievePotion(potionGenerated);
             }
             this.player.GainGoldAndExperience(enemyEventArgs.ExperienceGained, enemyEventArgs.GoldGained);
