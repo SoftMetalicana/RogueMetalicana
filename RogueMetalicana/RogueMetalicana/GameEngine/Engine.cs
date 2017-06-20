@@ -132,7 +132,6 @@
                 default:
 
                     bool isEnemy = false;
-                    bool isShop = false;
                     var enemy = new Enemy();
                     
 
@@ -154,11 +153,7 @@
                         EnterInBattle(enemy);
                         break;
                     }
-                    else if (isShop)
-                    {
-                        Menu.OpenShop();
-                        break;
-                    }
+                
                     else
                     {
 

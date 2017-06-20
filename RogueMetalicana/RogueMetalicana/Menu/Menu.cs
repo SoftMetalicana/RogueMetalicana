@@ -2,13 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using RogueMetalicana.Pagination;
     using RogueMetalicana.LevelCreator;
-    using RogueMetalicana.PlayerUnit;
-    using RogueMetalicana.Potion;
     using RogueMetalicana.Constants.Potions;
     public class Menu
     {
@@ -31,8 +26,7 @@
                 case "New Game": break;
                 case "Load Game":LoadMenu(); break;
                 case "Create Level": LevelCreator.CreateLevel(); Menu.StartMenu(); break;
-                case "Options":  break;
-              
+                case "Options":  break;              
                 case "Exit": Environment.Exit(0); break;
             }
         }
