@@ -200,8 +200,6 @@
                     currentRow++;
                 }
 
-                 
-
                 Visualisator.PrintDungeon(dungeon, player);
                 CurrentMapLegend = Visualisator.PrintMapLegend(levelEnemies, levelObstacles, levelPlaces);
                 Visualisator.PrintOnTheConsole(CurrentMapLegend);

@@ -34,7 +34,6 @@
             List<Enemy> allEnemies = new List<Enemy>();
             List<Place> allPlaces = new List<Place>();
           
-
             List<char[]> dungeon = new List<char[]>();
 
             //Processes and generates the level from the Level.txt file
@@ -47,6 +46,7 @@
 
             //Knows about all objects/units and takes the care about the interaction of the units.
             Engine gameEngine = new Engine(player, allEnemies, allPlaces, dungeon, levelGenerator);
+            levelGenerator.LevelGenerated += gameEngine.OnLevelGenerated;
 
             //The movement of the player is an event
             //The engine is subscribed to this event so it can know about every move of the player.
@@ -58,7 +58,7 @@
             }
 
             //Visualisator.PrintDungeon(dungeon, player);
-           
+
             while (true)
             {
                 player.MakeAMove();

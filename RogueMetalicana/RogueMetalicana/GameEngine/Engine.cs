@@ -33,9 +33,6 @@
         private List<Enemy> allEnemies;
         private List<Place> allPlaces;
         
-        
-        
-
         private List<char[]> dungeon;
 
         private LevelGenerator levelGenerator;
@@ -69,6 +66,17 @@
         {
             BattleGround.BattleResult.AppendLine(PlayerConstants.PlayerDiedDueToAttack);
             Visualisator.PrintEndGameMessage(BattleGround.BattleResult.ToString());
+        }
+
+        /// <summary>
+        /// Every time a new level is generated and the monsters are read the engine subscribes to their event
+        /// </summary>
+        public void OnLevelGenerated(object sender, LevelGeneratedEventArgs eventArgs)
+        {
+            foreach (Enemy enemy in allEnemies)
+            {
+                enemy.EnemyDied += OnEnemyDied;
+            }
         }
 
         /// <summary>
