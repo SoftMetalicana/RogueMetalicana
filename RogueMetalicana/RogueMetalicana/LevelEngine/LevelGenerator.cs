@@ -1,4 +1,4 @@
-﻿namespace RogueMetalicana.LevelEngine
+﻿ namespace RogueMetalicana.LevelEngine
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,7 @@
     using RogueMetalicana.PlayerUnit;
     using RogueMetalicana.Positioning;
     using RogueMetalicana.Visualization;
+
 
     /// <summary>
     /// Generates a level.
@@ -38,6 +39,11 @@
         /// </summary>
         private static Dictionary<char, KeyValuePair<string, int>> levelEnemies;
 
+
+        /// <summary>
+        /// Holds basic data for all enemies which will be encountered in the current level and described in the map's metadata
+        /// </summary>
+       
         /// <summary>
         /// Holds data for all obstacles in the current level described in the map's metadata
         /// For the time being the obstacles are hardcoded and this info is only aimed to provide source for printing the legend
@@ -48,7 +54,8 @@
         /// Holds data for all places in the current level described in the map's metadata
         /// </summary>
         private static Dictionary<KeyValuePair<char, string>, KeyValuePair<Place.PlaceGain, int>> levelPlaces;
-
+        
+       
         public static string CurrentMapLegend;
 
         /// <summary>
@@ -113,6 +120,7 @@
                                 case LevelConstants.PlaceInput:
                                     GeneratePlacesList(objectTokens);
                                     break;
+                                
                             }
                         }                       
                     }
@@ -158,7 +166,9 @@
                                 {
                                     GenerateCurrentEnemy(symbol, allEnemies, new Position(currentRow, currentCol));
                                     break;
-                                } else
+                                }
+                             
+                                else
                                 {
                                     GenerateCurrentPlace(symbol, allPlaces, new Position(currentRow, currentCol));
                                     break;
@@ -214,6 +224,10 @@
                 allPlaces.Add(currentPlace);
             }
         }
+
+
+
+
 
 
         /// <summary>
@@ -329,5 +343,7 @@
                 levelPlaces[key] = new KeyValuePair<Place.PlaceGain, int>(placeGain, placeValue);
             }
         }
+       
     }
+    
 }

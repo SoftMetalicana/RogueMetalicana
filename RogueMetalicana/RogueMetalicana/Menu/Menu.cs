@@ -19,7 +19,7 @@
             options.Add("Load Game");
             options.Add("Create Level"); 
             options.Add("Options");
-            options.Add("Shop");
+            
             options.Add("Exit");
 
 
@@ -32,7 +32,7 @@
                 case "Load Game":LoadMenu(); break;
                 case "Create Level": LevelCreator.CreateLevel(); Menu.StartMenu(); break;
                 case "Options":  break;
-                case "Shop": OpenShop(); break;
+              
                 case "Exit": Environment.Exit(0); break;
             }
         }
@@ -66,7 +66,7 @@
 
             switch (menuPagination.ReturnResult())
             {
-                case "HealthPotion": break;
+                case "HealthPotion":  break;
                 case "XpPotion": break;
                 case "BonusDamagePotion": break;
             }

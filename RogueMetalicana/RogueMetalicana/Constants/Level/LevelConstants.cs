@@ -69,6 +69,7 @@
         public const string EnemyInput = "/I/E";
         public const string ObstacleInput = "/I/O";
         public const string PlaceInput = "/I/P";
+        public const string ShopInput = "/I/S";
 
 
         /// <summary>

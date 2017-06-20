@@ -5,6 +5,7 @@ namespace RogueMetalicana.Pagination
     using System.Collections.Generic;
     using System.Linq;
     using RogueMetalicana.ConsoleCare;
+ 
 
     public class Pagination
         {
@@ -47,6 +48,7 @@ namespace RogueMetalicana.Pagination
                         case "UpArrow": pointer--; break;
                         case "DownArrow": pointer++; break;
                         case "Enter": ReturnResult(); break;
+                      
                     }
                     if (pointer > options.Count - 1)
                     {
