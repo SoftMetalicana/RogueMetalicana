@@ -1,6 +1,7 @@
 ﻿namespace RogueMetalicana.PlayerUnit
 {
     using System;
+    using System.Linq;
     using RogueMetalicana.Constants.Player;
     using RogueMetalicana.Constants.Position;
     using RogueMetalicana.Constants.Potions;
@@ -8,6 +9,7 @@
     using RogueMetalicana.UnitsInterfaces;
     using RogueMetalicana.Potion;
     using System.Collections.Generic;
+    using RogueMetalicana.BattleGround;
 
     /// <summary>
     /// This represents the player in the game.
@@ -162,7 +164,15 @@
                 case ConsoleKey.RightArrow:
                     newDirection = Direction.Right;
                     break;
-
+                case ConsoleKey.D1:
+                    ConsumePotion(PotionType.HealthPotion);
+                    return;
+                case ConsoleKey.D2:
+                    ConsumePotion(PotionType.XpPotion);
+                    return;
+                case ConsoleKey.D3:
+                    ConsumePotion(PotionType.BonusDamagePotion);
+                    return;
                 default:
                     break;
             }
@@ -232,16 +242,36 @@
         /// <summary>
         /// Adds potion bonuses, takes care if they are above the maximum and removes the potion from the inventory
         /// </summary>
-        /// <param name="currentPotion"></param>
-        public void ConsumePotion(Potion currentPotion)
+        /// <param name="potionType"></param>
+        public void ConsumePotion(PotionType potionType)
         {
-            if (currentPotion == null)
+            
+            var foundPotion = PotionInventory.FirstOrDefault(p => p.PotionType == potionType);
+
+            if (foundPotion== null)
             {
+                Visualization.Visualisator.PrintUnderTheBattleField(PotionsConstants.UnavaiblePotion + potionType + "s!");
                 return;
+
             }
-            this.health += currentPotion.HealthBonus;
-            this.damage += currentPotion.DamageBonus;
-            this.experience += currentPotion.XpBonus;
+            switch (potionType)
+            {
+                case PotionType.HealthPotion:
+                    Visualization.Visualisator.PrintUnderTheBattleField(PotionsConstants.ConsumedPotion + foundPotion.HealthBonus + " health!");
+                    break;
+                case PotionType.XpPotion:
+                    Visualization.Visualisator.PrintUnderTheBattleField(PotionsConstants.ConsumedPotion + foundPotion.XpBonus + " experience!");
+                    break;
+                case PotionType.BonusDamagePotion:
+                    Visualization.Visualisator.PrintUnderTheBattleField(PotionsConstants.ConsumedPotion + foundPotion.DamageBonus + " bonus damage!");
+                    break;
+                default:
+                    break;
+            }
+
+            this.health += foundPotion.HealthBonus;
+            this.damage += foundPotion.DamageBonus;
+            this.experience += foundPotion.XpBonus;
             if (this.experience>= NeedExperience)
             {
                 LevelUp();
@@ -251,7 +281,7 @@
                 this.health = MaxHealth;
             }
 
-            var indexOfCurrentPotion = potionInventory.FindIndex(p=> p.UniqueId == currentPotion.UniqueId);
+            var indexOfCurrentPotion = potionInventory.IndexOf(foundPotion);
             if (indexOfCurrentPotion!=-1)
             {
                 potionInventory.RemoveAt(indexOfCurrentPotion);

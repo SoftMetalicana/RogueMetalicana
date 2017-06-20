@@ -21,6 +21,8 @@
         public const int MarketPrice = 25;
         public const int ResellPrice = 12;
 
+        public const string UnavaiblePotion = "You don't have any ";
+        public const string ConsumedPotion = "You gained ";
         
     }
 }

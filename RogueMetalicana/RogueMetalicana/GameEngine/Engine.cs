@@ -283,7 +283,7 @@
                 BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.XpBonus} xp bonus)");
                         break;
                     case PotionType.BonusDamagePotion:
-                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.DamageBonus}) damage bonus)");
+                BattleGround.BattleResult.AppendLine($"Player obtained {potionGenerated.PotionType.ToString()}({potionGenerated.DamageBonus} damage bonus)");
                         break;
                     default:
                         break;
