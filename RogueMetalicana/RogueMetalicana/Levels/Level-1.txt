@@ -1,11 +1,11 @@
 ####### ##############################################################
-#@   #   #   #    #?    #            ~~#           #                 #
-#  G # M | #    # ####G##  ######### ~~## ##~ ~~~~Z# #####^ ~~~~~ ~ G#
+#    #   #   #    #?    #            ~~#           #                 #
+#  G # M@| #    # ####G##  ######### ~~## ##~ ~~~~Z# #####^ ~~~~~ ~ G#
 #    ############          #         ###   ##G###### #   *^ ~     ~~~#
-# $  ~##   G     ############  #    ~##     %          Z^^^^ ~ ~~~   ~#
+# $ ~##   G     ############  #    ~##     %          Z^^^^ ~ ~~~   ~#
 #  ~~##     ~#            ##  # G####  %  %^^^^^^^^^^^^^    ~ ~  ~~ ~#
 #    #####   ###########   ## ####    %%%%%^        #    ~~   ~ ~ ~ ~#
-#    G  ~#~   #       ##   #      B~~%%   %^^% ###  #~~ Z~~~~~~ ~ ~ ~#
+#    G  ~#~   #       ##   #      B~~%    %^^% ###  #~~ Z~~~~~~ ~ ~ ~#
 #   ~~  &#        ~    #   #~####~~~~% %%  %^   ~#  #~~~~~~~~ ~G~ ~ ~#
 #  ~~###########~~~    #         ~~~~% ?%  B^  ~~~  ##               #
 # ~~~#          ~~~~~~ #~~ ###   ~~~~% %%%%^^   ~~   #  ##############
@@ -14,15 +14,22 @@
 #        #    ~     ~~~#  Z#                       #         G       #
 ######################################################################
 
-/I/E|G 		|ghost  	|0
-/I/E|Z 		|zombie  	|1
-/I/E|B 		|basilisk  	|0
-/I/E|H 		|hydra  	|1
-/I/E|M 		|EvilMaster  	|2
-/I/O|#		|wall			|No known threat	
-/I/O|~		|lava			|Swimming into hot lava will eventually lead to death
-/I/O|%		|spellbound forest	|Noone has ever escaped the spellbound forest
-/I/O|^		|river of mercury	|These shimmering waters hold greatest of threats
+Enemies:
+0 - easy; 1 = medium; 2 - difficult
+/I/E|G|ghost|0
+/I/E|Z|zombie|1
+/I/E|B|basilisk|0
+/I/E|H|hydra|1
+/I/E|M|EvilMaster|2
+
+Obstacles:
+/I/O|#|wall|No known threat	
+/I/O|~|lava|Swimming into hot lava will eventually lead to death
+/I/O|%|spellbound forest|Noone has ever escaped the spellbound forest
+/I/O|^|river of mercury	|These shimmering waters hold greatest of threats
+
+Places:
+0 - health, 1 - armor, 2 - experience, 3 - gold
 /I/P|?|fountain of youth|0|15
 /I/P|&|lost bag|3|100
 /I/P|*|book|2|35

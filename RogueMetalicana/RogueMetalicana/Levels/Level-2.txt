@@ -1,24 +1,39 @@
 ####### ##############################################################
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#                                                                    #
-#            @                                                       #
+#?#*  |   ~     B   ^      ^~    F       #        ^&  F    ~~   ~~  &#
+#  ~~ ~L~~~  ~~~   ^^   B    ~ F~H~F     #    %    ^ * ~~~    ^  ~  ~#
+#~Z~~ H~   B ~ B ^^   ##^^^  ~     % % % # %%%      ^^^%%  ~ ^^  ~~B #
+#~ ~Z~ ~  ~  ^^^^   ^ ##   ^   ~ } %%%%  #%%%          ^ % ~~^   ~   #
+#~ ~ ~ ~ ~~^^     ^  ##  %  ^   ~ %%%%  %############   ^   ^      ~ #
+#             ########  %% % ^^  ~~ %  %%%  ~     ~ #%   ^ ^   % %%%M#
+#   % %F%%%^^ #Z        H   % ^^   ~~~      ~  ~ ~  #%%     ^ %%   %%#
+#  %%%%%%   ^ #   %%%%% %  %%%  ^   ~~#####   ~~    #%%%   ^^ %%%%  %#
+#   F%%  ?  ^ %%   ?% %% %  %    ^^        #~ *~ ~ ~#%%%%  ^  % % %  #
+#   %     ^%~F %%Z%% %%      %  % ^^^ ~   ~ # ~     # %   ^%%% "  #  #
+#   %%H ^^%%%% %%  % %  %% %    %%%%^ ~~  ~  # F F F#   ^^%%      #  #
+#  % % ^%  %%  %%   %%%H     %%    ^  ~~ ~    # # # #  ^^%%####Z###  #
+#  F        %@%   %      %%  %%% B    ~    ~~          ^% +   Z      #
 ######################################################################
 
-/I/E|G 		|ghost  	|0
-/I/E|Z 		|zombie  	|1
-/I/E|B 		|basilisk  	|0
-/I/E|H 		|hydra  	|1
-/I/E|M 		|EvilMaster  	|2
-/I/O|#		|wall			|No known threat	
-/I/O|~		|lava			|Swimming into hot lava will eventually lead to death
-/I/O|%		|spellbound forest	|Noone has ever escaped the spellbound forest
+Enemies:
+0 - easy; 1 = medium; 2 - difficult
+/I/E|F|living flame|0
+/I/E|Z|terrorist|1
+/I/E|B|demon|1
+/I/E|H|fallen angel|1
+/I/E|L|Lucifer|2
+/I/E|M|Mephisto|2
+
+Obstacles:
+/I/O|#|wall|No known threat	
+/I/O|~|lava|Swimming into hot lava will eventually lead to death
+/I/O|%|spellbound forest|Noone has ever escaped the spellbound forest
+/I/O|^|river of mercury	|These shimmering waters hold greatest of threats
+
+Places:
+0 - health, 1 - armor, 2 - experience, 3 - gold
+/I/P|?|fountain of youth|0|32
+/I/P|&|lost bag|3|150
+/I/P|*|book|2|55
+/I/P|}|elven blacksmith's shop|1|10
+/I/P|"|sliver gloves|1|6
+/I/P|+|ancient script|2|28

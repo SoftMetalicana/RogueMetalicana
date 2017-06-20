@@ -49,7 +49,6 @@
     <Compile Include="Constants\Enemy\Easy.cs" />
     <Compile Include="Constants\Enemy\EnemyDifficulty.cs" />
     <Compile Include="Constants\Enemy\Medium.cs" />
-    <Compile Include="Constants\Enemy\SnakeConstants.cs" />
     <Compile Include="Constants\Level\LegendConstants.cs" />
     <Compile Include="Constants\Level\LevelConstants.cs" />
     <Compile Include="Constants\Player\PlayerConstants.cs" />

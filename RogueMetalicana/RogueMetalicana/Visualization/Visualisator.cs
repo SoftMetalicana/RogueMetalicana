@@ -96,7 +96,7 @@
             Console.WriteLine(textToPrint);
         }
 
-        public static void PrintGainOnTheConsole(string textToPrint)
+        public static void PrintUnderTheBattleField(string textToPrint)
         {
             Console.SetCursorPosition(2, 16);
             Console.Write(new string(' ', Console.WindowWidth));
@@ -222,6 +222,7 @@
         {
             Console.Clear();
             Console.WriteLine(messageToEndTheGameWith);
+            Console.ReadLine();
             Environment.Exit(0);
         }
     }
