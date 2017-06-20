@@ -19,8 +19,10 @@ namespace RogueMetalicana.Constants.Visualisator
 
         public const string SeparatorLine = "----------------------------------------------------------------------------------";
 
-        public const string PlaceGainConsumed = "Congratulations you have just gained: ";
+        public const string PlaceGainConsumed = "Congratulations you have just gained from this ";
 
         public const string PlaceAlreadyVisited = "Dude, you have already visited this place! Nothing to consume!";
+
+        public const string UnableToCompleteLevel = "Don't be cheaty! You must get all enemies killed first!";
     }
 }

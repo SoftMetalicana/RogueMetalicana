@@ -33,14 +33,29 @@
             this.type = potionType;
             switch (potionType)
             {
-                case PotionType.HealthPotion: this.healthBonus = PotionsConstants.HealthBonus;
+                case PotionType.HealthPotion: this.healthBonus = GenerataRandomValue(PotionType.HealthPotion);
                     break;
-                case PotionType.XpPotion: this.xpBonus = PotionsConstants.XpBonus;
+                case PotionType.XpPotion: this.xpBonus = GenerataRandomValue(PotionType.XpPotion);
                     break;
-                case PotionType.BonusDamagePotion: this.damageBonus = PotionsConstants.DamageBonus;
+                case PotionType.BonusDamagePotion: this.damageBonus = GenerataRandomValue(PotionType.BonusDamagePotion);
                     break;
                 default:
                     break;
+            }
+        }
+
+        private static int GenerataRandomValue(PotionType type)
+        {
+            var rndm = new Random();
+            switch (type)
+            {
+                case PotionType.HealthPotion: var healthBonus = rndm.Next(PotionsConstants.MinHealthBonus, PotionsConstants.MaxHealthBonus);
+                    return healthBonus;
+                case PotionType.XpPotion: var xpBonus = rndm.Next(PotionsConstants.MinXpBonus, PotionsConstants.MaxXpBonus);
+                    return xpBonus;
+                case PotionType.BonusDamagePotion: var dmgBonus = rndm.Next(PotionsConstants.MinDmgBonus, PotionsConstants.MaxDamageBonus);
+                    return dmgBonus;
+                default: return 0;
             }
         }
 

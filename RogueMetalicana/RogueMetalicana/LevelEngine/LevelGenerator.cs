@@ -79,6 +79,8 @@
             this.leverReader = new StreamReader(fullLevelPath);
         }
 
+        public event EventHandler<LevelGeneratedEventArgs> LevelGenerated;
+
         /// <summary>
         /// Processes the level and inializes the arguments.
         /// Finds the player position and the enemies positions.
@@ -89,12 +91,18 @@
         /// <param name="dungeon">The dungeon that you want to create.</param>
         public void GenerateLevel(Player player, List<Enemy> allEnemies, List<Place> allPlaces, List<char[]> dungeon)
         {
+
             using (leverReader)
             {
                 // Processes each line of the level txt file and either adds this line as char array to the dungeon list 
                 // or passes it to the GenerateEnemiesList method whenever the line hold technical info i.e. starts with /I/E for enemies or /I/O for obstacles
                 string currentLine;
                 int currentRow = 0;
+
+                var createNewEnemyList = true;
+                var createNewPlaceList = true;
+                var createNewObstacleList = true;
+
                 while ((currentLine = leverReader.ReadLine()) != default(string))
                 {
                     if (currentRow < Constants.Console.ConsoleConstants.FieldHeight)
@@ -110,13 +118,28 @@
                             switch (objectTokens[0])
                             {
                                 case LevelConstants.EnemyInput:
-                                    GenerateEnemiesList(objectTokens);
+                                    GenerateEnemiesList(objectTokens, createNewEnemyList);
+
+                                    if (createNewEnemyList)
+                                    {
+                                        createNewEnemyList = false;
+                                    }
                                     break;
                                 case LevelConstants.ObstacleInput:
-                                    GenerateObstaclesList(objectTokens);
+                                    GenerateObstaclesList(objectTokens, createNewObstacleList);
+                                    if (createNewObstacleList)
+                                    {
+                                        createNewObstacleList = false;
+                                    }
                                     break;
                                 case LevelConstants.PlaceInput:
-                                    GeneratePlacesList(objectTokens);
+                                    GeneratePlacesList(objectTokens, createNewPlaceList);
+                                    if (createNewPlaceList)
+                                    {
+                                        createNewPlaceList = false;
+                                    }
+                                    break;
+                                default:
                                     break;
                                 
                             }
@@ -140,6 +163,13 @@
                         switch (symbol)
                         {
                             case PlayerConstants.Symbol:
+
+                                // if (loadGameExists)
+
+                                // We could insert our load logic here ! But we need to pass the whole player class not only his possition property
+
+                                //   player = new Player();
+
                                 player.Position = new Position(currentRow, currentCol);
                                 break;
 
@@ -175,8 +205,15 @@
                 Visualisator.PrintOnTheConsole(CurrentMapLegend);
 
                 Console.SetWindowPosition(0, 0);
-
+                
             }
+
+            OnLevelGenerated(player);
+        }
+
+        protected virtual void OnLevelGenerated(Player player)
+        {
+            LevelGenerated?.Invoke(this, new LevelGeneratedEventArgs { Player = player });
         }
 
         /// <summary>
@@ -206,11 +243,6 @@
                 allPlaces.Add(currentPlace);
             }
         }
-
-
-
-
-
 
         /// <summary>
         /// Generates an enemy based on its symbol whenever the symbol is encountered in the level template and adds this current enemy to the allEnemies list.
@@ -249,7 +281,8 @@
         /// Adds to levelEnemies dictionary all custom input enemies described in the level txt file with their symbol, type and difficulty level.
         /// </summary>
         /// <param name="dungeonInfoLine"></param>
-        private void GenerateEnemiesList(string[] enemyInfoLine)
+        /// <param name="createNewEnemyList"></param>
+        private void GenerateEnemiesList(string[] enemyInfoLine, bool createNewEnemyList)
         {
             // Checks if the input line holds all necessary information i.e. - symbol, type and difficulty level (+ type of object at index 0)
             if (enemyInfoLine.Length < LevelConstants.EnemyInputArrayLength)
@@ -261,7 +294,7 @@
             var enemyType = enemyInfoLine[2];
             var enemyDifficulty = int.Parse(enemyInfoLine[3]);
 
-            if (levelEnemies == null)
+            if (createNewEnemyList)
             {
                 levelEnemies = new Dictionary<char, KeyValuePair<string, int>>();
             }
@@ -276,7 +309,8 @@
         /// Adds to levelObstacles dictionary all obstacles described in the level txt file with their symbol, type and description
         /// </summary>
         /// <param name="obstacleInfoLine"></param>
-        private void GenerateObstaclesList(string[] obstacleInfoLine)
+        /// <param name="createNewObstacleList"></param>
+        private void GenerateObstaclesList(string[] obstacleInfoLine, bool createNewObstacleList)
         {
             // Checks if the input line holds all necessary information i.e. - symbol, type and description (+ type of object at index 0)
             if (obstacleInfoLine.Length < LevelConstants.ObstacleInputArrayLength)
@@ -288,7 +322,7 @@
             var obstacleType = obstacleInfoLine[2];
             var obstacleDescription = obstacleInfoLine[3];
 
-            if (levelObstacles == null)
+            if (createNewObstacleList)
             {
                 levelObstacles = new Dictionary<char, KeyValuePair<string, string>>();
             }
@@ -299,7 +333,7 @@
             }
         }
 
-        private void GeneratePlacesList(string[] placeInfoLine)
+        private void GeneratePlacesList(string[] placeInfoLine, bool createNewPlaceList)
         {
 
             // Checks if the input line holds all necessary information i.e. - symbol, type, type of gain and value (+ type of object at index 0)
@@ -313,7 +347,7 @@
             Place.PlaceGain placeGain = (Place.PlaceGain)int.Parse(placeInfoLine[3]);
             var placeValue = int.Parse(placeInfoLine[4]);
 
-            if (levelPlaces == null)
+            if (createNewPlaceList)
             {
                 levelPlaces = new Dictionary<KeyValuePair<char, string>, KeyValuePair<Place.PlaceGain, int>>();
             }
