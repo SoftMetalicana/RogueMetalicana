@@ -118,6 +118,8 @@
                                 case LevelConstants.PlaceInput:
                                     GeneratePlacesList(objectTokens);
                                     break;
+                                default:
+                                    break;
                                 
                             }
                         }                       
@@ -206,11 +208,6 @@
                 allPlaces.Add(currentPlace);
             }
         }
-
-
-
-
-
 
         /// <summary>
         /// Generates an enemy based on its symbol whenever the symbol is encountered in the level template and adds this current enemy to the allEnemies list.

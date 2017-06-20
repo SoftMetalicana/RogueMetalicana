@@ -7,10 +7,10 @@
         /// </summary>
         /// 
 
-        public const double Health = 100;
-        public const int Damage = 48;
-        public const int Defense = 35;
+        public const double Health = 60;
+        public const int Damage = 50;
+        public const int Defense = 45;
         public const int ExperienceGained = 42;
-        public const int GoldGained = 20;
+        public const int GoldGained = 40;
     }
 }

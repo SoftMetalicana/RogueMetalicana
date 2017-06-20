@@ -84,9 +84,7 @@
             {
                 this.allEnemies = new List<Enemy>();
                 this.allPlaces = new List<Place>();
-               
-             
-              
+                                      
                 this.dungeon = new List<char[]>();
 
                 levelGenerator.GenerateFullLevelPath();
@@ -125,6 +123,7 @@
                 case LevelConstants.RiverOfMercury:
                     Visualisator.PrintEndGameMessage(PlayerConstants.EnterIntoRiverOfMercury);
                     break;
+
                 case ShopConstants.Symbol:
                     Menu.OpenShop(); break;
 
@@ -147,8 +146,6 @@
                         }
                     }
                
-
-                    //temp - to be developed once battle is possible
                     if (isEnemy)
                     {
                         EnterInBattle(enemy);
@@ -187,14 +184,14 @@
                         {
                             case Place.PlaceGain.Health:
 
-                                if (this.player.Health + place.Value <= 100)
+                                if (this.player.Health + place.Value <= Player.MaxHealth)
                                 {
                                     this.player.Health += place.Value;
                                 }
                                 else
                                 {
-                                    gainValue = PlayerConstants.StartingHealth - this.player.Health;
-                                    this.player.Health = PlayerConstants.StartingHealth;
+                                    gainValue = Player.MaxHealth - this.player.Health;
+                                    this.player.Health = Player.MaxHealth;
 
                                 }
 
@@ -207,22 +204,24 @@
                                 break;
 
                             case Place.PlaceGain.Experience:
-                                this.player.Experience += place.Value;
+/*                                this.player.Experience += place.Value;*/
+                                this.player.GainGoldAndExperience(place.Value, 0);
                                 gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Experience);
                                 break;
 
                             case Place.PlaceGain.Gold:
-                                this.player.Gold += place.Value;
+/*                                this.player.Gold += place.Value;*/
+                                this.player.GainGoldAndExperience(0, place.Value);
                                 gainType = Enum.GetName(typeof(Place.PlaceGain), Place.PlaceGain.Gold);
                                 break;
                         }
 
-                        Visualisator.PrintGainOnTheConsole(VisualisatorConstants.PlaceGainConsumed + gainValue + " " + gainType);
+                        Visualisator.PrintUnderTheBattleField(VisualisatorConstants.PlaceGainConsumed + place.Type + " " + gainValue + " " + gainType);
                         place.IsVisited = true;
                     }
                     else
                     {
-                        Visualisator.PrintGainOnTheConsole(VisualisatorConstants.PlaceAlreadyVisited);
+                        Visualisator.PrintUnderTheBattleField(VisualisatorConstants.PlaceAlreadyVisited);
                     }
 
                 }
@@ -235,15 +234,26 @@
         /// <param name="newPlayerPosition"></param>
         private void TryOpenDoor(Position newPlayerPosition)
         {
+
+            if (allEnemies.Count <= 1)
+            {
+                PlaceThePlayerOnHisNewPosition(newPlayerPosition);
+            }
+            else
+            {
+                Visualisator.PrintUnderTheBattleField(VisualisatorConstants.UnableToCompleteLevel);
+            }
+
             //dinamichno vzemane na levela za zavurshvane na nivoto.
-            if (player.Level >= 6)
+
+/*            if (player.Level >= 6)
             {
                 PlaceThePlayerOnHisNewPosition(newPlayerPosition);
             }
             else
             {
                 //print message why can't open the door.
-            }
+            }*/
         }
 
         /// <summary>
