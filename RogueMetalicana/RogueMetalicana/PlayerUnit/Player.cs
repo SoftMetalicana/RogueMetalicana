@@ -320,17 +320,45 @@
 
             switch (potionType)
             {
-                case "HealthPotion": PotionInventory.Add(new Potion(PotionType.HealthPotion));
+                case "HealthPotion":
+                    if (DoesHeHasEnoughKinti())
+                    {
+                        PotionInventory.Add(new Potion(PotionType.HealthPotion));
+                        Gold -= Constants.Potions.PotionsConstants.MarketPrice;
+                    }
                     break;
-                case "XpPotion": PotionInventory.Add(new Potion(PotionType.XpPotion));
+                case "XpPotion":
+                    if (DoesHeHasEnoughKinti())
+                    {
+                        PotionInventory.Add(new Potion(PotionType.XpPotion));
+                        Gold -= Constants.Potions.PotionsConstants.MarketPrice;
+                    }
                     break;
-                case "BonusDamagePotion": PotionInventory.Add(new Potion(PotionType.BonusDamagePotion));
+                case "BonusDamagePotion":
+                    if (DoesHeHasEnoughKinti())
+                    {
+                        PotionInventory.Add(new Potion(PotionType.BonusDamagePotion));
+                        Gold -= Constants.Potions.PotionsConstants.MarketPrice;
+                    }
                     break;
                 default:
                     break;
             }
-            Gold -= Constants.Potions.PotionsConstants.MarketPrice;
           
+        }
+
+        private bool DoesHeHasEnoughKinti()
+        {
+            if (this.gold >= Constants.Potions.PotionsConstants.MarketPrice)
+            {
+                Constants.Shop.ShopConstants.lastSuccess = true;
+
+            }
+            else
+            {
+                Constants.Shop.ShopConstants.lastSuccess = false;
+            }
+            return this.gold >= Constants.Potions.PotionsConstants.MarketPrice;
         }
 
         public override string ToString()

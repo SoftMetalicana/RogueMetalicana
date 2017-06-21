@@ -15,7 +15,6 @@
     using RogueMetalicana.Visualization;
     using RogueMetalicana.Constants.Potions;
     using RogueMetalicana.Potion;
-   
     using RogueMetalicana.Menu;
     using RogueMetalicana.Constants.Shop; 
 
@@ -32,7 +31,7 @@
         private Player player;
         private List<Enemy> allEnemies;
         private List<Place> allPlaces;
-        
+
         private List<char[]> dungeon;
 
         private LevelGenerator levelGenerator;
@@ -134,8 +133,10 @@
                     break;
 
                 case ShopConstants.Symbol:
-                    Menu.OpenShop();            
+                    BuyPotion();
                     Visualisator.PrintAllMap(dungeon, player);
+                    ShopConstants.PrintLastShopAction();
+
                     break;
                 //all the monsters are traversed here.
                 default:
@@ -358,6 +359,37 @@
 
             return rowToCheck < 0 || rowToCheck >= this.dungeon.Count ||
                    colToCheck < 0 || colToCheck >= this.dungeon[rowToCheck].Length;
+        }
+
+        private void BuyPotion()
+        {
+            var values = Enum.GetValues(typeof(PotionType));
+            var options = new List<string>();
+            foreach (var value in values)
+            {
+                options.Add(value.ToString());
+            }
+            options.RemoveAt(options.Count - 1);
+
+            var menuPagination = new Pagination.Pagination(options);
+            menuPagination.Paginate();
+
+            switch (menuPagination.ReturnResult())
+            {
+                case "HealthPotion":
+                    this.player.BuyPotion("HealthPotion");
+                    Constants.Shop.ShopConstants.lastBought = "HealthPotion";
+                    break;
+                case "XpPotion":
+                    this.player.BuyPotion("XpPotion");
+                    Constants.Shop.ShopConstants.lastBought = "XpPotion";
+                    break;
+                case "BonusDamagePotion":
+                    this.player.BuyPotion("BonusDamagePotion");
+                    Constants.Shop.ShopConstants.lastBought = "BonusDamagePotion";
+                    break;
+                case "Exit": return;
+            }
         }
     }
 }
