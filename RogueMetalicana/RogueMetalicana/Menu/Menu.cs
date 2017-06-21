@@ -62,11 +62,12 @@
 
             switch (menuPagination.ReturnResult())
             {
-                case "HealthPotion":  break;
+                case "HealthPotion": break;
                 case "XpPotion": break;
                 case "BonusDamagePotion": break;
                 case "Exit":return; break;
             }
         }
+    
     }
 }

@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿
 
 namespace RogueMetalicana.Shpinx
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.IO;
+    using RogueMetalicana.Pagination;
     class Riddle
     {
-        private string question { get; set; }
-        private List<string> answers { get; set; }
-        private string rightAnswer { get; set; }
+        private string question;
+        private List<string> answers;
+        private string rightAnswer;
+
+        
       
         public Riddle(string question,List<string> answers,string rightanswer)
         {
@@ -36,10 +40,13 @@ namespace RogueMetalicana.Shpinx
             get { return this.rightAnswer; }
             set { this.rightAnswer = value; }
         }
-
-        public static void LoadQuestion()
+        public static void GenerateQuestion()
         {
-
+            LoadQuestion();
+            SelectAnswer();
+        }
+        public static Riddle LoadQuestion()
+        {
             var directory = @"../../Questions/1.txt";
             string[] lines = File.ReadAllLines(directory);
             var question = lines[1];
@@ -52,7 +59,22 @@ namespace RogueMetalicana.Shpinx
             }
 
             var riddle = new Riddle(question,answers,rightAnswer);
-
+            return riddle;    
         }
+        public static void SelectAnswer()
+        {
+            Pagination sphinxPagination = new Pagination(LoadQuestion().Answers);
+            sphinxPagination.Paginate();
+            if (sphinxPagination.ReturnResult()==LoadQuestion().RightAnswer)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        
+        
     }
 }

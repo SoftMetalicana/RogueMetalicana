@@ -8,6 +8,6 @@ namespace RogueMetalicana.Constants.Sphinx
 {
     class SphinxConstants
     {
-        public const char Sphinx = 'S';
+        public const char Symbol = 'S';
     }
 }
