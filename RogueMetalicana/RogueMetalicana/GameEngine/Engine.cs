@@ -415,6 +415,8 @@
             }
             options.RemoveAt(options.Count - 1);
 
+            options.Add("Exit");
+
             var menuPagination = new Pagination.Pagination(options);
             menuPagination.Paginate();
 

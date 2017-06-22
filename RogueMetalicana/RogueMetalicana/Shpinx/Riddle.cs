@@ -25,6 +25,7 @@ namespace RogueMetalicana.Shpinx
             var fileIndex = rnd.Next(0, Files.Length - 1);
             return Files[fileIndex].ToString();
         }
+
         public  void LoadQuestion()
         {
             var directory = $@"../../Questions/{SelectQuestion()}";
@@ -38,11 +39,13 @@ namespace RogueMetalicana.Shpinx
             {
                 answers.Add(lines[i]);
             }
+
             Pagination sphinxPagination = new Pagination(answers,1);
             sphinxPagination.Paginate();
             this.selectedAnswer = sphinxPagination.ReturnResult();
            
         }
+
         public  bool IsItRight()
         {
             if (this.selectedAnswer==this.rightAnswer)
@@ -50,14 +53,8 @@ namespace RogueMetalicana.Shpinx
                 return true;
 
             }
-            else if (this.selectedAnswer=="Exit")
-            {
-                return false;
-            }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
     }

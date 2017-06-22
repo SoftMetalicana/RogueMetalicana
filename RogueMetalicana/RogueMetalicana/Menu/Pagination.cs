@@ -25,8 +25,7 @@ namespace RogueMetalicana.Pagination
             public void Paginate()
             {
              Console.Clear();
-
-            options.Add("Exit");
+            
                 int pointer = startIndex;
                 string key = "";
                 while (key != "Enter")
