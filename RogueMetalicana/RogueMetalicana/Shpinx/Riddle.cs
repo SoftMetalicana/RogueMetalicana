@@ -17,10 +17,17 @@ namespace RogueMetalicana.Shpinx
         private string selectedAnswer;
         //public bool isItRight;
 
-
+        private  string SelectQuestion()
+        {
+            DirectoryInfo d = new DirectoryInfo(@"../../Questions");
+            FileInfo[] Files = d.GetFiles("*.txt");
+            Random rnd = new Random();
+            var fileIndex = rnd.Next(0, Files.Length - 1);
+            return Files[fileIndex].ToString();
+        }
         public  void LoadQuestion()
         {
-            var directory = @"../../Questions/1.txt";
+            var directory = $@"../../Questions/{SelectQuestion()}";
             string[] lines = File.ReadAllLines(directory);
             var question = lines[1];
             var rightAnswer = lines[lines.Length - 1];
@@ -42,6 +49,10 @@ namespace RogueMetalicana.Shpinx
             {
                 return true;
 
+            }
+            else if (this.selectedAnswer=="Exit")
+            {
+                return false;
             }
             else
             {
