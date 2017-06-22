@@ -33,7 +33,11 @@
         /// Variable that holds the index of the current level.
         /// </summary>
         private int currentLevelNumber;
+        public int CurrentLevelNumber
+        {
+            get { return this.currentLevelNumber; }
 
+        }
         /// <summary>
         /// Holds basic data for all enemies which will be encountered in the current level and described in the map's metadata
         /// </summary>

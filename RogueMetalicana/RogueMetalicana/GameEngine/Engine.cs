@@ -16,7 +16,9 @@
     using RogueMetalicana.Constants.Potions;
     using RogueMetalicana.Potion;
     using RogueMetalicana.Menu;
-    using RogueMetalicana.Constants.Shop; 
+    using RogueMetalicana.Constants.Shop;
+    using RogueMetalicana.Constants.Sphinx;
+    using RogueMetalicana.Shpinx;
 
 
     /// <summary>
@@ -31,6 +33,7 @@
         private Player player;
         private List<Enemy> allEnemies;
         private List<Place> allPlaces;
+        private Sphinx sphinx;
 
         private List<char[]> dungeon;
 
@@ -138,6 +141,11 @@
                     ShopConstants.PrintLastShopAction();
 
                     break;
+
+                case SphinxConstants.Symbol:
+                    GenerateAndVisitSphinx(newPlayerPosition);
+
+                    break;
                 //all the monsters are traversed here.
                 default:
 
@@ -172,7 +180,43 @@
 
             }
         }
+        private void GenerateAndVisitSphinx(Position sphinxPosition)
+        {
 
+            if (sphinx == null)
+            {
+                this.sphinx = new Sphinx(sphinxPosition,
+                       SphinxConstants.BonusGold * levelGenerator.CurrentLevelNumber,
+                       SphinxConstants.MinusHealth * levelGenerator.CurrentLevelNumber);
+            }
+            if (sphinx.IsVisited)
+            {
+                Visualisator.PrintUnderTheBattleField(VisualisatorConstants.SphinxIsVisited);
+                return;
+            }
+            var riddle = new Riddle();
+            riddle.LoadQuestion();
+            bool IsTheAnswerCorrect = riddle.IsItRight();
+            sphinx.IsVisited = true;
+            if (IsTheAnswerCorrect)
+            {
+                player.Gold += sphinx.BonusGold;
+            }
+            else
+            {
+                if (player.Health <= sphinx.MinusHealth)
+                {
+                    player.Health = 1;
+                }
+                else
+                {
+                    player.Health -= sphinx.MinusHealth;
+                }
+            }
+            Visualisator.PrintAllMap(dungeon, player);
+
+
+        }
         private void ConsumePlaceGains(Position newPlayerPosition)
         {
             foreach (var place in allPlaces)

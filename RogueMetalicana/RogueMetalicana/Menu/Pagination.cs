@@ -11,9 +11,15 @@ namespace RogueMetalicana.Pagination
         {
             private List<string> options;
             private string selected;
+            private int startIndex = 0;
             public Pagination(List<string> options)
             {
                 this.options = options;
+            }
+            public Pagination(List<string> options,int startIndex)
+            {
+                this.options = options;
+                this.startIndex = startIndex;
             }
 
             public void Paginate()
@@ -21,7 +27,7 @@ namespace RogueMetalicana.Pagination
              Console.Clear();
 
             options.Add("Exit");
-                int pointer = 0;
+                int pointer = startIndex;
                 string key = "";
                 while (key != "Enter")
                 {
@@ -32,16 +38,16 @@ namespace RogueMetalicana.Pagination
                     {
                         Console.WriteLine();
                     }
-                    foreach (var item in options)
+                for (int i = 0; i < options.Count; i++)              
                     {
                      ConsoleManager.DefaultColors();
-                    if (pointer == options.IndexOf(item))
+                    if (pointer == options.IndexOf(options[i]))
                         {
                         ConsoleManager.SelectedOptionColor();
                         }
-                        Console.WriteLine(new string(' ', (Console.WindowWidth - item.Length) / 2) + item + new string(' ', (Console.WindowWidth - item.Length) / 2));
+                        Console.WriteLine(new string(' ', (Console.WindowWidth - options[i].Length) / 2) + options[i] + new string(' ', (Console.WindowWidth - options[i].Length) / 2));
                         selected = options[pointer];
-                    }
+                   }
                     key = Console.ReadKey().Key.ToString();
 
                     switch (key)
@@ -54,9 +60,9 @@ namespace RogueMetalicana.Pagination
                 }
                     if (pointer > options.Count - 1)
                     {
-                        pointer = 0;
+                        pointer = startIndex;
                     }
-                    if (pointer < 0)
+                    if (pointer < startIndex)
                     {
                         pointer = options.Count - 1;
                     }

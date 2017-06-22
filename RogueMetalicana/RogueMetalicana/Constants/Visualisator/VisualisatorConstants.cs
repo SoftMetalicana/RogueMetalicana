@@ -24,5 +24,6 @@ namespace RogueMetalicana.Constants.Visualisator
         public const string PlaceAlreadyVisited = "Dude, you have already visited this place! Nothing to consume!";
 
         public const string UnableToCompleteLevel = "Don't be cheaty! You must get all enemies killed first!";
+        public const string SphinxIsVisited = "The mighty sphinx is already visited.GET AWAY!!!";
     }
 }

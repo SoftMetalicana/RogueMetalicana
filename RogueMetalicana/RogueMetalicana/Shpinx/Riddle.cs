@@ -14,67 +14,40 @@ namespace RogueMetalicana.Shpinx
         private string question;
         private List<string> answers;
         private string rightAnswer;
+        private string selectedAnswer;
+        //public bool isItRight;
 
-        
-      
-        public Riddle(string question,List<string> answers,string rightanswer)
-        {
-            this.answers = answers;
-            this.question = question;
-            this.rightAnswer = rightAnswer;
-        }
-        public string Question
-        {
-            get { return this.question; }
-            set { this.question = value; }
-        }
 
-        public List<string> Answers
-        {
-            get { return this.answers; }
-            set { this.answers = value; }
-        }
-
-        public string RightAnswer
-        {
-            get { return this.rightAnswer; }
-            set { this.rightAnswer = value; }
-        }
-        public static void GenerateQuestion()
-        {
-            LoadQuestion();
-            SelectAnswer();
-        }
-        public static Riddle LoadQuestion()
+        public  void LoadQuestion()
         {
             var directory = @"../../Questions/1.txt";
             string[] lines = File.ReadAllLines(directory);
             var question = lines[1];
             var rightAnswer = lines[lines.Length - 1];
+            this.rightAnswer = rightAnswer;
             var answers = new List<string>();
 
-            for (int i = 1; i < lines.Length-1; i++)
+            for (int i = 0; i < lines.Length - 1; i++)
             {
                 answers.Add(lines[i]);
             }
-
-            var riddle = new Riddle(question,answers,rightAnswer);
-            return riddle;    
-        }
-        public static void SelectAnswer()
-        {
-            Pagination sphinxPagination = new Pagination(LoadQuestion().Answers);
+            Pagination sphinxPagination = new Pagination(answers,1);
             sphinxPagination.Paginate();
-            if (sphinxPagination.ReturnResult()==LoadQuestion().RightAnswer)
+            this.selectedAnswer = sphinxPagination.ReturnResult();
+           
+        }
+        public  bool IsItRight()
+        {
+            if (this.selectedAnswer==this.rightAnswer)
             {
+                return true;
 
             }
             else
             {
-
+                return false;
             }
         }
-        
-        
+
     }
 }

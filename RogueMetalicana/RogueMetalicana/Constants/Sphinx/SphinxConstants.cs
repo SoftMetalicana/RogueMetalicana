@@ -9,5 +9,8 @@ namespace RogueMetalicana.Constants.Sphinx
     class SphinxConstants
     {
         public const char Symbol = 'S';
+        public const int BonusGold = 20;
+        public const int MinusHealth = 10;
+
     }
 }

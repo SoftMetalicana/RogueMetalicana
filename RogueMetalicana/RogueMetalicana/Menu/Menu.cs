@@ -14,6 +14,7 @@
         {
             List<string> options = new List<string>();
             options.Add("New Game");
+            options.Add("Load Game");
             options.Add("Create Level"); 
             options.Add("Options");
             
@@ -45,6 +46,28 @@
                 case "Story Mode": break;
                 case "Custom Levels": break;             
             }
-        }        
+        }
+        public static void OpenShop()
+        {
+            var values = Enum.GetValues(typeof(PotionType));
+            var options = new List<string>();
+            foreach (var value in values)
+            {
+                options.Add(value.ToString());
+            }
+            options.RemoveAt(options.Count - 1);
+
+            Pagination menuPagination = new Pagination(options);
+            menuPagination.Paginate();
+
+            switch (menuPagination.ReturnResult())
+            {
+                case "HealthPotion": break;
+                case "XpPotion": break;
+                case "BonusDamagePotion": break;
+                case "Exit":return; break;
+            }
+        }
+    
     }
 }
